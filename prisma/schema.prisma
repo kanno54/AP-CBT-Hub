@@ -17,7 +17,7 @@ model Question {
   category      String       // "TECHNOLOGY", "MANAGEMENT", "STRATEGY", "SECURITY", "NETWORK", "DATABASE", etc.
   title         String?      
   bodyText      String       
-  explanation   String?      // Detailed individual explanation for the question
+  explanation   String?      
   imageUrls     String?      
   choices       Choice[]     
   modelAnswers  ModelAnswer[]
@@ -40,6 +40,7 @@ model ModelAnswer {
   id             String   @id @default(uuid())
   questionId     String
   subQuestionNum String   
+  questionText   String?  // 設問文（例：「リスクAに示す攻撃手法の名称を答えよ。」）
   maxScore       Int?     
   characterLimit Int?     
   answerText     String   

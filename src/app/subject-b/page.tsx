@@ -20,12 +20,14 @@ import {
   Filter,
   Trash2,
   Bot,
+  HelpCircle,
 } from 'lucide-react';
 import * as diff from 'diff';
 
 interface ModelAnswer {
   id: string;
   subQuestionNum: string;
+  questionText: string | null;
   maxScore: number | null;
   characterLimit: number | null;
   answerText: string;
@@ -63,7 +65,11 @@ function SubjectBContent() {
 
   // Problem text highlighter state
   const scenarioRef = useRef<HTMLDivElement>(null);
-  const [highlightColor, setHighlightColor] = useState<string>('yellow');
+  const [floatingPopup, setFloatingPopup] = useState<{ x: number; y: number; show: boolean }>({
+    x: 0,
+    y: 0,
+    show: false,
+  });
 
   // User input state per subQuestion (keyed by subQuestionNum)
   const [userInputs, setUserInputs] = useState<Record<string, string>>({});
@@ -121,7 +127,28 @@ function SubjectBContent() {
     setIsSubmitted(false);
     setTimeSpent(0);
     setNotes('');
+    setFloatingPopup({ x: 0, y: 0, show: false });
   }, [currentIndex, currentQ]);
+
+  // Handle Text Selection MouseUp for Floating Marker Popup
+  const handleScenarioMouseUp = () => {
+    setTimeout(() => {
+      const selection = window.getSelection();
+      if (selection && !selection.isCollapsed && scenarioRef.current) {
+        const range = selection.getRangeAt(0);
+        if (scenarioRef.current.contains(range.commonAncestorContainer)) {
+          const rect = range.getBoundingClientRect();
+          setFloatingPopup({
+            x: rect.left + rect.width / 2,
+            y: rect.top - 48,
+            show: true,
+          });
+          return;
+        }
+      }
+      setFloatingPopup((prev) => ({ ...prev, show: false }));
+    }, 10);
+  };
 
   // Text Highlighter Handler
   const applyHighlight = (color: string) => {
@@ -152,6 +179,7 @@ function SubjectBContent() {
       console.warn('Highlight failed for complex range:', e);
     }
     selection.removeAllRanges();
+    setFloatingPopup((prev) => ({ ...prev, show: false }));
   };
 
   const clearHighlights = () => {
@@ -164,6 +192,7 @@ function SubjectBContent() {
       }
       parent?.removeChild(mark);
     });
+    setFloatingPopup((prev) => ({ ...prev, show: false }));
   };
 
   const handleInputChange = (subNum: string, text: string) => {
@@ -208,7 +237,6 @@ function SubjectBContent() {
         const data = await res.json();
         if (data.success) {
           evals[ma.subQuestionNum] = data.data;
-          // Set score state automatically from AI
           handleScoreChange(ma.subQuestionNum, data.data.score);
         }
       } catch (e) {
@@ -247,6 +275,39 @@ function SubjectBContent() {
 
   return (
     <div className="space-y-6 animate-fade-in">
+      {/* Floating Selection Highlighter Popup Menu */}
+      {floatingPopup.show && (
+        <div
+          style={{ top: `${floatingPopup.y}px`, left: `${floatingPopup.x}px` }}
+          className="fixed z-50 -translate-x-1/2 flex items-center gap-1.5 p-1.5 rounded-xl bg-slate-900/95 border border-indigo-500/40 shadow-2xl backdrop-blur-md animate-fade-in"
+        >
+          <button
+            onClick={() => applyHighlight('yellow')}
+            className="px-2.5 py-1 rounded-lg bg-yellow-400/20 text-yellow-300 hover:bg-yellow-400/40 text-xs font-bold border border-yellow-400/40 transition-colors"
+          >
+            黄マーカー
+          </button>
+          <button
+            onClick={() => applyHighlight('green')}
+            className="px-2.5 py-1 rounded-lg bg-emerald-400/20 text-emerald-300 hover:bg-emerald-400/40 text-xs font-bold border border-emerald-400/40 transition-colors"
+          >
+            緑マーカー
+          </button>
+          <button
+            onClick={() => applyHighlight('cyan')}
+            className="px-2.5 py-1 rounded-lg bg-cyan-400/20 text-cyan-300 hover:bg-cyan-400/40 text-xs font-bold border border-cyan-400/40 transition-colors"
+          >
+            青マーカー
+          </button>
+          <button
+            onClick={clearHighlights}
+            className="px-2 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-slate-200 text-xs font-medium border border-slate-700 transition-colors"
+          >
+            消す
+          </button>
+        </div>
+      )}
+
       {/* Top CBT Header bar */}
       <div className="glass-panel p-5 rounded-2xl border border-slate-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div className="flex items-center gap-3">
@@ -260,7 +321,7 @@ function SubjectBContent() {
                 本番CBT Dual-Pane & AI採点
               </span>
             </div>
-            <p className="text-xs text-slate-400">問題文ハイライター / AIキーワード判定採点 / Diff比較 / リアルタイム文字数制限</p>
+            <p className="text-xs text-slate-400">設問文付きエディタ / ドラッグマーカー / AIキーワード判定採点 / Diff比較</p>
           </div>
         </div>
 
@@ -325,38 +386,42 @@ function SubjectBContent() {
       ) : (
         /* Split Pane Dual View */
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 min-h-[600px]">
-          {/* Left Pane: Scenario Text + Text Highlighter Toolbar */}
+          {/* Left Pane: Scenario Text + Text Highlighter Toolbar & Guidance */}
           <div className="lg:col-span-6 glass-panel p-6 rounded-2xl border border-slate-800 flex flex-col space-y-4 max-h-[780px]">
-            {/* Highlighter Toolbar */}
-            <div className="flex items-center justify-between bg-slate-900/90 p-2.5 rounded-xl border border-slate-800">
-              <div className="flex items-center gap-1.5">
-                <Highlighter className="w-4 h-4 text-indigo-400" />
-                <span className="text-xs font-bold text-slate-300">CBTマーカー:</span>
+            {/* Highlighter Guidance Banner */}
+            <div className="flex items-center justify-between bg-blue-500/10 p-3 rounded-xl border border-blue-500/20 text-xs text-blue-300">
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-blue-400 shrink-0" />
+                <span>
+                  💡 <strong>マーカーの使い方:</strong> 本文の文字をドラッグ選択するとポップアップから即座にマーカーが引けます。
+                </span>
+              </div>
+              <div className="flex items-center gap-1.5 shrink-0 ml-2">
                 <button
                   onClick={() => applyHighlight('yellow')}
-                  className="px-2.5 py-1 rounded-lg bg-yellow-400/20 text-yellow-300 hover:bg-yellow-400/40 text-xs font-semibold border border-yellow-400/40 transition-colors"
+                  className="px-2 py-0.5 rounded bg-yellow-400/20 text-yellow-300 text-[11px] font-semibold border border-yellow-400/30"
                 >
-                  黄色
+                  黄
                 </button>
                 <button
                   onClick={() => applyHighlight('green')}
-                  className="px-2.5 py-1 rounded-lg bg-emerald-400/20 text-emerald-300 hover:bg-emerald-400/40 text-xs font-semibold border border-emerald-400/40 transition-colors"
+                  className="px-2 py-0.5 rounded bg-emerald-400/20 text-emerald-300 text-[11px] font-semibold border border-emerald-400/30"
                 >
-                  緑色
+                  緑
                 </button>
                 <button
                   onClick={() => applyHighlight('cyan')}
-                  className="px-2.5 py-1 rounded-lg bg-cyan-400/20 text-cyan-300 hover:bg-cyan-400/40 text-xs font-semibold border border-cyan-400/40 transition-colors"
+                  className="px-2 py-0.5 rounded bg-cyan-400/20 text-cyan-300 text-[11px] font-semibold border border-cyan-400/30"
                 >
-                  シアン
+                  青
+                </button>
+                <button
+                  onClick={clearHighlights}
+                  className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 hover:text-slate-200 text-[11px]"
+                >
+                  削除
                 </button>
               </div>
-              <button
-                onClick={clearHighlights}
-                className="px-2 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-slate-200 text-xs font-medium flex items-center gap-1 transition-colors"
-              >
-                <Trash2 className="w-3.5 h-3.5" /> マーカー削除
-              </button>
             </div>
 
             {/* Problem Header */}
@@ -375,8 +440,12 @@ function SubjectBContent() {
               </div>
             </div>
 
-            {/* Scenario Text Content with Selection Ref */}
-            <div ref={scenarioRef} className="overflow-y-auto flex-1 space-y-4 pr-1 selection:bg-indigo-500/30">
+            {/* Scenario Text Content with Selection Listener */}
+            <div
+              ref={scenarioRef}
+              onMouseUp={handleScenarioMouseUp}
+              className="overflow-y-auto flex-1 space-y-4 pr-1 selection:bg-indigo-500/40 selection:text-white"
+            >
               {currentQ.title && (
                 <h2 className="text-lg font-bold text-slate-100 leading-snug border-l-4 border-indigo-500 pl-3">
                   {currentQ.title}
@@ -389,7 +458,7 @@ function SubjectBContent() {
             </div>
           </div>
 
-          {/* Right Pane: CBT Sub-question Inputs & AI Grading & Diff Visualizer */}
+          {/* Right Pane: CBT Sub-question Prompt & Inputs & AI Grading */}
           <div className="lg:col-span-6 flex flex-col gap-6">
             <div className="glass-panel p-6 rounded-2xl border border-slate-800 flex-1 space-y-6 overflow-y-auto max-h-[780px]">
               <div className="flex items-center justify-between border-b border-slate-800 pb-3">
@@ -417,9 +486,10 @@ function SubjectBContent() {
 
                   return (
                     <div key={ma.id} className="space-y-3 p-4 rounded-xl bg-slate-900/60 border border-slate-800/80">
+                      {/* Sub-question Header & Badges */}
                       <div className="flex items-center justify-between">
                         <span className="text-sm font-bold text-slate-200 flex items-center gap-2">
-                          <span className="w-2 h-2 rounded-full bg-indigo-500"></span>
+                          <span className="w-2.5 h-2.5 rounded-full bg-indigo-500"></span>
                           {ma.subQuestionNum}
                         </span>
                         <div className="flex items-center gap-3 text-xs">
@@ -437,6 +507,16 @@ function SubjectBContent() {
                           )}
                         </div>
                       </div>
+
+                      {/* Explicit Sub-question Prompt Statement */}
+                      {ma.questionText && (
+                        <div className="p-3.5 rounded-xl bg-slate-950/90 border border-indigo-500/30 text-xs text-indigo-200 leading-relaxed font-medium space-y-1">
+                          <span className="text-[10px] font-bold tracking-wider px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 inline-block mb-1">
+                            【設問文】
+                          </span>
+                          <p className="text-slate-100 font-semibold">{ma.questionText}</p>
+                        </div>
+                      )}
 
                       {/* Textarea input */}
                       <textarea

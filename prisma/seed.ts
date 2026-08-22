@@ -66,6 +66,7 @@ async function main() {
           data: {
             questionId: createdQ.id,
             subQuestionNum: ma.subQuestionNum,
+            questionText: ma.questionText,
             maxScore: ma.maxScore,
             characterLimit: ma.characterLimit,
             answerText: ma.answerText,

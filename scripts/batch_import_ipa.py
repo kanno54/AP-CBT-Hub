@@ -5,7 +5,7 @@ import re
 from typing import List, Dict, Any, Optional
 from pydantic import BaseModel, Field
 
-# Force UTF-8 output encoding for Windows terminal
+# Force UTF-8 stdout encoding for Windows
 if sys.platform == 'win32':
     sys.stdout.reconfigure(encoding='utf-8')
 
@@ -24,6 +24,7 @@ class ChoiceData(BaseModel):
 
 class ModelAnswerData(BaseModel):
     subQuestionNum: str  # e.g. "設問1 (1)"
+    questionText: Optional[str] = None  # 設問文
     maxScore: Optional[int] = None
     characterLimit: Optional[int] = None
     answerText: str
@@ -37,19 +38,14 @@ class QuestionData(BaseModel):
     category: str  # "SECURITY", "NETWORK", "DATABASE", "ALGORITHM", "TECHNOLOGY", "MANAGEMENT", "STRATEGY", "PROJECT_MGMT", "SYSTEM_ARCH"
     title: Optional[str] = None
     bodyText: str
+    explanation: Optional[str] = None
     imageUrls: List[str] = []
     choices: List[ChoiceData] = []
     modelAnswers: List[ModelAnswerData] = []
 
 def generate_ap_exam_database_records() -> List[QuestionData]:
-    """
-    Generates a rich, structured dataset of Applied Information Technology Engineer (AP)
-    past paper questions across recent years (2021-2025 Spring/Autumn).
-    Includes Subject A (択一) and Subject B (記述CBT) questions with diagrams and model answers.
-    """
     records: List[QuestionData] = []
 
-    # Year Range: 2021 to 2025 (9 exam sessions)
     years_seasons = [
         (2025, 'SPRING'),
         (2025, 'AUTUMN'),
@@ -62,7 +58,6 @@ def generate_ap_exam_database_records() -> List[QuestionData]:
         (2021, 'SPRING'),
     ]
 
-    # Subject A Master Template Questions (Real AP Exam Problems & Variations)
     subject_a_templates = [
         {
             "num": 1,
@@ -162,7 +157,6 @@ def generate_ap_exam_database_records() -> List[QuestionData]:
         }
     ]
 
-    # Generate questions for each year and season
     for yr, ssn in years_seasons:
         for tmpl in subject_a_templates:
             img_path = []
@@ -196,7 +190,7 @@ def generate_ap_exam_database_records() -> List[QuestionData]:
             )
             records.append(q_item)
 
-        # Subject B Scenario Question per session
+        # Subject B Question with specific Sub-question Prompt Texts
         sb_img_name = f"{yr}_{ssn.lower()}_subject_b_q1.png"
         sb_img_full_path = os.path.join(PUBLIC_QUESTIONS_DIR, sb_img_name)
         if not os.path.exists(sb_img_full_path):
@@ -221,19 +215,18 @@ def generate_ap_exam_database_records() -> List[QuestionData]:
 Z社は大規模ECプラットフォームの再構築を行っている。
 認証認可サーバーおよびAPIゲートウェイ間の通信において、トークン認証方式(JWT)を採用する設計案が提示された。
 
-#### [システム構成と指摘事項]
-1. クライアントブラウザからの認証要求時、ID/パスワードの一致を検証した後にアクセストークンを返却する。
-2. Cookieの属性設定において `HttpOnly` は設定されているが、 `SameSite=Strict` および `Secure` が未設定となっていた。
+#### [システムの現状と指摘事項]
+1. ユーザー認証には従来のセッションID方式を採用しており、CookieにセッションIDを保存している。
+2. Cookie属性には `HttpOnly` は設定されているが、 `SameSite=Strict` および `Secure` が未設定となっていた。
 3. データベースアクセス層で文字列結合による動的SQL文の組み立てが発見された。
 
 #### [セキュリティ要求事項]
-診断チームから、外部サイトからのリクエスト送信を防止する対策(リスクA)およびSQLインジェクション脆弱性(リスクB)の修正が指示された。
-
-以下の各設問に答えなさい。""",
+診断チームから、外部サイトからのリクエスト送信を防止する対策(リスクA)およびSQLインジェクション脆弱性(リスクB)の修正が指示された。""",
             imageUrls=[f"/questions/{sb_img_name}"],
             modelAnswers=[
                 ModelAnswerData(
                     subQuestionNum="設問1 (1)",
+                    questionText="本文中のリスクAに示す、悪意ある第三者がターゲットユーザーのブラウザ上で不正なリクエストを送信させる攻撃手法の名称を答えよ。",
                     maxScore=10,
                     characterLimit=35,
                     answerText="クロスサイトリクエストフォージェリ (CSRF)",
@@ -241,6 +234,7 @@ Z社は大規模ECプラットフォームの再構築を行っている。
                 ),
                 ModelAnswerData(
                     subQuestionNum="設問1 (2)",
+                    questionText="本文中のリスクBに示す、SQLインジェクション脆弱性を防止するための、データベースアクセス層における適切な対策方針を40文字以内で答えよ。",
                     maxScore=10,
                     characterLimit=40,
                     answerText="プレースホルダを用いたプレペアードステートメントを使用する。",
@@ -248,6 +242,7 @@ Z社は大規模ECプラットフォームの再構築を行っている。
                 ),
                 ModelAnswerData(
                     subQuestionNum="設問2",
+                    questionText="本文の指摘事項2に対し、リスクAの攻撃を防ぐためのCookieの具体的な属性設定対策を50文字以内で答えよ。",
                     maxScore=15,
                     characterLimit=50,
                     answerText="CookieにSameSite=Strict属性およびSecure属性を付与して送信を制限する。",
@@ -264,30 +259,12 @@ def save_and_import_dataset():
     questions = generate_ap_exam_database_records()
     print(f"Generated {len(questions)} total AP Question records.")
 
-    # Save to data/questions_full.json
     output_json_path = os.path.join(DATA_DIR, 'questions_full.json')
     data_to_save = [q.model_dump() for q in questions]
     with open(output_json_path, 'w', encoding='utf-8') as f:
         json.dump(data_to_save, f, ensure_ascii=False, indent=2)
 
     print(f"Saved full dataset to {output_json_path}")
-
-    # Aggregation Summary Report
-    stats: Dict[str, Dict[str, int]] = {}
-    for q in questions:
-        yr_key = f"{q.year}_{q.season}"
-        if yr_key not in stats:
-            stats[yr_key] = {"SUBJECT_A": 0, "SUBJECT_B": 0}
-        stats[yr_key][q.examType] += 1
-
-    print("\n==================================================")
-    print("      AP-CBT-Hub 過去問データセット登録集計レポート      ")
-    print("==================================================")
-    for yr_ssn, counts in sorted(stats.items()):
-        print(f"  [+] {yr_ssn}: 科目A (択一): {counts['SUBJECT_A']}問 | 科目B (記述): {counts['SUBJECT_B']}問")
-    print(f"  --------------------------------------------------")
-    print(f"  総登録問題数: {len(questions)} 問")
-    print("==================================================\n")
 
 if __name__ == "__main__":
     save_and_import_dataset()
