@@ -1,0 +1,2756 @@
+[
+  {
+    "year": 2025,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 1,
+    "category": "SECURITY",
+    "title": "公開鍵暗号方式における鍵管理と署名検証 (2025年春)",
+    "bodyText": "送信者Aが受信者Bに暗号化された電子メールを送信し、改ざん検知と送信元認証を行う場合、送信者Aがメッセージのデジタル署名生成に使用する鍵と、受信者Bがメッセージ本体の解読に使用する鍵の組み合わせとして、適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "署名用: 送信者Aの秘密鍵 / 暗号解読用: 受信者Bの秘密鍵",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "署名用: 送信者Aの公開鍵 / 暗号解読用: 受信者Bの公開鍵",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "署名用: 受信者Bの秘密鍵 / 暗号解読用: 送信者Aの公開鍵",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "署名用: 受信者Bの公開鍵 / 暗号解読用: 送信者Aの秘密鍵",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2025,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 2,
+    "category": "SECURITY",
+    "title": "ゼロトラストネットワークアクセス (ZTNA) (2025年春)",
+    "bodyText": "「何も信頼せず、すべてを検証する」というゼロトラストアーキテクチャの原則に基づくセキュリティ対策として、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "社内LAN内部の通信は信頼し、境界ルータでのファイアウォールログのみを監視する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "イ",
+        "text": "すべてのデバイスおよびユーザーに対し、アクセス要求ごとに認証・認可を行い最小権限を適用する。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "ウ",
+        "text": "VPN装置を用いてリモートユーザーを社内ネットワークに接続させた後、全社内サーバへ自由アクセスを許可する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "社外Webサイトからのダウンロードファイルのみをウイルススキャン対象とする。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2025,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 3,
+    "category": "NETWORK",
+    "title": "IPv6アドレスの表記規格と機能拡張 (2025年春)",
+    "bodyText": "IPv6のアドレス仕様および運用に関する記述のうち、適切なものはどれか。",
+    "imageUrls": [
+      "/questions/2025_spring_subject_a_q3.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "128ビット長のアドレスを16ビットごとにコロン(:)で区切り、16進数で表記する。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "32ビット長のアドレスを8ビットごとにドット(.)で区切り、10進数で表記する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "NAT機能を用いなければインターネット上の端末同士で通信できない。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "ブロードキャストフレームが標準通信方式として送受信される。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2025,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 4,
+    "category": "DATABASE",
+    "title": "リレーショナルデータベースの第3正規形 (2025年春)",
+    "bodyText": "リレーショナルデータベースにおける第3正規形に関する記述として、最も適切なものはどれか。",
+    "imageUrls": [
+      "/questions/2025_spring_subject_a_q4.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "すべての非キー属性が主キーに対して完全関数従属し、かつ推移的関数従属が存在しない状態。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "繰り返し群が取り除かれ、単一原子値のみで表されている状態。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "属性間に一切の関数従属関係が存在しない状態。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "主キーが複数の複合属性によって構成されている状態。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2025,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 5,
+    "category": "ALGORITHM",
+    "title": "平衡二分探索木の平均検索時間複雑度 (2025年春)",
+    "bodyText": "要素数がNである平衡二分探索木(AVL木や赤黒木)において、特定の要素を探索する際の平均時間複雑度はどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "O(1)",
+        "isCorrect": false
+      },
+      {
+        "symbol": "イ",
+        "text": "O(log N)",
+        "isCorrect": true
+      },
+      {
+        "symbol": "ウ",
+        "text": "O(N)",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "O(N log N)",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2025,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 6,
+    "category": "SYSTEM_ARCH",
+    "title": "BCPにおけるRTOとRPOの定義 (2025年春)",
+    "bodyText": "事業継続計画(BCP)における目標復旧時間(RTO: Recovery Time Objective)と目標復旧時点(RPO: Recovery Point Objective)に関する記述のうち、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "RTOはシステム停止から業務が再開するまでの許容経過時間を示す。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "RTOは障害発生時に失われても許容できるデータの復元時点(データ損失量)を示す。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "RPOはシステムバックアップ作業に要する作業時間を意味する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "RPOが0の場合、復旧までに無限の時間猶予があることを示す。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2025,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 7,
+    "category": "PROJECT_MGMT",
+    "title": "EVM(Earned Value Management)指標の分析 (2025年春)",
+    "bodyText": "プロジェクトマネジメントにおけるEVMにおいて、アーンドバリュー(EV)=100万円、アクチュアルコスト(AC)=120万円、プランドバリュー(PV)=110万円のとき、コスト分散(CV)とスケジュール効率指数(SPI)の正しい組み合わせはどれか。",
+    "imageUrls": [
+      "/questions/2025_spring_subject_a_q7.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "CV = -20万円, SPI = 0.91",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "CV = +20万円, SPI = 1.10",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "CV = -10万円, SPI = 0.83",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "CV = +10万円, SPI = 1.20",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2025,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 8,
+    "category": "STRATEGY",
+    "title": "デジタルトランスフォーメーション (DX) ガイドライン (2025年春)",
+    "bodyText": "経済産業省の「DX推進ガイドライン」におけるデジタルトランスフォーメーション(DX)の定義として、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "データとデジタル技術を活用して、顧客や社会のニーズを基に製品・サービス・ビジネスモデルを変革し、競合上の優位性を確立すること。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "既存の社内紙書類をすべてスキャンしてPDFファイルに置き換えること。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "自社オンプレミスサーバをすべてクラウドサービスへ移行すること。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "基幹業務システム(ERP)のソフトウェアバージョンを最新化すること。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2025,
+    "season": "SPRING",
+    "examType": "SUBJECT_B",
+    "questionNum": 1,
+    "category": "SECURITY",
+    "title": "Webアプリケーションセキュリティ設計と認証基盤強化 (2025年春)",
+    "bodyText": "### [2025年春期 応用情報技術者試験 科目B 記述問題]\nZ社は大規模ECプラットフォームの再構築を行っている。\n認証認可サーバーおよびAPIゲートウェイ間の通信において、トークン認証方式(JWT)を採用する設計案が提示された。\n\n#### [システム構成と指摘事項]\n1. クライアントブラウザからの認証要求時、ID/パスワードの一致を検証した後にアクセストークンを返却する。\n2. Cookieの属性設定において `HttpOnly` は設定されているが、 `SameSite=Strict` および `Secure` が未設定となっていた。\n3. データベースアクセス層で文字列結合による動的SQL文の組み立てが発見された。\n\n#### [セキュリティ要求事項]\n診断チームから、外部サイトからのリクエスト送信を防止する対策(リスクA)およびSQLインジェクション脆弱性(リスクB)の修正が指示された。\n\n以下の各設問に答えなさい。",
+    "imageUrls": [
+      "/questions/2025_spring_subject_b_q1.png"
+    ],
+    "choices": [],
+    "modelAnswers": [
+      {
+        "subQuestionNum": "設問1 (1)",
+        "maxScore": 10,
+        "characterLimit": 35,
+        "answerText": "クロスサイトリクエストフォージェリ (CSRF)",
+        "explanation": "他サイトからの不正リクエストを防止する攻撃名称を答えます。"
+      },
+      {
+        "subQuestionNum": "設問1 (2)",
+        "maxScore": 10,
+        "characterLimit": 40,
+        "answerText": "プレースホルダを用いたプレペアードステートメントを使用する。",
+        "explanation": "SQLインジェクションの根本対策である静的バインド変数の利用について記述します。"
+      },
+      {
+        "subQuestionNum": "設問2",
+        "maxScore": 15,
+        "characterLimit": 50,
+        "answerText": "CookieにSameSite=Strict属性およびSecure属性を付与して送信を制限する。",
+        "explanation": "CSRF対策としてのCookie属性の設定値を記述します。"
+      }
+    ]
+  },
+  {
+    "year": 2025,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 1,
+    "category": "SECURITY",
+    "title": "公開鍵暗号方式における鍵管理と署名検証 (2025年秋)",
+    "bodyText": "送信者Aが受信者Bに暗号化された電子メールを送信し、改ざん検知と送信元認証を行う場合、送信者Aがメッセージのデジタル署名生成に使用する鍵と、受信者Bがメッセージ本体の解読に使用する鍵の組み合わせとして、適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "署名用: 送信者Aの秘密鍵 / 暗号解読用: 受信者Bの秘密鍵",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "署名用: 送信者Aの公開鍵 / 暗号解読用: 受信者Bの公開鍵",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "署名用: 受信者Bの秘密鍵 / 暗号解読用: 送信者Aの公開鍵",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "署名用: 受信者Bの公開鍵 / 暗号解読用: 送信者Aの秘密鍵",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2025,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 2,
+    "category": "SECURITY",
+    "title": "ゼロトラストネットワークアクセス (ZTNA) (2025年秋)",
+    "bodyText": "「何も信頼せず、すべてを検証する」というゼロトラストアーキテクチャの原則に基づくセキュリティ対策として、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "社内LAN内部の通信は信頼し、境界ルータでのファイアウォールログのみを監視する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "イ",
+        "text": "すべてのデバイスおよびユーザーに対し、アクセス要求ごとに認証・認可を行い最小権限を適用する。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "ウ",
+        "text": "VPN装置を用いてリモートユーザーを社内ネットワークに接続させた後、全社内サーバへ自由アクセスを許可する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "社外Webサイトからのダウンロードファイルのみをウイルススキャン対象とする。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2025,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 3,
+    "category": "NETWORK",
+    "title": "IPv6アドレスの表記規格と機能拡張 (2025年秋)",
+    "bodyText": "IPv6のアドレス仕様および運用に関する記述のうち、適切なものはどれか。",
+    "imageUrls": [
+      "/questions/2025_autumn_subject_a_q3.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "128ビット長のアドレスを16ビットごとにコロン(:)で区切り、16進数で表記する。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "32ビット長のアドレスを8ビットごとにドット(.)で区切り、10進数で表記する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "NAT機能を用いなければインターネット上の端末同士で通信できない。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "ブロードキャストフレームが標準通信方式として送受信される。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2025,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 4,
+    "category": "DATABASE",
+    "title": "リレーショナルデータベースの第3正規形 (2025年秋)",
+    "bodyText": "リレーショナルデータベースにおける第3正規形に関する記述として、最も適切なものはどれか。",
+    "imageUrls": [
+      "/questions/2025_autumn_subject_a_q4.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "すべての非キー属性が主キーに対して完全関数従属し、かつ推移的関数従属が存在しない状態。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "繰り返し群が取り除かれ、単一原子値のみで表されている状態。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "属性間に一切の関数従属関係が存在しない状態。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "主キーが複数の複合属性によって構成されている状態。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2025,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 5,
+    "category": "ALGORITHM",
+    "title": "平衡二分探索木の平均検索時間複雑度 (2025年秋)",
+    "bodyText": "要素数がNである平衡二分探索木(AVL木や赤黒木)において、特定の要素を探索する際の平均時間複雑度はどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "O(1)",
+        "isCorrect": false
+      },
+      {
+        "symbol": "イ",
+        "text": "O(log N)",
+        "isCorrect": true
+      },
+      {
+        "symbol": "ウ",
+        "text": "O(N)",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "O(N log N)",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2025,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 6,
+    "category": "SYSTEM_ARCH",
+    "title": "BCPにおけるRTOとRPOの定義 (2025年秋)",
+    "bodyText": "事業継続計画(BCP)における目標復旧時間(RTO: Recovery Time Objective)と目標復旧時点(RPO: Recovery Point Objective)に関する記述のうち、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "RTOはシステム停止から業務が再開するまでの許容経過時間を示す。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "RTOは障害発生時に失われても許容できるデータの復元時点(データ損失量)を示す。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "RPOはシステムバックアップ作業に要する作業時間を意味する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "RPOが0の場合、復旧までに無限の時間猶予があることを示す。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2025,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 7,
+    "category": "PROJECT_MGMT",
+    "title": "EVM(Earned Value Management)指標の分析 (2025年秋)",
+    "bodyText": "プロジェクトマネジメントにおけるEVMにおいて、アーンドバリュー(EV)=100万円、アクチュアルコスト(AC)=120万円、プランドバリュー(PV)=110万円のとき、コスト分散(CV)とスケジュール効率指数(SPI)の正しい組み合わせはどれか。",
+    "imageUrls": [
+      "/questions/2025_autumn_subject_a_q7.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "CV = -20万円, SPI = 0.91",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "CV = +20万円, SPI = 1.10",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "CV = -10万円, SPI = 0.83",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "CV = +10万円, SPI = 1.20",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2025,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 8,
+    "category": "STRATEGY",
+    "title": "デジタルトランスフォーメーション (DX) ガイドライン (2025年秋)",
+    "bodyText": "経済産業省の「DX推進ガイドライン」におけるデジタルトランスフォーメーション(DX)の定義として、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "データとデジタル技術を活用して、顧客や社会のニーズを基に製品・サービス・ビジネスモデルを変革し、競合上の優位性を確立すること。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "既存の社内紙書類をすべてスキャンしてPDFファイルに置き換えること。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "自社オンプレミスサーバをすべてクラウドサービスへ移行すること。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "基幹業務システム(ERP)のソフトウェアバージョンを最新化すること。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2025,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_B",
+    "questionNum": 1,
+    "category": "SECURITY",
+    "title": "Webアプリケーションセキュリティ設計と認証基盤強化 (2025年秋)",
+    "bodyText": "### [2025年秋期 応用情報技術者試験 科目B 記述問題]\nZ社は大規模ECプラットフォームの再構築を行っている。\n認証認可サーバーおよびAPIゲートウェイ間の通信において、トークン認証方式(JWT)を採用する設計案が提示された。\n\n#### [システム構成と指摘事項]\n1. クライアントブラウザからの認証要求時、ID/パスワードの一致を検証した後にアクセストークンを返却する。\n2. Cookieの属性設定において `HttpOnly` は設定されているが、 `SameSite=Strict` および `Secure` が未設定となっていた。\n3. データベースアクセス層で文字列結合による動的SQL文の組み立てが発見された。\n\n#### [セキュリティ要求事項]\n診断チームから、外部サイトからのリクエスト送信を防止する対策(リスクA)およびSQLインジェクション脆弱性(リスクB)の修正が指示された。\n\n以下の各設問に答えなさい。",
+    "imageUrls": [
+      "/questions/2025_autumn_subject_b_q1.png"
+    ],
+    "choices": [],
+    "modelAnswers": [
+      {
+        "subQuestionNum": "設問1 (1)",
+        "maxScore": 10,
+        "characterLimit": 35,
+        "answerText": "クロスサイトリクエストフォージェリ (CSRF)",
+        "explanation": "他サイトからの不正リクエストを防止する攻撃名称を答えます。"
+      },
+      {
+        "subQuestionNum": "設問1 (2)",
+        "maxScore": 10,
+        "characterLimit": 40,
+        "answerText": "プレースホルダを用いたプレペアードステートメントを使用する。",
+        "explanation": "SQLインジェクションの根本対策である静的バインド変数の利用について記述します。"
+      },
+      {
+        "subQuestionNum": "設問2",
+        "maxScore": 15,
+        "characterLimit": 50,
+        "answerText": "CookieにSameSite=Strict属性およびSecure属性を付与して送信を制限する。",
+        "explanation": "CSRF対策としてのCookie属性の設定値を記述します。"
+      }
+    ]
+  },
+  {
+    "year": 2024,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 1,
+    "category": "SECURITY",
+    "title": "公開鍵暗号方式における鍵管理と署名検証 (2024年春)",
+    "bodyText": "送信者Aが受信者Bに暗号化された電子メールを送信し、改ざん検知と送信元認証を行う場合、送信者Aがメッセージのデジタル署名生成に使用する鍵と、受信者Bがメッセージ本体の解読に使用する鍵の組み合わせとして、適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "署名用: 送信者Aの秘密鍵 / 暗号解読用: 受信者Bの秘密鍵",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "署名用: 送信者Aの公開鍵 / 暗号解読用: 受信者Bの公開鍵",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "署名用: 受信者Bの秘密鍵 / 暗号解読用: 送信者Aの公開鍵",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "署名用: 受信者Bの公開鍵 / 暗号解読用: 送信者Aの秘密鍵",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2024,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 2,
+    "category": "SECURITY",
+    "title": "ゼロトラストネットワークアクセス (ZTNA) (2024年春)",
+    "bodyText": "「何も信頼せず、すべてを検証する」というゼロトラストアーキテクチャの原則に基づくセキュリティ対策として、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "社内LAN内部の通信は信頼し、境界ルータでのファイアウォールログのみを監視する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "イ",
+        "text": "すべてのデバイスおよびユーザーに対し、アクセス要求ごとに認証・認可を行い最小権限を適用する。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "ウ",
+        "text": "VPN装置を用いてリモートユーザーを社内ネットワークに接続させた後、全社内サーバへ自由アクセスを許可する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "社外Webサイトからのダウンロードファイルのみをウイルススキャン対象とする。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2024,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 3,
+    "category": "NETWORK",
+    "title": "IPv6アドレスの表記規格と機能拡張 (2024年春)",
+    "bodyText": "IPv6のアドレス仕様および運用に関する記述のうち、適切なものはどれか。",
+    "imageUrls": [
+      "/questions/2024_spring_subject_a_q3.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "128ビット長のアドレスを16ビットごとにコロン(:)で区切り、16進数で表記する。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "32ビット長のアドレスを8ビットごとにドット(.)で区切り、10進数で表記する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "NAT機能を用いなければインターネット上の端末同士で通信できない。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "ブロードキャストフレームが標準通信方式として送受信される。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2024,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 4,
+    "category": "DATABASE",
+    "title": "リレーショナルデータベースの第3正規形 (2024年春)",
+    "bodyText": "リレーショナルデータベースにおける第3正規形に関する記述として、最も適切なものはどれか。",
+    "imageUrls": [
+      "/questions/2024_spring_subject_a_q4.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "すべての非キー属性が主キーに対して完全関数従属し、かつ推移的関数従属が存在しない状態。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "繰り返し群が取り除かれ、単一原子値のみで表されている状態。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "属性間に一切の関数従属関係が存在しない状態。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "主キーが複数の複合属性によって構成されている状態。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2024,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 5,
+    "category": "ALGORITHM",
+    "title": "平衡二分探索木の平均検索時間複雑度 (2024年春)",
+    "bodyText": "要素数がNである平衡二分探索木(AVL木や赤黒木)において、特定の要素を探索する際の平均時間複雑度はどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "O(1)",
+        "isCorrect": false
+      },
+      {
+        "symbol": "イ",
+        "text": "O(log N)",
+        "isCorrect": true
+      },
+      {
+        "symbol": "ウ",
+        "text": "O(N)",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "O(N log N)",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2024,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 6,
+    "category": "SYSTEM_ARCH",
+    "title": "BCPにおけるRTOとRPOの定義 (2024年春)",
+    "bodyText": "事業継続計画(BCP)における目標復旧時間(RTO: Recovery Time Objective)と目標復旧時点(RPO: Recovery Point Objective)に関する記述のうち、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "RTOはシステム停止から業務が再開するまでの許容経過時間を示す。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "RTOは障害発生時に失われても許容できるデータの復元時点(データ損失量)を示す。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "RPOはシステムバックアップ作業に要する作業時間を意味する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "RPOが0の場合、復旧までに無限の時間猶予があることを示す。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2024,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 7,
+    "category": "PROJECT_MGMT",
+    "title": "EVM(Earned Value Management)指標の分析 (2024年春)",
+    "bodyText": "プロジェクトマネジメントにおけるEVMにおいて、アーンドバリュー(EV)=100万円、アクチュアルコスト(AC)=120万円、プランドバリュー(PV)=110万円のとき、コスト分散(CV)とスケジュール効率指数(SPI)の正しい組み合わせはどれか。",
+    "imageUrls": [
+      "/questions/2024_spring_subject_a_q7.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "CV = -20万円, SPI = 0.91",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "CV = +20万円, SPI = 1.10",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "CV = -10万円, SPI = 0.83",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "CV = +10万円, SPI = 1.20",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2024,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 8,
+    "category": "STRATEGY",
+    "title": "デジタルトランスフォーメーション (DX) ガイドライン (2024年春)",
+    "bodyText": "経済産業省の「DX推進ガイドライン」におけるデジタルトランスフォーメーション(DX)の定義として、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "データとデジタル技術を活用して、顧客や社会のニーズを基に製品・サービス・ビジネスモデルを変革し、競合上の優位性を確立すること。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "既存の社内紙書類をすべてスキャンしてPDFファイルに置き換えること。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "自社オンプレミスサーバをすべてクラウドサービスへ移行すること。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "基幹業務システム(ERP)のソフトウェアバージョンを最新化すること。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2024,
+    "season": "SPRING",
+    "examType": "SUBJECT_B",
+    "questionNum": 1,
+    "category": "SECURITY",
+    "title": "Webアプリケーションセキュリティ設計と認証基盤強化 (2024年春)",
+    "bodyText": "### [2024年春期 応用情報技術者試験 科目B 記述問題]\nZ社は大規模ECプラットフォームの再構築を行っている。\n認証認可サーバーおよびAPIゲートウェイ間の通信において、トークン認証方式(JWT)を採用する設計案が提示された。\n\n#### [システム構成と指摘事項]\n1. クライアントブラウザからの認証要求時、ID/パスワードの一致を検証した後にアクセストークンを返却する。\n2. Cookieの属性設定において `HttpOnly` は設定されているが、 `SameSite=Strict` および `Secure` が未設定となっていた。\n3. データベースアクセス層で文字列結合による動的SQL文の組み立てが発見された。\n\n#### [セキュリティ要求事項]\n診断チームから、外部サイトからのリクエスト送信を防止する対策(リスクA)およびSQLインジェクション脆弱性(リスクB)の修正が指示された。\n\n以下の各設問に答えなさい。",
+    "imageUrls": [
+      "/questions/2024_spring_subject_b_q1.png"
+    ],
+    "choices": [],
+    "modelAnswers": [
+      {
+        "subQuestionNum": "設問1 (1)",
+        "maxScore": 10,
+        "characterLimit": 35,
+        "answerText": "クロスサイトリクエストフォージェリ (CSRF)",
+        "explanation": "他サイトからの不正リクエストを防止する攻撃名称を答えます。"
+      },
+      {
+        "subQuestionNum": "設問1 (2)",
+        "maxScore": 10,
+        "characterLimit": 40,
+        "answerText": "プレースホルダを用いたプレペアードステートメントを使用する。",
+        "explanation": "SQLインジェクションの根本対策である静的バインド変数の利用について記述します。"
+      },
+      {
+        "subQuestionNum": "設問2",
+        "maxScore": 15,
+        "characterLimit": 50,
+        "answerText": "CookieにSameSite=Strict属性およびSecure属性を付与して送信を制限する。",
+        "explanation": "CSRF対策としてのCookie属性の設定値を記述します。"
+      }
+    ]
+  },
+  {
+    "year": 2024,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 1,
+    "category": "SECURITY",
+    "title": "公開鍵暗号方式における鍵管理と署名検証 (2024年秋)",
+    "bodyText": "送信者Aが受信者Bに暗号化された電子メールを送信し、改ざん検知と送信元認証を行う場合、送信者Aがメッセージのデジタル署名生成に使用する鍵と、受信者Bがメッセージ本体の解読に使用する鍵の組み合わせとして、適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "署名用: 送信者Aの秘密鍵 / 暗号解読用: 受信者Bの秘密鍵",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "署名用: 送信者Aの公開鍵 / 暗号解読用: 受信者Bの公開鍵",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "署名用: 受信者Bの秘密鍵 / 暗号解読用: 送信者Aの公開鍵",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "署名用: 受信者Bの公開鍵 / 暗号解読用: 送信者Aの秘密鍵",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2024,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 2,
+    "category": "SECURITY",
+    "title": "ゼロトラストネットワークアクセス (ZTNA) (2024年秋)",
+    "bodyText": "「何も信頼せず、すべてを検証する」というゼロトラストアーキテクチャの原則に基づくセキュリティ対策として、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "社内LAN内部の通信は信頼し、境界ルータでのファイアウォールログのみを監視する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "イ",
+        "text": "すべてのデバイスおよびユーザーに対し、アクセス要求ごとに認証・認可を行い最小権限を適用する。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "ウ",
+        "text": "VPN装置を用いてリモートユーザーを社内ネットワークに接続させた後、全社内サーバへ自由アクセスを許可する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "社外Webサイトからのダウンロードファイルのみをウイルススキャン対象とする。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2024,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 3,
+    "category": "NETWORK",
+    "title": "IPv6アドレスの表記規格と機能拡張 (2024年秋)",
+    "bodyText": "IPv6のアドレス仕様および運用に関する記述のうち、適切なものはどれか。",
+    "imageUrls": [
+      "/questions/2024_autumn_subject_a_q3.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "128ビット長のアドレスを16ビットごとにコロン(:)で区切り、16進数で表記する。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "32ビット長のアドレスを8ビットごとにドット(.)で区切り、10進数で表記する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "NAT機能を用いなければインターネット上の端末同士で通信できない。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "ブロードキャストフレームが標準通信方式として送受信される。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2024,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 4,
+    "category": "DATABASE",
+    "title": "リレーショナルデータベースの第3正規形 (2024年秋)",
+    "bodyText": "リレーショナルデータベースにおける第3正規形に関する記述として、最も適切なものはどれか。",
+    "imageUrls": [
+      "/questions/2024_autumn_subject_a_q4.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "すべての非キー属性が主キーに対して完全関数従属し、かつ推移的関数従属が存在しない状態。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "繰り返し群が取り除かれ、単一原子値のみで表されている状態。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "属性間に一切の関数従属関係が存在しない状態。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "主キーが複数の複合属性によって構成されている状態。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2024,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 5,
+    "category": "ALGORITHM",
+    "title": "平衡二分探索木の平均検索時間複雑度 (2024年秋)",
+    "bodyText": "要素数がNである平衡二分探索木(AVL木や赤黒木)において、特定の要素を探索する際の平均時間複雑度はどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "O(1)",
+        "isCorrect": false
+      },
+      {
+        "symbol": "イ",
+        "text": "O(log N)",
+        "isCorrect": true
+      },
+      {
+        "symbol": "ウ",
+        "text": "O(N)",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "O(N log N)",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2024,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 6,
+    "category": "SYSTEM_ARCH",
+    "title": "BCPにおけるRTOとRPOの定義 (2024年秋)",
+    "bodyText": "事業継続計画(BCP)における目標復旧時間(RTO: Recovery Time Objective)と目標復旧時点(RPO: Recovery Point Objective)に関する記述のうち、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "RTOはシステム停止から業務が再開するまでの許容経過時間を示す。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "RTOは障害発生時に失われても許容できるデータの復元時点(データ損失量)を示す。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "RPOはシステムバックアップ作業に要する作業時間を意味する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "RPOが0の場合、復旧までに無限の時間猶予があることを示す。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2024,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 7,
+    "category": "PROJECT_MGMT",
+    "title": "EVM(Earned Value Management)指標の分析 (2024年秋)",
+    "bodyText": "プロジェクトマネジメントにおけるEVMにおいて、アーンドバリュー(EV)=100万円、アクチュアルコスト(AC)=120万円、プランドバリュー(PV)=110万円のとき、コスト分散(CV)とスケジュール効率指数(SPI)の正しい組み合わせはどれか。",
+    "imageUrls": [
+      "/questions/2024_autumn_subject_a_q7.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "CV = -20万円, SPI = 0.91",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "CV = +20万円, SPI = 1.10",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "CV = -10万円, SPI = 0.83",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "CV = +10万円, SPI = 1.20",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2024,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 8,
+    "category": "STRATEGY",
+    "title": "デジタルトランスフォーメーション (DX) ガイドライン (2024年秋)",
+    "bodyText": "経済産業省の「DX推進ガイドライン」におけるデジタルトランスフォーメーション(DX)の定義として、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "データとデジタル技術を活用して、顧客や社会のニーズを基に製品・サービス・ビジネスモデルを変革し、競合上の優位性を確立すること。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "既存の社内紙書類をすべてスキャンしてPDFファイルに置き換えること。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "自社オンプレミスサーバをすべてクラウドサービスへ移行すること。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "基幹業務システム(ERP)のソフトウェアバージョンを最新化すること。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2024,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_B",
+    "questionNum": 1,
+    "category": "SECURITY",
+    "title": "Webアプリケーションセキュリティ設計と認証基盤強化 (2024年秋)",
+    "bodyText": "### [2024年秋期 応用情報技術者試験 科目B 記述問題]\nZ社は大規模ECプラットフォームの再構築を行っている。\n認証認可サーバーおよびAPIゲートウェイ間の通信において、トークン認証方式(JWT)を採用する設計案が提示された。\n\n#### [システム構成と指摘事項]\n1. クライアントブラウザからの認証要求時、ID/パスワードの一致を検証した後にアクセストークンを返却する。\n2. Cookieの属性設定において `HttpOnly` は設定されているが、 `SameSite=Strict` および `Secure` が未設定となっていた。\n3. データベースアクセス層で文字列結合による動的SQL文の組み立てが発見された。\n\n#### [セキュリティ要求事項]\n診断チームから、外部サイトからのリクエスト送信を防止する対策(リスクA)およびSQLインジェクション脆弱性(リスクB)の修正が指示された。\n\n以下の各設問に答えなさい。",
+    "imageUrls": [
+      "/questions/2024_autumn_subject_b_q1.png"
+    ],
+    "choices": [],
+    "modelAnswers": [
+      {
+        "subQuestionNum": "設問1 (1)",
+        "maxScore": 10,
+        "characterLimit": 35,
+        "answerText": "クロスサイトリクエストフォージェリ (CSRF)",
+        "explanation": "他サイトからの不正リクエストを防止する攻撃名称を答えます。"
+      },
+      {
+        "subQuestionNum": "設問1 (2)",
+        "maxScore": 10,
+        "characterLimit": 40,
+        "answerText": "プレースホルダを用いたプレペアードステートメントを使用する。",
+        "explanation": "SQLインジェクションの根本対策である静的バインド変数の利用について記述します。"
+      },
+      {
+        "subQuestionNum": "設問2",
+        "maxScore": 15,
+        "characterLimit": 50,
+        "answerText": "CookieにSameSite=Strict属性およびSecure属性を付与して送信を制限する。",
+        "explanation": "CSRF対策としてのCookie属性の設定値を記述します。"
+      }
+    ]
+  },
+  {
+    "year": 2023,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 1,
+    "category": "SECURITY",
+    "title": "公開鍵暗号方式における鍵管理と署名検証 (2023年春)",
+    "bodyText": "送信者Aが受信者Bに暗号化された電子メールを送信し、改ざん検知と送信元認証を行う場合、送信者Aがメッセージのデジタル署名生成に使用する鍵と、受信者Bがメッセージ本体の解読に使用する鍵の組み合わせとして、適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "署名用: 送信者Aの秘密鍵 / 暗号解読用: 受信者Bの秘密鍵",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "署名用: 送信者Aの公開鍵 / 暗号解読用: 受信者Bの公開鍵",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "署名用: 受信者Bの秘密鍵 / 暗号解読用: 送信者Aの公開鍵",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "署名用: 受信者Bの公開鍵 / 暗号解読用: 送信者Aの秘密鍵",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2023,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 2,
+    "category": "SECURITY",
+    "title": "ゼロトラストネットワークアクセス (ZTNA) (2023年春)",
+    "bodyText": "「何も信頼せず、すべてを検証する」というゼロトラストアーキテクチャの原則に基づくセキュリティ対策として、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "社内LAN内部の通信は信頼し、境界ルータでのファイアウォールログのみを監視する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "イ",
+        "text": "すべてのデバイスおよびユーザーに対し、アクセス要求ごとに認証・認可を行い最小権限を適用する。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "ウ",
+        "text": "VPN装置を用いてリモートユーザーを社内ネットワークに接続させた後、全社内サーバへ自由アクセスを許可する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "社外Webサイトからのダウンロードファイルのみをウイルススキャン対象とする。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2023,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 3,
+    "category": "NETWORK",
+    "title": "IPv6アドレスの表記規格と機能拡張 (2023年春)",
+    "bodyText": "IPv6のアドレス仕様および運用に関する記述のうち、適切なものはどれか。",
+    "imageUrls": [
+      "/questions/2023_spring_subject_a_q3.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "128ビット長のアドレスを16ビットごとにコロン(:)で区切り、16進数で表記する。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "32ビット長のアドレスを8ビットごとにドット(.)で区切り、10進数で表記する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "NAT機能を用いなければインターネット上の端末同士で通信できない。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "ブロードキャストフレームが標準通信方式として送受信される。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2023,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 4,
+    "category": "DATABASE",
+    "title": "リレーショナルデータベースの第3正規形 (2023年春)",
+    "bodyText": "リレーショナルデータベースにおける第3正規形に関する記述として、最も適切なものはどれか。",
+    "imageUrls": [
+      "/questions/2023_spring_subject_a_q4.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "すべての非キー属性が主キーに対して完全関数従属し、かつ推移的関数従属が存在しない状態。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "繰り返し群が取り除かれ、単一原子値のみで表されている状態。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "属性間に一切の関数従属関係が存在しない状態。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "主キーが複数の複合属性によって構成されている状態。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2023,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 5,
+    "category": "ALGORITHM",
+    "title": "平衡二分探索木の平均検索時間複雑度 (2023年春)",
+    "bodyText": "要素数がNである平衡二分探索木(AVL木や赤黒木)において、特定の要素を探索する際の平均時間複雑度はどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "O(1)",
+        "isCorrect": false
+      },
+      {
+        "symbol": "イ",
+        "text": "O(log N)",
+        "isCorrect": true
+      },
+      {
+        "symbol": "ウ",
+        "text": "O(N)",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "O(N log N)",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2023,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 6,
+    "category": "SYSTEM_ARCH",
+    "title": "BCPにおけるRTOとRPOの定義 (2023年春)",
+    "bodyText": "事業継続計画(BCP)における目標復旧時間(RTO: Recovery Time Objective)と目標復旧時点(RPO: Recovery Point Objective)に関する記述のうち、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "RTOはシステム停止から業務が再開するまでの許容経過時間を示す。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "RTOは障害発生時に失われても許容できるデータの復元時点(データ損失量)を示す。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "RPOはシステムバックアップ作業に要する作業時間を意味する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "RPOが0の場合、復旧までに無限の時間猶予があることを示す。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2023,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 7,
+    "category": "PROJECT_MGMT",
+    "title": "EVM(Earned Value Management)指標の分析 (2023年春)",
+    "bodyText": "プロジェクトマネジメントにおけるEVMにおいて、アーンドバリュー(EV)=100万円、アクチュアルコスト(AC)=120万円、プランドバリュー(PV)=110万円のとき、コスト分散(CV)とスケジュール効率指数(SPI)の正しい組み合わせはどれか。",
+    "imageUrls": [
+      "/questions/2023_spring_subject_a_q7.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "CV = -20万円, SPI = 0.91",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "CV = +20万円, SPI = 1.10",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "CV = -10万円, SPI = 0.83",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "CV = +10万円, SPI = 1.20",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2023,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 8,
+    "category": "STRATEGY",
+    "title": "デジタルトランスフォーメーション (DX) ガイドライン (2023年春)",
+    "bodyText": "経済産業省の「DX推進ガイドライン」におけるデジタルトランスフォーメーション(DX)の定義として、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "データとデジタル技術を活用して、顧客や社会のニーズを基に製品・サービス・ビジネスモデルを変革し、競合上の優位性を確立すること。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "既存の社内紙書類をすべてスキャンしてPDFファイルに置き換えること。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "自社オンプレミスサーバをすべてクラウドサービスへ移行すること。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "基幹業務システム(ERP)のソフトウェアバージョンを最新化すること。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2023,
+    "season": "SPRING",
+    "examType": "SUBJECT_B",
+    "questionNum": 1,
+    "category": "SECURITY",
+    "title": "Webアプリケーションセキュリティ設計と認証基盤強化 (2023年春)",
+    "bodyText": "### [2023年春期 応用情報技術者試験 科目B 記述問題]\nZ社は大規模ECプラットフォームの再構築を行っている。\n認証認可サーバーおよびAPIゲートウェイ間の通信において、トークン認証方式(JWT)を採用する設計案が提示された。\n\n#### [システム構成と指摘事項]\n1. クライアントブラウザからの認証要求時、ID/パスワードの一致を検証した後にアクセストークンを返却する。\n2. Cookieの属性設定において `HttpOnly` は設定されているが、 `SameSite=Strict` および `Secure` が未設定となっていた。\n3. データベースアクセス層で文字列結合による動的SQL文の組み立てが発見された。\n\n#### [セキュリティ要求事項]\n診断チームから、外部サイトからのリクエスト送信を防止する対策(リスクA)およびSQLインジェクション脆弱性(リスクB)の修正が指示された。\n\n以下の各設問に答えなさい。",
+    "imageUrls": [
+      "/questions/2023_spring_subject_b_q1.png"
+    ],
+    "choices": [],
+    "modelAnswers": [
+      {
+        "subQuestionNum": "設問1 (1)",
+        "maxScore": 10,
+        "characterLimit": 35,
+        "answerText": "クロスサイトリクエストフォージェリ (CSRF)",
+        "explanation": "他サイトからの不正リクエストを防止する攻撃名称を答えます。"
+      },
+      {
+        "subQuestionNum": "設問1 (2)",
+        "maxScore": 10,
+        "characterLimit": 40,
+        "answerText": "プレースホルダを用いたプレペアードステートメントを使用する。",
+        "explanation": "SQLインジェクションの根本対策である静的バインド変数の利用について記述します。"
+      },
+      {
+        "subQuestionNum": "設問2",
+        "maxScore": 15,
+        "characterLimit": 50,
+        "answerText": "CookieにSameSite=Strict属性およびSecure属性を付与して送信を制限する。",
+        "explanation": "CSRF対策としてのCookie属性の設定値を記述します。"
+      }
+    ]
+  },
+  {
+    "year": 2023,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 1,
+    "category": "SECURITY",
+    "title": "公開鍵暗号方式における鍵管理と署名検証 (2023年秋)",
+    "bodyText": "送信者Aが受信者Bに暗号化された電子メールを送信し、改ざん検知と送信元認証を行う場合、送信者Aがメッセージのデジタル署名生成に使用する鍵と、受信者Bがメッセージ本体の解読に使用する鍵の組み合わせとして、適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "署名用: 送信者Aの秘密鍵 / 暗号解読用: 受信者Bの秘密鍵",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "署名用: 送信者Aの公開鍵 / 暗号解読用: 受信者Bの公開鍵",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "署名用: 受信者Bの秘密鍵 / 暗号解読用: 送信者Aの公開鍵",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "署名用: 受信者Bの公開鍵 / 暗号解読用: 送信者Aの秘密鍵",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2023,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 2,
+    "category": "SECURITY",
+    "title": "ゼロトラストネットワークアクセス (ZTNA) (2023年秋)",
+    "bodyText": "「何も信頼せず、すべてを検証する」というゼロトラストアーキテクチャの原則に基づくセキュリティ対策として、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "社内LAN内部の通信は信頼し、境界ルータでのファイアウォールログのみを監視する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "イ",
+        "text": "すべてのデバイスおよびユーザーに対し、アクセス要求ごとに認証・認可を行い最小権限を適用する。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "ウ",
+        "text": "VPN装置を用いてリモートユーザーを社内ネットワークに接続させた後、全社内サーバへ自由アクセスを許可する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "社外Webサイトからのダウンロードファイルのみをウイルススキャン対象とする。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2023,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 3,
+    "category": "NETWORK",
+    "title": "IPv6アドレスの表記規格と機能拡張 (2023年秋)",
+    "bodyText": "IPv6のアドレス仕様および運用に関する記述のうち、適切なものはどれか。",
+    "imageUrls": [
+      "/questions/2023_autumn_subject_a_q3.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "128ビット長のアドレスを16ビットごとにコロン(:)で区切り、16進数で表記する。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "32ビット長のアドレスを8ビットごとにドット(.)で区切り、10進数で表記する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "NAT機能を用いなければインターネット上の端末同士で通信できない。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "ブロードキャストフレームが標準通信方式として送受信される。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2023,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 4,
+    "category": "DATABASE",
+    "title": "リレーショナルデータベースの第3正規形 (2023年秋)",
+    "bodyText": "リレーショナルデータベースにおける第3正規形に関する記述として、最も適切なものはどれか。",
+    "imageUrls": [
+      "/questions/2023_autumn_subject_a_q4.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "すべての非キー属性が主キーに対して完全関数従属し、かつ推移的関数従属が存在しない状態。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "繰り返し群が取り除かれ、単一原子値のみで表されている状態。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "属性間に一切の関数従属関係が存在しない状態。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "主キーが複数の複合属性によって構成されている状態。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2023,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 5,
+    "category": "ALGORITHM",
+    "title": "平衡二分探索木の平均検索時間複雑度 (2023年秋)",
+    "bodyText": "要素数がNである平衡二分探索木(AVL木や赤黒木)において、特定の要素を探索する際の平均時間複雑度はどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "O(1)",
+        "isCorrect": false
+      },
+      {
+        "symbol": "イ",
+        "text": "O(log N)",
+        "isCorrect": true
+      },
+      {
+        "symbol": "ウ",
+        "text": "O(N)",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "O(N log N)",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2023,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 6,
+    "category": "SYSTEM_ARCH",
+    "title": "BCPにおけるRTOとRPOの定義 (2023年秋)",
+    "bodyText": "事業継続計画(BCP)における目標復旧時間(RTO: Recovery Time Objective)と目標復旧時点(RPO: Recovery Point Objective)に関する記述のうち、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "RTOはシステム停止から業務が再開するまでの許容経過時間を示す。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "RTOは障害発生時に失われても許容できるデータの復元時点(データ損失量)を示す。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "RPOはシステムバックアップ作業に要する作業時間を意味する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "RPOが0の場合、復旧までに無限の時間猶予があることを示す。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2023,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 7,
+    "category": "PROJECT_MGMT",
+    "title": "EVM(Earned Value Management)指標の分析 (2023年秋)",
+    "bodyText": "プロジェクトマネジメントにおけるEVMにおいて、アーンドバリュー(EV)=100万円、アクチュアルコスト(AC)=120万円、プランドバリュー(PV)=110万円のとき、コスト分散(CV)とスケジュール効率指数(SPI)の正しい組み合わせはどれか。",
+    "imageUrls": [
+      "/questions/2023_autumn_subject_a_q7.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "CV = -20万円, SPI = 0.91",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "CV = +20万円, SPI = 1.10",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "CV = -10万円, SPI = 0.83",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "CV = +10万円, SPI = 1.20",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2023,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 8,
+    "category": "STRATEGY",
+    "title": "デジタルトランスフォーメーション (DX) ガイドライン (2023年秋)",
+    "bodyText": "経済産業省の「DX推進ガイドライン」におけるデジタルトランスフォーメーション(DX)の定義として、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "データとデジタル技術を活用して、顧客や社会のニーズを基に製品・サービス・ビジネスモデルを変革し、競合上の優位性を確立すること。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "既存の社内紙書類をすべてスキャンしてPDFファイルに置き換えること。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "自社オンプレミスサーバをすべてクラウドサービスへ移行すること。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "基幹業務システム(ERP)のソフトウェアバージョンを最新化すること。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2023,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_B",
+    "questionNum": 1,
+    "category": "SECURITY",
+    "title": "Webアプリケーションセキュリティ設計と認証基盤強化 (2023年秋)",
+    "bodyText": "### [2023年秋期 応用情報技術者試験 科目B 記述問題]\nZ社は大規模ECプラットフォームの再構築を行っている。\n認証認可サーバーおよびAPIゲートウェイ間の通信において、トークン認証方式(JWT)を採用する設計案が提示された。\n\n#### [システム構成と指摘事項]\n1. クライアントブラウザからの認証要求時、ID/パスワードの一致を検証した後にアクセストークンを返却する。\n2. Cookieの属性設定において `HttpOnly` は設定されているが、 `SameSite=Strict` および `Secure` が未設定となっていた。\n3. データベースアクセス層で文字列結合による動的SQL文の組み立てが発見された。\n\n#### [セキュリティ要求事項]\n診断チームから、外部サイトからのリクエスト送信を防止する対策(リスクA)およびSQLインジェクション脆弱性(リスクB)の修正が指示された。\n\n以下の各設問に答えなさい。",
+    "imageUrls": [
+      "/questions/2023_autumn_subject_b_q1.png"
+    ],
+    "choices": [],
+    "modelAnswers": [
+      {
+        "subQuestionNum": "設問1 (1)",
+        "maxScore": 10,
+        "characterLimit": 35,
+        "answerText": "クロスサイトリクエストフォージェリ (CSRF)",
+        "explanation": "他サイトからの不正リクエストを防止する攻撃名称を答えます。"
+      },
+      {
+        "subQuestionNum": "設問1 (2)",
+        "maxScore": 10,
+        "characterLimit": 40,
+        "answerText": "プレースホルダを用いたプレペアードステートメントを使用する。",
+        "explanation": "SQLインジェクションの根本対策である静的バインド変数の利用について記述します。"
+      },
+      {
+        "subQuestionNum": "設問2",
+        "maxScore": 15,
+        "characterLimit": 50,
+        "answerText": "CookieにSameSite=Strict属性およびSecure属性を付与して送信を制限する。",
+        "explanation": "CSRF対策としてのCookie属性の設定値を記述します。"
+      }
+    ]
+  },
+  {
+    "year": 2022,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 1,
+    "category": "SECURITY",
+    "title": "公開鍵暗号方式における鍵管理と署名検証 (2022年春)",
+    "bodyText": "送信者Aが受信者Bに暗号化された電子メールを送信し、改ざん検知と送信元認証を行う場合、送信者Aがメッセージのデジタル署名生成に使用する鍵と、受信者Bがメッセージ本体の解読に使用する鍵の組み合わせとして、適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "署名用: 送信者Aの秘密鍵 / 暗号解読用: 受信者Bの秘密鍵",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "署名用: 送信者Aの公開鍵 / 暗号解読用: 受信者Bの公開鍵",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "署名用: 受信者Bの秘密鍵 / 暗号解読用: 送信者Aの公開鍵",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "署名用: 受信者Bの公開鍵 / 暗号解読用: 送信者Aの秘密鍵",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2022,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 2,
+    "category": "SECURITY",
+    "title": "ゼロトラストネットワークアクセス (ZTNA) (2022年春)",
+    "bodyText": "「何も信頼せず、すべてを検証する」というゼロトラストアーキテクチャの原則に基づくセキュリティ対策として、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "社内LAN内部の通信は信頼し、境界ルータでのファイアウォールログのみを監視する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "イ",
+        "text": "すべてのデバイスおよびユーザーに対し、アクセス要求ごとに認証・認可を行い最小権限を適用する。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "ウ",
+        "text": "VPN装置を用いてリモートユーザーを社内ネットワークに接続させた後、全社内サーバへ自由アクセスを許可する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "社外Webサイトからのダウンロードファイルのみをウイルススキャン対象とする。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2022,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 3,
+    "category": "NETWORK",
+    "title": "IPv6アドレスの表記規格と機能拡張 (2022年春)",
+    "bodyText": "IPv6のアドレス仕様および運用に関する記述のうち、適切なものはどれか。",
+    "imageUrls": [
+      "/questions/2022_spring_subject_a_q3.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "128ビット長のアドレスを16ビットごとにコロン(:)で区切り、16進数で表記する。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "32ビット長のアドレスを8ビットごとにドット(.)で区切り、10進数で表記する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "NAT機能を用いなければインターネット上の端末同士で通信できない。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "ブロードキャストフレームが標準通信方式として送受信される。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2022,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 4,
+    "category": "DATABASE",
+    "title": "リレーショナルデータベースの第3正規形 (2022年春)",
+    "bodyText": "リレーショナルデータベースにおける第3正規形に関する記述として、最も適切なものはどれか。",
+    "imageUrls": [
+      "/questions/2022_spring_subject_a_q4.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "すべての非キー属性が主キーに対して完全関数従属し、かつ推移的関数従属が存在しない状態。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "繰り返し群が取り除かれ、単一原子値のみで表されている状態。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "属性間に一切の関数従属関係が存在しない状態。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "主キーが複数の複合属性によって構成されている状態。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2022,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 5,
+    "category": "ALGORITHM",
+    "title": "平衡二分探索木の平均検索時間複雑度 (2022年春)",
+    "bodyText": "要素数がNである平衡二分探索木(AVL木や赤黒木)において、特定の要素を探索する際の平均時間複雑度はどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "O(1)",
+        "isCorrect": false
+      },
+      {
+        "symbol": "イ",
+        "text": "O(log N)",
+        "isCorrect": true
+      },
+      {
+        "symbol": "ウ",
+        "text": "O(N)",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "O(N log N)",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2022,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 6,
+    "category": "SYSTEM_ARCH",
+    "title": "BCPにおけるRTOとRPOの定義 (2022年春)",
+    "bodyText": "事業継続計画(BCP)における目標復旧時間(RTO: Recovery Time Objective)と目標復旧時点(RPO: Recovery Point Objective)に関する記述のうち、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "RTOはシステム停止から業務が再開するまでの許容経過時間を示す。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "RTOは障害発生時に失われても許容できるデータの復元時点(データ損失量)を示す。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "RPOはシステムバックアップ作業に要する作業時間を意味する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "RPOが0の場合、復旧までに無限の時間猶予があることを示す。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2022,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 7,
+    "category": "PROJECT_MGMT",
+    "title": "EVM(Earned Value Management)指標の分析 (2022年春)",
+    "bodyText": "プロジェクトマネジメントにおけるEVMにおいて、アーンドバリュー(EV)=100万円、アクチュアルコスト(AC)=120万円、プランドバリュー(PV)=110万円のとき、コスト分散(CV)とスケジュール効率指数(SPI)の正しい組み合わせはどれか。",
+    "imageUrls": [
+      "/questions/2022_spring_subject_a_q7.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "CV = -20万円, SPI = 0.91",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "CV = +20万円, SPI = 1.10",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "CV = -10万円, SPI = 0.83",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "CV = +10万円, SPI = 1.20",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2022,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 8,
+    "category": "STRATEGY",
+    "title": "デジタルトランスフォーメーション (DX) ガイドライン (2022年春)",
+    "bodyText": "経済産業省の「DX推進ガイドライン」におけるデジタルトランスフォーメーション(DX)の定義として、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "データとデジタル技術を活用して、顧客や社会のニーズを基に製品・サービス・ビジネスモデルを変革し、競合上の優位性を確立すること。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "既存の社内紙書類をすべてスキャンしてPDFファイルに置き換えること。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "自社オンプレミスサーバをすべてクラウドサービスへ移行すること。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "基幹業務システム(ERP)のソフトウェアバージョンを最新化すること。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2022,
+    "season": "SPRING",
+    "examType": "SUBJECT_B",
+    "questionNum": 1,
+    "category": "SECURITY",
+    "title": "Webアプリケーションセキュリティ設計と認証基盤強化 (2022年春)",
+    "bodyText": "### [2022年春期 応用情報技術者試験 科目B 記述問題]\nZ社は大規模ECプラットフォームの再構築を行っている。\n認証認可サーバーおよびAPIゲートウェイ間の通信において、トークン認証方式(JWT)を採用する設計案が提示された。\n\n#### [システム構成と指摘事項]\n1. クライアントブラウザからの認証要求時、ID/パスワードの一致を検証した後にアクセストークンを返却する。\n2. Cookieの属性設定において `HttpOnly` は設定されているが、 `SameSite=Strict` および `Secure` が未設定となっていた。\n3. データベースアクセス層で文字列結合による動的SQL文の組み立てが発見された。\n\n#### [セキュリティ要求事項]\n診断チームから、外部サイトからのリクエスト送信を防止する対策(リスクA)およびSQLインジェクション脆弱性(リスクB)の修正が指示された。\n\n以下の各設問に答えなさい。",
+    "imageUrls": [
+      "/questions/2022_spring_subject_b_q1.png"
+    ],
+    "choices": [],
+    "modelAnswers": [
+      {
+        "subQuestionNum": "設問1 (1)",
+        "maxScore": 10,
+        "characterLimit": 35,
+        "answerText": "クロスサイトリクエストフォージェリ (CSRF)",
+        "explanation": "他サイトからの不正リクエストを防止する攻撃名称を答えます。"
+      },
+      {
+        "subQuestionNum": "設問1 (2)",
+        "maxScore": 10,
+        "characterLimit": 40,
+        "answerText": "プレースホルダを用いたプレペアードステートメントを使用する。",
+        "explanation": "SQLインジェクションの根本対策である静的バインド変数の利用について記述します。"
+      },
+      {
+        "subQuestionNum": "設問2",
+        "maxScore": 15,
+        "characterLimit": 50,
+        "answerText": "CookieにSameSite=Strict属性およびSecure属性を付与して送信を制限する。",
+        "explanation": "CSRF対策としてのCookie属性の設定値を記述します。"
+      }
+    ]
+  },
+  {
+    "year": 2022,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 1,
+    "category": "SECURITY",
+    "title": "公開鍵暗号方式における鍵管理と署名検証 (2022年秋)",
+    "bodyText": "送信者Aが受信者Bに暗号化された電子メールを送信し、改ざん検知と送信元認証を行う場合、送信者Aがメッセージのデジタル署名生成に使用する鍵と、受信者Bがメッセージ本体の解読に使用する鍵の組み合わせとして、適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "署名用: 送信者Aの秘密鍵 / 暗号解読用: 受信者Bの秘密鍵",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "署名用: 送信者Aの公開鍵 / 暗号解読用: 受信者Bの公開鍵",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "署名用: 受信者Bの秘密鍵 / 暗号解読用: 送信者Aの公開鍵",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "署名用: 受信者Bの公開鍵 / 暗号解読用: 送信者Aの秘密鍵",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2022,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 2,
+    "category": "SECURITY",
+    "title": "ゼロトラストネットワークアクセス (ZTNA) (2022年秋)",
+    "bodyText": "「何も信頼せず、すべてを検証する」というゼロトラストアーキテクチャの原則に基づくセキュリティ対策として、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "社内LAN内部の通信は信頼し、境界ルータでのファイアウォールログのみを監視する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "イ",
+        "text": "すべてのデバイスおよびユーザーに対し、アクセス要求ごとに認証・認可を行い最小権限を適用する。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "ウ",
+        "text": "VPN装置を用いてリモートユーザーを社内ネットワークに接続させた後、全社内サーバへ自由アクセスを許可する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "社外Webサイトからのダウンロードファイルのみをウイルススキャン対象とする。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2022,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 3,
+    "category": "NETWORK",
+    "title": "IPv6アドレスの表記規格と機能拡張 (2022年秋)",
+    "bodyText": "IPv6のアドレス仕様および運用に関する記述のうち、適切なものはどれか。",
+    "imageUrls": [
+      "/questions/2022_autumn_subject_a_q3.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "128ビット長のアドレスを16ビットごとにコロン(:)で区切り、16進数で表記する。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "32ビット長のアドレスを8ビットごとにドット(.)で区切り、10進数で表記する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "NAT機能を用いなければインターネット上の端末同士で通信できない。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "ブロードキャストフレームが標準通信方式として送受信される。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2022,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 4,
+    "category": "DATABASE",
+    "title": "リレーショナルデータベースの第3正規形 (2022年秋)",
+    "bodyText": "リレーショナルデータベースにおける第3正規形に関する記述として、最も適切なものはどれか。",
+    "imageUrls": [
+      "/questions/2022_autumn_subject_a_q4.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "すべての非キー属性が主キーに対して完全関数従属し、かつ推移的関数従属が存在しない状態。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "繰り返し群が取り除かれ、単一原子値のみで表されている状態。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "属性間に一切の関数従属関係が存在しない状態。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "主キーが複数の複合属性によって構成されている状態。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2022,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 5,
+    "category": "ALGORITHM",
+    "title": "平衡二分探索木の平均検索時間複雑度 (2022年秋)",
+    "bodyText": "要素数がNである平衡二分探索木(AVL木や赤黒木)において、特定の要素を探索する際の平均時間複雑度はどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "O(1)",
+        "isCorrect": false
+      },
+      {
+        "symbol": "イ",
+        "text": "O(log N)",
+        "isCorrect": true
+      },
+      {
+        "symbol": "ウ",
+        "text": "O(N)",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "O(N log N)",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2022,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 6,
+    "category": "SYSTEM_ARCH",
+    "title": "BCPにおけるRTOとRPOの定義 (2022年秋)",
+    "bodyText": "事業継続計画(BCP)における目標復旧時間(RTO: Recovery Time Objective)と目標復旧時点(RPO: Recovery Point Objective)に関する記述のうち、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "RTOはシステム停止から業務が再開するまでの許容経過時間を示す。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "RTOは障害発生時に失われても許容できるデータの復元時点(データ損失量)を示す。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "RPOはシステムバックアップ作業に要する作業時間を意味する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "RPOが0の場合、復旧までに無限の時間猶予があることを示す。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2022,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 7,
+    "category": "PROJECT_MGMT",
+    "title": "EVM(Earned Value Management)指標の分析 (2022年秋)",
+    "bodyText": "プロジェクトマネジメントにおけるEVMにおいて、アーンドバリュー(EV)=100万円、アクチュアルコスト(AC)=120万円、プランドバリュー(PV)=110万円のとき、コスト分散(CV)とスケジュール効率指数(SPI)の正しい組み合わせはどれか。",
+    "imageUrls": [
+      "/questions/2022_autumn_subject_a_q7.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "CV = -20万円, SPI = 0.91",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "CV = +20万円, SPI = 1.10",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "CV = -10万円, SPI = 0.83",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "CV = +10万円, SPI = 1.20",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2022,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_A",
+    "questionNum": 8,
+    "category": "STRATEGY",
+    "title": "デジタルトランスフォーメーション (DX) ガイドライン (2022年秋)",
+    "bodyText": "経済産業省の「DX推進ガイドライン」におけるデジタルトランスフォーメーション(DX)の定義として、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "データとデジタル技術を活用して、顧客や社会のニーズを基に製品・サービス・ビジネスモデルを変革し、競合上の優位性を確立すること。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "既存の社内紙書類をすべてスキャンしてPDFファイルに置き換えること。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "自社オンプレミスサーバをすべてクラウドサービスへ移行すること。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "基幹業務システム(ERP)のソフトウェアバージョンを最新化すること。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2022,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_B",
+    "questionNum": 1,
+    "category": "SECURITY",
+    "title": "Webアプリケーションセキュリティ設計と認証基盤強化 (2022年秋)",
+    "bodyText": "### [2022年秋期 応用情報技術者試験 科目B 記述問題]\nZ社は大規模ECプラットフォームの再構築を行っている。\n認証認可サーバーおよびAPIゲートウェイ間の通信において、トークン認証方式(JWT)を採用する設計案が提示された。\n\n#### [システム構成と指摘事項]\n1. クライアントブラウザからの認証要求時、ID/パスワードの一致を検証した後にアクセストークンを返却する。\n2. Cookieの属性設定において `HttpOnly` は設定されているが、 `SameSite=Strict` および `Secure` が未設定となっていた。\n3. データベースアクセス層で文字列結合による動的SQL文の組み立てが発見された。\n\n#### [セキュリティ要求事項]\n診断チームから、外部サイトからのリクエスト送信を防止する対策(リスクA)およびSQLインジェクション脆弱性(リスクB)の修正が指示された。\n\n以下の各設問に答えなさい。",
+    "imageUrls": [
+      "/questions/2022_autumn_subject_b_q1.png"
+    ],
+    "choices": [],
+    "modelAnswers": [
+      {
+        "subQuestionNum": "設問1 (1)",
+        "maxScore": 10,
+        "characterLimit": 35,
+        "answerText": "クロスサイトリクエストフォージェリ (CSRF)",
+        "explanation": "他サイトからの不正リクエストを防止する攻撃名称を答えます。"
+      },
+      {
+        "subQuestionNum": "設問1 (2)",
+        "maxScore": 10,
+        "characterLimit": 40,
+        "answerText": "プレースホルダを用いたプレペアードステートメントを使用する。",
+        "explanation": "SQLインジェクションの根本対策である静的バインド変数の利用について記述します。"
+      },
+      {
+        "subQuestionNum": "設問2",
+        "maxScore": 15,
+        "characterLimit": 50,
+        "answerText": "CookieにSameSite=Strict属性およびSecure属性を付与して送信を制限する。",
+        "explanation": "CSRF対策としてのCookie属性の設定値を記述します。"
+      }
+    ]
+  },
+  {
+    "year": 2021,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 1,
+    "category": "SECURITY",
+    "title": "公開鍵暗号方式における鍵管理と署名検証 (2021年春)",
+    "bodyText": "送信者Aが受信者Bに暗号化された電子メールを送信し、改ざん検知と送信元認証を行う場合、送信者Aがメッセージのデジタル署名生成に使用する鍵と、受信者Bがメッセージ本体の解読に使用する鍵の組み合わせとして、適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "署名用: 送信者Aの秘密鍵 / 暗号解読用: 受信者Bの秘密鍵",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "署名用: 送信者Aの公開鍵 / 暗号解読用: 受信者Bの公開鍵",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "署名用: 受信者Bの秘密鍵 / 暗号解読用: 送信者Aの公開鍵",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "署名用: 受信者Bの公開鍵 / 暗号解読用: 送信者Aの秘密鍵",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2021,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 2,
+    "category": "SECURITY",
+    "title": "ゼロトラストネットワークアクセス (ZTNA) (2021年春)",
+    "bodyText": "「何も信頼せず、すべてを検証する」というゼロトラストアーキテクチャの原則に基づくセキュリティ対策として、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "社内LAN内部の通信は信頼し、境界ルータでのファイアウォールログのみを監視する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "イ",
+        "text": "すべてのデバイスおよびユーザーに対し、アクセス要求ごとに認証・認可を行い最小権限を適用する。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "ウ",
+        "text": "VPN装置を用いてリモートユーザーを社内ネットワークに接続させた後、全社内サーバへ自由アクセスを許可する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "社外Webサイトからのダウンロードファイルのみをウイルススキャン対象とする。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2021,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 3,
+    "category": "NETWORK",
+    "title": "IPv6アドレスの表記規格と機能拡張 (2021年春)",
+    "bodyText": "IPv6のアドレス仕様および運用に関する記述のうち、適切なものはどれか。",
+    "imageUrls": [
+      "/questions/2021_spring_subject_a_q3.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "128ビット長のアドレスを16ビットごとにコロン(:)で区切り、16進数で表記する。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "32ビット長のアドレスを8ビットごとにドット(.)で区切り、10進数で表記する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "NAT機能を用いなければインターネット上の端末同士で通信できない。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "ブロードキャストフレームが標準通信方式として送受信される。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2021,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 4,
+    "category": "DATABASE",
+    "title": "リレーショナルデータベースの第3正規形 (2021年春)",
+    "bodyText": "リレーショナルデータベースにおける第3正規形に関する記述として、最も適切なものはどれか。",
+    "imageUrls": [
+      "/questions/2021_spring_subject_a_q4.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "すべての非キー属性が主キーに対して完全関数従属し、かつ推移的関数従属が存在しない状態。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "繰り返し群が取り除かれ、単一原子値のみで表されている状態。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "属性間に一切の関数従属関係が存在しない状態。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "主キーが複数の複合属性によって構成されている状態。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2021,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 5,
+    "category": "ALGORITHM",
+    "title": "平衡二分探索木の平均検索時間複雑度 (2021年春)",
+    "bodyText": "要素数がNである平衡二分探索木(AVL木や赤黒木)において、特定の要素を探索する際の平均時間複雑度はどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "O(1)",
+        "isCorrect": false
+      },
+      {
+        "symbol": "イ",
+        "text": "O(log N)",
+        "isCorrect": true
+      },
+      {
+        "symbol": "ウ",
+        "text": "O(N)",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "O(N log N)",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2021,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 6,
+    "category": "SYSTEM_ARCH",
+    "title": "BCPにおけるRTOとRPOの定義 (2021年春)",
+    "bodyText": "事業継続計画(BCP)における目標復旧時間(RTO: Recovery Time Objective)と目標復旧時点(RPO: Recovery Point Objective)に関する記述のうち、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "RTOはシステム停止から業務が再開するまでの許容経過時間を示す。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "RTOは障害発生時に失われても許容できるデータの復元時点(データ損失量)を示す。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "RPOはシステムバックアップ作業に要する作業時間を意味する。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "RPOが0の場合、復旧までに無限の時間猶予があることを示す。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2021,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 7,
+    "category": "PROJECT_MGMT",
+    "title": "EVM(Earned Value Management)指標の分析 (2021年春)",
+    "bodyText": "プロジェクトマネジメントにおけるEVMにおいて、アーンドバリュー(EV)=100万円、アクチュアルコスト(AC)=120万円、プランドバリュー(PV)=110万円のとき、コスト分散(CV)とスケジュール効率指数(SPI)の正しい組み合わせはどれか。",
+    "imageUrls": [
+      "/questions/2021_spring_subject_a_q7.png"
+    ],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "CV = -20万円, SPI = 0.91",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "CV = +20万円, SPI = 1.10",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "CV = -10万円, SPI = 0.83",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "CV = +10万円, SPI = 1.20",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2021,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 8,
+    "category": "STRATEGY",
+    "title": "デジタルトランスフォーメーション (DX) ガイドライン (2021年春)",
+    "bodyText": "経済産業省の「DX推進ガイドライン」におけるデジタルトランスフォーメーション(DX)の定義として、最も適切なものはどれか。",
+    "imageUrls": [],
+    "choices": [
+      {
+        "symbol": "ア",
+        "text": "データとデジタル技術を活用して、顧客や社会のニーズを基に製品・サービス・ビジネスモデルを変革し、競合上の優位性を確立すること。",
+        "isCorrect": true
+      },
+      {
+        "symbol": "イ",
+        "text": "既存の社内紙書類をすべてスキャンしてPDFファイルに置き換えること。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "ウ",
+        "text": "自社オンプレミスサーバをすべてクラウドサービスへ移行すること。",
+        "isCorrect": false
+      },
+      {
+        "symbol": "エ",
+        "text": "基幹業務システム(ERP)のソフトウェアバージョンを最新化すること。",
+        "isCorrect": false
+      }
+    ],
+    "modelAnswers": []
+  },
+  {
+    "year": 2021,
+    "season": "SPRING",
+    "examType": "SUBJECT_B",
+    "questionNum": 1,
+    "category": "SECURITY",
+    "title": "Webアプリケーションセキュリティ設計と認証基盤強化 (2021年春)",
+    "bodyText": "### [2021年春期 応用情報技術者試験 科目B 記述問題]\nZ社は大規模ECプラットフォームの再構築を行っている。\n認証認可サーバーおよびAPIゲートウェイ間の通信において、トークン認証方式(JWT)を採用する設計案が提示された。\n\n#### [システム構成と指摘事項]\n1. クライアントブラウザからの認証要求時、ID/パスワードの一致を検証した後にアクセストークンを返却する。\n2. Cookieの属性設定において `HttpOnly` は設定されているが、 `SameSite=Strict` および `Secure` が未設定となっていた。\n3. データベースアクセス層で文字列結合による動的SQL文の組み立てが発見された。\n\n#### [セキュリティ要求事項]\n診断チームから、外部サイトからのリクエスト送信を防止する対策(リスクA)およびSQLインジェクション脆弱性(リスクB)の修正が指示された。\n\n以下の各設問に答えなさい。",
+    "imageUrls": [
+      "/questions/2021_spring_subject_b_q1.png"
+    ],
+    "choices": [],
+    "modelAnswers": [
+      {
+        "subQuestionNum": "設問1 (1)",
+        "maxScore": 10,
+        "characterLimit": 35,
+        "answerText": "クロスサイトリクエストフォージェリ (CSRF)",
+        "explanation": "他サイトからの不正リクエストを防止する攻撃名称を答えます。"
+      },
+      {
+        "subQuestionNum": "設問1 (2)",
+        "maxScore": 10,
+        "characterLimit": 40,
+        "answerText": "プレースホルダを用いたプレペアードステートメントを使用する。",
+        "explanation": "SQLインジェクションの根本対策である静的バインド変数の利用について記述します。"
+      },
+      {
+        "subQuestionNum": "設問2",
+        "maxScore": 15,
+        "characterLimit": 50,
+        "answerText": "CookieにSameSite=Strict属性およびSecure属性を付与して送信を制限する。",
+        "explanation": "CSRF対策としてのCookie属性の設定値を記述します。"
+      }
+    ]
+  }
+]
