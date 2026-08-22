@@ -23,6 +23,10 @@ import {
   Bot,
   Compass,
   ExternalLink,
+  GraduationCap,
+  Table,
+  Lightbulb,
+  X,
 } from 'lucide-react';
 import * as diff from 'diff';
 
@@ -64,6 +68,20 @@ interface AIEvaluationResult {
   knowledgeGraph?: KnowledgeGraph;
 }
 
+interface ComparisonRow {
+  concept: string;
+  mechanism: string;
+  countermeasure: string;
+  keyPoint: string;
+}
+
+interface SystematicLectureData {
+  themeTitle: string;
+  overview: string;
+  comparisonTable: ComparisonRow[];
+  examRules: string[];
+}
+
 function SubjectBContent() {
   const searchParams = useSearchParams();
   const initialQuestionId = searchParams.get('questionId');
@@ -72,6 +90,11 @@ function SubjectBContent() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
+
+  // Systematic Lecture Modal State
+  const [isLectureOpen, setIsLectureOpen] = useState<boolean>(false);
+  const [lectureData, setLectureData] = useState<SystematicLectureData | null>(null);
+  const [isLectureLoading, setIsLectureLoading] = useState<boolean>(false);
 
   // Problem text highlighter state
   const scenarioRef = useRef<HTMLDivElement>(null);
@@ -138,7 +161,37 @@ function SubjectBContent() {
     setTimeSpent(0);
     setNotes('');
     setFloatingPopup({ x: 0, y: 0, show: false });
+    setIsLectureOpen(false);
+    setLectureData(null);
   }, [currentIndex, currentQ]);
+
+  // Open Systematic Lecture API Modal
+  const openSystematicLecture = async () => {
+    if (!currentQ) return;
+    setIsLectureOpen(true);
+    setIsLectureLoading(true);
+
+    try {
+      const res = await fetch('/api/systematic-lecture', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          questionId: currentQ.id,
+          theme: currentQ.title || '',
+          bodyText: currentQ.bodyText,
+          modelAnswer: currentQ.modelAnswers?.[0]?.answerText || '',
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setLectureData(data.data);
+      }
+    } catch (e) {
+      console.error('Failed to load systematic lecture:', e);
+    } finally {
+      setIsLectureLoading(false);
+    }
+  };
 
   // Handle Text Selection MouseUp for Floating Marker Popup
   const handleScenarioMouseUp = () => {
@@ -223,7 +276,6 @@ function SubjectBContent() {
     return currentQ.modelAnswers.reduce((sum, ma) => sum + (ma.maxScore || 0), 0);
   };
 
-  // Extract Knowledge Graph Data from Question Explanation or AI Evaluation
   const getKnowledgeGraphData = (): KnowledgeGraph => {
     const defaultKG: KnowledgeGraph = {
       coreConcept: "Webアプリケーションセキュリティ (CSRF・SQLi対策)",
@@ -248,9 +300,7 @@ function SubjectBContent() {
       try {
         const parsed = JSON.parse(currentQ.explanation);
         if (parsed.knowledgeGraph) return parsed.knowledgeGraph;
-      } catch (e) {
-        // Fallback
-      }
+      } catch (e) {}
     }
 
     const firstEval = Object.values(aiEvaluations)[0];
@@ -259,7 +309,6 @@ function SubjectBContent() {
     return defaultKG;
   };
 
-  // Run AI Evaluation for all subquestions
   const runAiGrading = async () => {
     if (!currentQ) return;
     setIsAiLoading(true);
@@ -323,6 +372,96 @@ function SubjectBContent() {
 
   return (
     <div className="space-y-6 animate-fade-in">
+      {/* Systematic Lecture Modal Overlay */}
+      {isLectureOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-fade-in">
+          <div className="glass-panel w-full max-w-4xl max-h-[90vh] rounded-3xl border border-indigo-500/40 p-6 md:p-8 overflow-y-auto space-y-6 shadow-2xl relative">
+            {/* Header */}
+            <div className="flex items-start justify-between border-b border-slate-800 pb-4">
+              <div className="flex items-center gap-3">
+                <div className="p-3 rounded-2xl bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                  <GraduationCap className="w-7 h-7 text-indigo-400" />
+                </div>
+                <div>
+                  <span className="text-xs font-bold text-indigo-400 uppercase tracking-widest">
+                    AP Systematic Lecture Card
+                  </span>
+                  <h2 className="text-xl md:text-2xl font-black text-slate-100">
+                    {lectureData?.themeTitle || '体系化ガイド（全体像・比較表・定石）'}
+                  </h2>
+                </div>
+              </div>
+              <button
+                onClick={() => setIsLectureOpen(false)}
+                className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-slate-200 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {isLectureLoading ? (
+              <div className="p-12 text-center space-y-3">
+                <div className="w-10 h-10 border-4 border-indigo-500/30 border-t-indigo-500 rounded-full animate-spin mx-auto"></div>
+                <p className="text-slate-400 text-sm">出題テーマから体系的講義・比較マトリックス表を生成中...</p>
+              </div>
+            ) : lectureData ? (
+              <div className="space-y-6">
+                {/* Lecture Summary Box */}
+                <div className="p-5 rounded-2xl bg-gradient-to-r from-indigo-950/50 via-slate-900 to-slate-950 border border-indigo-500/30 text-slate-200 text-sm leading-relaxed whitespace-pre-line shadow-inner">
+                  {lectureData.overview}
+                </div>
+
+                {/* Comparison Matrix Table */}
+                <div className="space-y-3">
+                  <h3 className="text-sm font-bold text-slate-200 flex items-center gap-2">
+                    <Table className="w-4 h-4 text-indigo-400" />
+                    概念比較マトリックス表 (Comparison Matrix)
+                  </h3>
+                  <div className="overflow-x-auto rounded-2xl border border-slate-800 bg-slate-950/80">
+                    <table className="w-full text-left text-xs text-slate-200">
+                      <thead className="bg-indigo-950/60 text-indigo-300 uppercase tracking-wider font-bold border-b border-slate-800">
+                        <tr>
+                          <th className="p-3.5 w-1/4">概念・用語</th>
+                          <th className="p-3.5 w-1/4">発生メカニズム・定義</th>
+                          <th className="p-3.5 w-1/4">技術的対策・標準設定</th>
+                          <th className="p-3.5 w-1/4">解答キーポイント</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-800/80">
+                        {lectureData.comparisonTable.map((row, i) => (
+                          <tr key={i} className="hover:bg-indigo-950/20 transition-colors">
+                            <td className="p-3.5 font-bold text-indigo-200">{row.concept}</td>
+                            <td className="p-3.5 text-slate-300 leading-relaxed">{row.mechanism}</td>
+                            <td className="p-3.5 text-emerald-300 font-medium leading-relaxed">{row.countermeasure}</td>
+                            <td className="p-3.5 text-amber-200 leading-relaxed font-semibold">{row.keyPoint}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                {/* Exam Golden Rules */}
+                <div className="p-5 rounded-2xl bg-amber-950/20 border border-amber-500/30 space-y-3">
+                  <h3 className="text-sm font-bold text-amber-300 flex items-center gap-2">
+                    <Lightbulb className="w-4 h-4 text-amber-400" />
+                    IPA試験で加点される「解答の定石ルール」
+                  </h3>
+                  <ul className="space-y-2 text-xs text-amber-100 font-medium">
+                    {lectureData.examRules.map((rule, idx) => (
+                      <li key={idx} className="flex items-start gap-2 bg-slate-950/60 p-3 rounded-xl border border-amber-500/20">
+                        <span className="w-2 h-2 rounded-full bg-amber-400 mt-1.5 shrink-0"></span>
+                        <span>{rule}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ) : null}
+          </div>
+        </div>
+      )}
+
       {/* Floating Selection Highlighter Popup Menu */}
       {floatingPopup.show && (
         <div
@@ -366,15 +505,23 @@ function SubjectBContent() {
             <div className="flex items-center gap-2">
               <h1 className="text-xl font-bold text-slate-100">科目B CBT記述演習モード</h1>
               <span className="text-xs px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 font-semibold border border-indigo-500/30">
-                本番CBT Dual-Pane & ナレッジグラフ
+                本番CBT Dual-Pane & 体系化ガイド
               </span>
             </div>
-            <p className="text-xs text-slate-400">設問文付きエディタ / マーカー / AIキーワード採点 / 周辺知識ナレッジグラフ & 科目A横断検索</p>
+            <p className="text-xs text-slate-400">設問文エディタ / マーカー / AI自動採点 / 体系化ガイド比較表 / 科目A横断検索</p>
           </div>
         </div>
 
-        {/* Category Filter & Timer */}
+        {/* Category Filter & Timer & Lecture Button */}
         <div className="flex flex-wrap items-center gap-3">
+          <button
+            onClick={openSystematicLecture}
+            className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white font-bold text-xs flex items-center gap-1.5 transition-all shadow-md shadow-indigo-500/20"
+          >
+            <GraduationCap className="w-4 h-4 text-indigo-200" />
+            <span>🎓 体系化ガイド</span>
+          </button>
+
           {/* Category Filter */}
           <div className="flex items-center gap-1 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-800 text-xs">
             <Filter className="w-3.5 h-3.5 text-slate-400" />
@@ -740,15 +887,23 @@ function SubjectBContent() {
                     )}
                   </button>
                 ) : (
-                  <button
-                    onClick={() => {
-                      setIsSubmitted(false);
-                      setUserInputs({});
-                    }}
-                    className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center gap-1.5 transition-colors"
-                  >
-                    <RotateCcw className="w-3.5 h-3.5" /> 再解答・修正する
-                  </button>
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={openSystematicLecture}
+                      className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold flex items-center gap-1.5 transition-colors shadow-lg shadow-indigo-500/20"
+                    >
+                      <GraduationCap className="w-4 h-4" /> 🎓 体系化ガイドを開く
+                    </button>
+                    <button
+                      onClick={() => {
+                        setIsSubmitted(false);
+                        setUserInputs({});
+                      }}
+                      className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center gap-1.5 transition-colors"
+                    >
+                      <RotateCcw className="w-3.5 h-3.5" /> 再解答・修正する
+                    </button>
+                  </div>
                 )}
               </div>
             </div>
