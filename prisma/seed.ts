@@ -3,13 +3,16 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log('Seeding AP-CBT-Hub Database...');
+  console.log('Checking AP-CBT-Hub Database seed status...');
 
-  // Clean existing tables
-  await prisma.userAnswer.deleteMany({});
-  await prisma.choice.deleteMany({});
-  await prisma.modelAnswer.deleteMany({});
-  await prisma.question.deleteMany({});
+  // Idempotency check: Skip seeding if question data already exists
+  const existingCount = await prisma.question.count();
+  if (existingCount > 0) {
+    console.log(`Database already contains ${existingCount} question records. Skipping seed process.`);
+    return;
+  }
+
+  console.log('Seeding AP-CBT-Hub Database with initial past exam questions...');
 
   // 1. Subject A Questions
   const subjectAQuestions = [
@@ -122,9 +125,23 @@ async function main() {
 
   for (const qData of subjectAQuestions) {
     const { choices, ...qInfo } = qData;
-    const createdQ = await prisma.question.create({
-      data: qInfo,
+    
+    // Use upsert based on unique constraint
+    const createdQ = await prisma.question.upsert({
+      where: {
+        year_season_examType_questionNum: {
+          year: qInfo.year,
+          season: qInfo.season,
+          examType: qInfo.examType,
+          questionNum: qInfo.questionNum,
+        },
+      },
+      update: qInfo,
+      create: qInfo,
     });
+
+    // Re-create choice options cleanly
+    await prisma.choice.deleteMany({ where: { questionId: createdQ.id } });
     for (const c of choices) {
       await prisma.choice.create({
         data: {
@@ -226,9 +243,20 @@ Y社はマルチリージョンで稼働するマイクロサービスアーキ�
 
   for (const qData of subjectBQuestions) {
     const { modelAnswers, ...qInfo } = qData;
-    const createdQ = await prisma.question.create({
-      data: qInfo,
+    const createdQ = await prisma.question.upsert({
+      where: {
+        year_season_examType_questionNum: {
+          year: qInfo.year,
+          season: qInfo.season,
+          examType: qInfo.examType,
+          questionNum: qInfo.questionNum,
+        },
+      },
+      update: qInfo,
+      create: qInfo,
     });
+
+    await prisma.modelAnswer.deleteMany({ where: { questionId: createdQ.id } });
     for (const ma of modelAnswers) {
       await prisma.modelAnswer.create({
         data: {
@@ -243,46 +271,48 @@ Y社はマルチリージョンで稼働するマイクロサービスアーキ�
     }
   }
 
-  // 3. Create Sample User Answer History for Initial Analytics
-  const qList = await prisma.question.findMany({ include: { choices: true } });
-  
-  if (qList.length > 0) {
-    const q1 = qList.find((q) => q.questionNum === 1 && q.examType === 'SUBJECT_A');
-    if (q1) {
-      await prisma.userAnswer.create({
-        data: {
-          questionId: q1.id,
-          selectedSymbol: 'ウ',
-          isCorrect: true,
-          timeSpentSec: 42,
-          notes: '公開鍵暗号の送信者・受信者の鍵役割の整理要。',
-        },
-      });
-    }
+  // 3. Create Sample User Answer History for Initial Analytics if empty
+  const answerCount = await prisma.userAnswer.count();
+  if (answerCount === 0) {
+    const qList = await prisma.question.findMany({ include: { choices: true } });
+    if (qList.length > 0) {
+      const q1 = qList.find((q) => q.questionNum === 1 && q.examType === 'SUBJECT_A');
+      if (q1) {
+        await prisma.userAnswer.create({
+          data: {
+            questionId: q1.id,
+            selectedSymbol: 'ウ',
+            isCorrect: true,
+            timeSpentSec: 42,
+            notes: '公開鍵暗号の送信者・受信者の鍵役割の整理要。',
+          },
+        });
+      }
 
-    const q2 = qList.find((q) => q.questionNum === 2 && q.examType === 'SUBJECT_A');
-    if (q2) {
-      await prisma.userAnswer.create({
-        data: {
-          questionId: q2.id,
-          selectedSymbol: 'イ',
-          isCorrect: false, // Incorrect answer (<60% accuracy)
-          timeSpentSec: 65,
-          notes: 'IPv6は128ビット、コロン区切り16進数！',
-        },
-      });
-    }
+      const q2 = qList.find((q) => q.questionNum === 2 && q.examType === 'SUBJECT_A');
+      if (q2) {
+        await prisma.userAnswer.create({
+          data: {
+            questionId: q2.id,
+            selectedSymbol: 'イ',
+            isCorrect: false,
+            timeSpentSec: 65,
+            notes: 'IPv6は128ビット、コロン区切り16進数！',
+          },
+        });
+      }
 
-    const q3 = qList.find((q) => q.questionNum === 3 && q.examType === 'SUBJECT_A');
-    if (q3) {
-      await prisma.userAnswer.create({
-        data: {
-          questionId: q3.id,
-          selectedSymbol: 'ア',
-          isCorrect: true,
-          timeSpentSec: 38,
-        },
-      });
+      const q3 = qList.find((q) => q.questionNum === 3 && q.examType === 'SUBJECT_A');
+      if (q3) {
+        await prisma.userAnswer.create({
+          data: {
+            questionId: q3.id,
+            selectedSymbol: 'ア',
+            isCorrect: true,
+            timeSpentSec: 38,
+          },
+        });
+      }
     }
   }
 
@@ -291,7 +321,7 @@ Y社はマルチリージョンで稼働するマイクロサービスアーキ�
 
 main()
   .catch((e) => {
-    console.error(e);
+    console.error('Error during database seed execution:', e);
     process.exit(1);
   })
   .finally(async () => {
