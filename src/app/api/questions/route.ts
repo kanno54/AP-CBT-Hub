@@ -59,6 +59,7 @@ export async function GET(request: NextRequest) {
         category: q.category,
         title: q.title,
         bodyText: q.bodyText,
+        explanation: q.explanation,
         imageUrls: q.imageUrls ? JSON.parse(q.imageUrls) : [],
         choices: q.choices,
         modelAnswers: q.modelAnswers,

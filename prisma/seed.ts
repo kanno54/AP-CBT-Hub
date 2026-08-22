@@ -16,20 +16,12 @@ async function main() {
     questionsToLoad = JSON.parse(rawData);
   }
 
-  // Idempotency check: Skip seeding if question count >= loaded count
-  const existingCount = await prisma.question.count();
-  if (questionsToLoad.length > 0 && existingCount >= questionsToLoad.length) {
-    console.log(`Database already contains ${existingCount} question records. Skipping seed process.`);
-    return;
-  }
-
   if (questionsToLoad.length === 0) {
     console.log('No data/questions_full.json dataset found. Using default seed template...');
-    // Default seed fallback
     return;
   }
 
-  console.log(`Upserting ${questionsToLoad.length} AP past questions into database...`);
+  console.log(`Upserting ${questionsToLoad.length} AP past questions into database with individual explanations...`);
 
   for (const qItem of questionsToLoad) {
     const { choices, modelAnswers, imageUrls, ...qInfo } = qItem;

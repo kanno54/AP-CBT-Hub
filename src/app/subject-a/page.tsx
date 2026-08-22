@@ -32,6 +32,7 @@ interface Question {
   category: string;
   title: string | null;
   bodyText: string;
+  explanation?: string | null;
   choices: Choice[];
   stats: {
     totalAnswers: number;
@@ -367,12 +368,11 @@ function SubjectAContent() {
                 {/* Explanation Content */}
                 <div className="space-y-2 pt-2 border-t border-slate-700/50">
                   <h5 className="text-xs font-bold text-slate-300 flex items-center gap-1.5">
-                    <BookOpen className="w-4 h-4 text-blue-400" /> 解説・補足
+                    <BookOpen className="w-4 h-4 text-blue-400" /> 詳細解説・誤答選択肢の分析
                   </h5>
-                  <p className="text-sm text-slate-200 leading-relaxed">
-                    正解の選択肢は「{currentQ.choices.find((c) => c.isCorrect)?.symbol}」です。
-                    本問題のポイントは{currentQ.category}の基本概念の理解です。次回出題時に迷わないよう、下のメモ欄にポイントを残しておけます。
-                  </p>
+                  <div className="text-sm text-slate-200 leading-relaxed whitespace-pre-line font-sans">
+                    {currentQ.explanation || `正解の選択肢は「${currentQ.choices.find((c) => c.isCorrect)?.symbol}」です。`}
+                  </div>
                 </div>
               </div>
             )}

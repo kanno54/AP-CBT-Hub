@@ -17,6 +17,7 @@ model Question {
   category      String       // "TECHNOLOGY", "MANAGEMENT", "STRATEGY", "SECURITY", "NETWORK", "DATABASE", etc.
   title         String?      
   bodyText      String       
+  explanation   String?      // Detailed individual explanation for the question
   imageUrls     String?      
   choices       Choice[]     
   modelAnswers  ModelAnswer[]
