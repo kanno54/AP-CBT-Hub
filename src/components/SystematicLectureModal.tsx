@@ -82,15 +82,15 @@ export default function SystematicLectureModal({
   if (!isOpen) return null;
 
   return (
-    /* Viewport Fixed Centered Modal Overlay */
+    /* Viewport Outer Container (Scrollable outer container preventing top overflow) */
     <div
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 md:p-6 bg-slate-950/80 backdrop-blur-md animate-fade-in overflow-hidden"
+      className="fixed inset-0 z-50 overflow-y-auto p-3 md:p-6 flex justify-center items-start sm:items-center bg-slate-950/80 backdrop-blur-md animate-fade-in"
     >
-      {/* Modal Dialog Card (Fixed height limit, scrollable content only) */}
+      {/* Modal Dialog Card (Fixed max height, header & footer shrink-0, inner content scroll) */}
       <div
         onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside card
-        className="glass-panel w-full max-w-4xl max-h-[88vh] md:max-h-[85vh] flex flex-col rounded-2xl md:rounded-3xl border border-indigo-500/40 shadow-2xl overflow-hidden animate-scale-up"
+        className="glass-panel w-full max-w-4xl max-h-[85vh] my-auto flex flex-col rounded-2xl md:rounded-3xl border border-indigo-500/40 shadow-2xl overflow-hidden animate-scale-up"
       >
         {/* Fixed Top Header */}
         <div className="flex items-center justify-between p-4 md:p-6 border-b border-slate-800/80 bg-slate-900/90 shrink-0">

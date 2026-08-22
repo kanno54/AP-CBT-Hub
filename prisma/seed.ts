@@ -245,7 +245,16 @@ async function main() {
 
     if (choices && choices.length > 0) {
       await prisma.choice.deleteMany({ where: { questionId: createdQ.id } });
+
+      const seenChoiceTexts = new Set<string>();
       for (const c of choices) {
+        if (seenChoiceTexts.has(c.text)) {
+          console.warn(
+            `[WARNING] 重複選択肢を検出 (問${qInfo.questionNum} 選択肢${c.symbol}): "${c.text}"`
+          );
+        }
+        seenChoiceTexts.add(c.text);
+
         await prisma.choice.create({
           data: {
             questionId: createdQ.id,

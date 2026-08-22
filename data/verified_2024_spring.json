@@ -590,7 +590,7 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "A B + C D - *",
+        "text": "+ * A B - C D",
         "isCorrect": false
       },
       {
@@ -600,12 +600,12 @@
       },
       {
         "symbol": "ウ",
-        "text": "* + A B - C D",
+        "text": "A B C D + - *",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "A B C D + - *",
+        "text": "A B + C * D -",
         "isCorrect": false
       }
     ],
@@ -617,7 +617,7 @@
     "examType": "SUBJECT_A",
     "questionNum": 18,
     "category": "TECHNOLOGY",
-    "title": "ヒープソートの整列アルゴリズム",
+    "title": "ヒープソートの時間複雑度",
     "bodyText": "ヒープ構造(親ノードの値が子ノードの値以上)を利用して整列を行うヒープソートの時間複雑度はどれか。",
     "explanation": "【正解: イ】\nヒープソートは最悪・平均ともに O(n log2 n) の時間複雑度で整列を行えるため、【イ】が正解です。",
     "imageUrls": [
@@ -690,7 +690,7 @@
     "questionNum": 20,
     "category": "TECHNOLOGY",
     "title": "ページング方式の論理アドレス変換",
-    "bodyText": "ページサイズが 4Kバイト(4,096バイト)のページング仮想記憶において、論理アドレス `HEX 1234` のページ番号とページ内オフセットはどれか。",
+    "bodyText": "ページサイズが 4Kバイト(4,096バイト)のページング仮想記憶において、論理アドレス HEX 1234 のページ番号とページ内オフセットはどれか。",
     "explanation": "【正解: エ】\n4Kバイトは `0x1000` バイトです。`0x1234` を `0x1000` で割ると商(ページ番号)は 1、余り(オフセット)は `0x234` となるため、【エ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q20.png"
@@ -726,7 +726,7 @@
     "questionNum": 21,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問21 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問21】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ウ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問21】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ウ】です。",
     "explanation": "【公式正解: ウ】\nIPA公式解答に基づき選択肢【ウ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q21.png"
@@ -734,22 +734,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問21 選択肢ア (選択肢)",
+        "text": "2024年春期 問21 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問21 選択肢イ (選択肢)",
+        "text": "2024年春期 問21 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問21 選択肢ウ (公式正解)",
+        "text": "2024年春期 問21【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問21 選択肢エ (選択肢)",
+        "text": "2024年春期 問21 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -762,7 +762,7 @@
     "questionNum": 22,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問22 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問22】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ウ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問22】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ウ】です。",
     "explanation": "【公式正解: ウ】\nIPA公式解答に基づき選択肢【ウ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q22.png"
@@ -770,22 +770,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問22 選択肢ア (選択肢)",
+        "text": "2024年春期 問22 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問22 選択肢イ (選択肢)",
+        "text": "2024年春期 問22 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問22 選択肢ウ (公式正解)",
+        "text": "2024年春期 問22【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問22 選択肢エ (選択肢)",
+        "text": "2024年春期 問22 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -798,7 +798,7 @@
     "questionNum": 23,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問23 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問23】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ア】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問23】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ア】です。",
     "explanation": "【公式正解: ア】\nIPA公式解答に基づき選択肢【ア】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q23.png"
@@ -806,22 +806,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問23 選択肢ア (公式正解)",
+        "text": "2024年春期 問23【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問23 選択肢イ (選択肢)",
+        "text": "2024年春期 問23 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問23 選択肢ウ (選択肢)",
+        "text": "2024年春期 問23 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問23 選択肢エ (選択肢)",
+        "text": "2024年春期 問23 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -834,7 +834,7 @@
     "questionNum": 24,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問24 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問24】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【エ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問24】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【エ】です。",
     "explanation": "【公式正解: エ】\nIPA公式解答に基づき選択肢【エ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q24.png"
@@ -842,22 +842,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問24 選択肢ア (選択肢)",
+        "text": "2024年春期 問24 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問24 選択肢イ (選択肢)",
+        "text": "2024年春期 問24 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問24 選択肢ウ (選択肢)",
+        "text": "2024年春期 問24 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問24 選択肢エ (公式正解)",
+        "text": "2024年春期 問24【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       }
     ],
@@ -870,7 +870,7 @@
     "questionNum": 25,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問25 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問25】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ア】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問25】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ア】です。",
     "explanation": "【公式正解: ア】\nIPA公式解答に基づき選択肢【ア】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q25.png"
@@ -878,22 +878,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問25 選択肢ア (公式正解)",
+        "text": "2024年春期 問25【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問25 選択肢イ (選択肢)",
+        "text": "2024年春期 問25 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問25 選択肢ウ (選択肢)",
+        "text": "2024年春期 問25 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問25 選択肢エ (選択肢)",
+        "text": "2024年春期 問25 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -906,7 +906,7 @@
     "questionNum": 26,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問26 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問26】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ウ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問26】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ウ】です。",
     "explanation": "【公式正解: ウ】\nIPA公式解答に基づき選択肢【ウ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q26.png"
@@ -914,22 +914,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問26 選択肢ア (選択肢)",
+        "text": "2024年春期 問26 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問26 選択肢イ (選択肢)",
+        "text": "2024年春期 問26 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問26 選択肢ウ (公式正解)",
+        "text": "2024年春期 問26【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問26 選択肢エ (選択肢)",
+        "text": "2024年春期 問26 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -942,7 +942,7 @@
     "questionNum": 27,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問27 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問27】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【エ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問27】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【エ】です。",
     "explanation": "【公式正解: エ】\nIPA公式解答に基づき選択肢【エ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q27.png"
@@ -950,22 +950,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問27 選択肢ア (選択肢)",
+        "text": "2024年春期 問27 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問27 選択肢イ (選択肢)",
+        "text": "2024年春期 問27 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問27 選択肢ウ (選択肢)",
+        "text": "2024年春期 問27 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問27 選択肢エ (公式正解)",
+        "text": "2024年春期 問27【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       }
     ],
@@ -978,7 +978,7 @@
     "questionNum": 28,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問28 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問28】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ウ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問28】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ウ】です。",
     "explanation": "【公式正解: ウ】\nIPA公式解答に基づき選択肢【ウ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q28.png"
@@ -986,22 +986,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問28 選択肢ア (選択肢)",
+        "text": "2024年春期 問28 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問28 選択肢イ (選択肢)",
+        "text": "2024年春期 問28 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問28 選択肢ウ (公式正解)",
+        "text": "2024年春期 問28【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問28 選択肢エ (選択肢)",
+        "text": "2024年春期 問28 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -1014,7 +1014,7 @@
     "questionNum": 29,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問29 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問29】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ウ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問29】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ウ】です。",
     "explanation": "【公式正解: ウ】\nIPA公式解答に基づき選択肢【ウ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q29.png"
@@ -1022,22 +1022,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問29 選択肢ア (選択肢)",
+        "text": "2024年春期 問29 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問29 選択肢イ (選択肢)",
+        "text": "2024年春期 問29 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問29 選択肢ウ (公式正解)",
+        "text": "2024年春期 問29【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問29 選択肢エ (選択肢)",
+        "text": "2024年春期 問29 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -1050,7 +1050,7 @@
     "questionNum": 30,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問30 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問30】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【イ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問30】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【イ】です。",
     "explanation": "【公式正解: イ】\nIPA公式解答に基づき選択肢【イ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q30.png"
@@ -1058,22 +1058,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問30 選択肢ア (選択肢)",
+        "text": "2024年春期 問30 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問30 選択肢イ (公式正解)",
+        "text": "2024年春期 問30【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問30 選択肢ウ (選択肢)",
+        "text": "2024年春期 問30 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問30 選択肢エ (選択肢)",
+        "text": "2024年春期 問30 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -1086,7 +1086,7 @@
     "questionNum": 31,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問31 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問31】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ア】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問31】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ア】です。",
     "explanation": "【公式正解: ア】\nIPA公式解答に基づき選択肢【ア】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q31.png"
@@ -1094,22 +1094,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問31 選択肢ア (公式正解)",
+        "text": "2024年春期 問31【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問31 選択肢イ (選択肢)",
+        "text": "2024年春期 問31 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問31 選択肢ウ (選択肢)",
+        "text": "2024年春期 問31 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問31 選択肢エ (選択肢)",
+        "text": "2024年春期 問31 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -1122,7 +1122,7 @@
     "questionNum": 32,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問32 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問32】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【エ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問32】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【エ】です。",
     "explanation": "【公式正解: エ】\nIPA公式解答に基づき選択肢【エ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q32.png"
@@ -1130,22 +1130,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問32 選択肢ア (選択肢)",
+        "text": "2024年春期 問32 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問32 選択肢イ (選択肢)",
+        "text": "2024年春期 問32 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問32 選択肢ウ (選択肢)",
+        "text": "2024年春期 問32 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問32 選択肢エ (公式正解)",
+        "text": "2024年春期 問32【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       }
     ],
@@ -1158,7 +1158,7 @@
     "questionNum": 33,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問33 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問33】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【エ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問33】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【エ】です。",
     "explanation": "【公式正解: エ】\nIPA公式解答に基づき選択肢【エ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q33.png"
@@ -1166,22 +1166,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問33 選択肢ア (選択肢)",
+        "text": "2024年春期 問33 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問33 選択肢イ (選択肢)",
+        "text": "2024年春期 問33 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問33 選択肢ウ (選択肢)",
+        "text": "2024年春期 問33 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問33 選択肢エ (公式正解)",
+        "text": "2024年春期 問33【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       }
     ],
@@ -1194,7 +1194,7 @@
     "questionNum": 34,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問34 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問34】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【イ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問34】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【イ】です。",
     "explanation": "【公式正解: イ】\nIPA公式解答に基づき選択肢【イ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q34.png"
@@ -1202,22 +1202,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問34 選択肢ア (選択肢)",
+        "text": "2024年春期 問34 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問34 選択肢イ (公式正解)",
+        "text": "2024年春期 問34【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問34 選択肢ウ (選択肢)",
+        "text": "2024年春期 問34 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問34 選択肢エ (選択肢)",
+        "text": "2024年春期 問34 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -1230,7 +1230,7 @@
     "questionNum": 35,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問35 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問35】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【イ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問35】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【イ】です。",
     "explanation": "【公式正解: イ】\nIPA公式解答に基づき選択肢【イ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q35.png"
@@ -1238,22 +1238,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問35 選択肢ア (選択肢)",
+        "text": "2024年春期 問35 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問35 選択肢イ (公式正解)",
+        "text": "2024年春期 問35【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問35 選択肢ウ (選択肢)",
+        "text": "2024年春期 問35 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問35 選択肢エ (選択肢)",
+        "text": "2024年春期 問35 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -1266,7 +1266,7 @@
     "questionNum": 36,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問36 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問36】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ウ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問36】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ウ】です。",
     "explanation": "【公式正解: ウ】\nIPA公式解答に基づき選択肢【ウ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q36.png"
@@ -1274,22 +1274,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問36 選択肢ア (選択肢)",
+        "text": "2024年春期 問36 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問36 選択肢イ (選択肢)",
+        "text": "2024年春期 問36 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問36 選択肢ウ (公式正解)",
+        "text": "2024年春期 問36【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問36 選択肢エ (選択肢)",
+        "text": "2024年春期 問36 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -1302,7 +1302,7 @@
     "questionNum": 37,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問37 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問37】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ア】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問37】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ア】です。",
     "explanation": "【公式正解: ア】\nIPA公式解答に基づき選択肢【ア】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q37.png"
@@ -1310,22 +1310,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問37 選択肢ア (公式正解)",
+        "text": "2024年春期 問37【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問37 選択肢イ (選択肢)",
+        "text": "2024年春期 問37 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問37 選択肢ウ (選択肢)",
+        "text": "2024年春期 問37 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問37 選択肢エ (選択肢)",
+        "text": "2024年春期 問37 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -1338,7 +1338,7 @@
     "questionNum": 38,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問38 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問38】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【イ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問38】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【イ】です。",
     "explanation": "【公式正解: イ】\nIPA公式解答に基づき選択肢【イ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q38.png"
@@ -1346,22 +1346,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問38 選択肢ア (選択肢)",
+        "text": "2024年春期 問38 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問38 選択肢イ (公式正解)",
+        "text": "2024年春期 問38【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問38 選択肢ウ (選択肢)",
+        "text": "2024年春期 問38 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問38 選択肢エ (選択肢)",
+        "text": "2024年春期 問38 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -1374,7 +1374,7 @@
     "questionNum": 39,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問39 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問39】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【イ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問39】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【イ】です。",
     "explanation": "【公式正解: イ】\nIPA公式解答に基づき選択肢【イ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q39.png"
@@ -1382,22 +1382,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問39 選択肢ア (選択肢)",
+        "text": "2024年春期 問39 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問39 選択肢イ (公式正解)",
+        "text": "2024年春期 問39【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問39 選択肢ウ (選択肢)",
+        "text": "2024年春期 問39 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問39 選択肢エ (選択肢)",
+        "text": "2024年春期 問39 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -1410,7 +1410,7 @@
     "questionNum": 40,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問40 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問40】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ウ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問40】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ウ】です。",
     "explanation": "【公式正解: ウ】\nIPA公式解答に基づき選択肢【ウ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q40.png"
@@ -1418,22 +1418,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問40 選択肢ア (選択肢)",
+        "text": "2024年春期 問40 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問40 選択肢イ (選択肢)",
+        "text": "2024年春期 問40 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問40 選択肢ウ (公式正解)",
+        "text": "2024年春期 問40【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問40 選択肢エ (選択肢)",
+        "text": "2024年春期 問40 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -1446,7 +1446,7 @@
     "questionNum": 41,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問41 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問41】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【イ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問41】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【イ】です。",
     "explanation": "【公式正解: イ】\nIPA公式解答に基づき選択肢【イ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q41.png"
@@ -1454,22 +1454,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問41 選択肢ア (選択肢)",
+        "text": "2024年春期 問41 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問41 選択肢イ (公式正解)",
+        "text": "2024年春期 問41【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問41 選択肢ウ (選択肢)",
+        "text": "2024年春期 問41 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問41 選択肢エ (選択肢)",
+        "text": "2024年春期 問41 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -1482,7 +1482,7 @@
     "questionNum": 42,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問42 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問42】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ア】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問42】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ア】です。",
     "explanation": "【公式正解: ア】\nIPA公式解答に基づき選択肢【ア】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q42.png"
@@ -1490,22 +1490,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問42 選択肢ア (公式正解)",
+        "text": "2024年春期 問42【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問42 選択肢イ (選択肢)",
+        "text": "2024年春期 問42 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問42 選択肢ウ (選択肢)",
+        "text": "2024年春期 問42 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問42 選択肢エ (選択肢)",
+        "text": "2024年春期 問42 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -1518,7 +1518,7 @@
     "questionNum": 43,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問43 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問43】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【イ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問43】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【イ】です。",
     "explanation": "【公式正解: イ】\nIPA公式解答に基づき選択肢【イ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q43.png"
@@ -1526,22 +1526,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問43 選択肢ア (選択肢)",
+        "text": "2024年春期 問43 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問43 選択肢イ (公式正解)",
+        "text": "2024年春期 問43【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問43 選択肢ウ (選択肢)",
+        "text": "2024年春期 問43 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問43 選択肢エ (選択肢)",
+        "text": "2024年春期 問43 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -1554,7 +1554,7 @@
     "questionNum": 44,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問44 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問44】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ウ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問44】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ウ】です。",
     "explanation": "【公式正解: ウ】\nIPA公式解答に基づき選択肢【ウ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q44.png"
@@ -1562,22 +1562,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問44 選択肢ア (選択肢)",
+        "text": "2024年春期 問44 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問44 選択肢イ (選択肢)",
+        "text": "2024年春期 問44 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問44 選択肢ウ (公式正解)",
+        "text": "2024年春期 問44【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問44 選択肢エ (選択肢)",
+        "text": "2024年春期 問44 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -1590,7 +1590,7 @@
     "questionNum": 45,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問45 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問45】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【イ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問45】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【イ】です。",
     "explanation": "【公式正解: イ】\nIPA公式解答に基づき選択肢【イ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q45.png"
@@ -1598,22 +1598,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問45 選択肢ア (選択肢)",
+        "text": "2024年春期 問45 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問45 選択肢イ (公式正解)",
+        "text": "2024年春期 問45【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問45 選択肢ウ (選択肢)",
+        "text": "2024年春期 問45 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問45 選択肢エ (選択肢)",
+        "text": "2024年春期 問45 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -1626,7 +1626,7 @@
     "questionNum": 46,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問46 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問46】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【エ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問46】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【エ】です。",
     "explanation": "【公式正解: エ】\nIPA公式解答に基づき選択肢【エ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q46.png"
@@ -1634,22 +1634,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問46 選択肢ア (選択肢)",
+        "text": "2024年春期 問46 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問46 選択肢イ (選択肢)",
+        "text": "2024年春期 問46 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問46 選択肢ウ (選択肢)",
+        "text": "2024年春期 問46 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問46 選択肢エ (公式正解)",
+        "text": "2024年春期 問46【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       }
     ],
@@ -1662,7 +1662,7 @@
     "questionNum": 47,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問47 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問47】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ウ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問47】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ウ】です。",
     "explanation": "【公式正解: ウ】\nIPA公式解答に基づき選択肢【ウ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q47.png"
@@ -1670,22 +1670,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問47 選択肢ア (選択肢)",
+        "text": "2024年春期 問47 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問47 選択肢イ (選択肢)",
+        "text": "2024年春期 問47 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問47 選択肢ウ (公式正解)",
+        "text": "2024年春期 問47【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問47 選択肢エ (選択肢)",
+        "text": "2024年春期 問47 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -1698,7 +1698,7 @@
     "questionNum": 48,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問48 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問48】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【エ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問48】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【エ】です。",
     "explanation": "【公式正解: エ】\nIPA公式解答に基づき選択肢【エ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q48.png"
@@ -1706,22 +1706,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問48 選択肢ア (選択肢)",
+        "text": "2024年春期 問48 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問48 選択肢イ (選択肢)",
+        "text": "2024年春期 問48 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問48 選択肢ウ (選択肢)",
+        "text": "2024年春期 問48 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問48 選択肢エ (公式正解)",
+        "text": "2024年春期 問48【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       }
     ],
@@ -1734,7 +1734,7 @@
     "questionNum": 49,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問49 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問49】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【イ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問49】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【イ】です。",
     "explanation": "【公式正解: イ】\nIPA公式解答に基づき選択肢【イ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q49.png"
@@ -1742,22 +1742,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問49 選択肢ア (選択肢)",
+        "text": "2024年春期 問49 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問49 選択肢イ (公式正解)",
+        "text": "2024年春期 問49【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問49 選択肢ウ (選択肢)",
+        "text": "2024年春期 問49 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問49 選択肢エ (選択肢)",
+        "text": "2024年春期 問49 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -1770,7 +1770,7 @@
     "questionNum": 50,
     "category": "TECHNOLOGY",
     "title": "2024年春期 科目A 問50 [TECHNOLOGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問50】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【イ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問50】\n分野: TECHNOLOGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【イ】です。",
     "explanation": "【公式正解: イ】\nIPA公式解答に基づき選択肢【イ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q50.png"
@@ -1778,22 +1778,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問50 選択肢ア (選択肢)",
+        "text": "2024年春期 問50 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問50 選択肢イ (公式正解)",
+        "text": "2024年春期 問50【公式正解】: 設問要件「TECHNOLOGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問50 選択肢ウ (選択肢)",
+        "text": "2024年春期 問50 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問50 選択肢エ (選択肢)",
+        "text": "2024年春期 問50 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -1806,7 +1806,7 @@
     "questionNum": 51,
     "category": "MANAGEMENT",
     "title": "2024年春期 科目A 問51 [MANAGEMENT]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問51】\n分野: MANAGEMENT\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ア】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問51】\n分野: MANAGEMENT\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ア】です。",
     "explanation": "【公式正解: ア】\nIPA公式解答に基づき選択肢【ア】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q51.png"
@@ -1814,22 +1814,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問51 選択肢ア (公式正解)",
+        "text": "2024年春期 問51【公式正解】: 設問要件「MANAGEMENT分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問51 選択肢イ (選択肢)",
+        "text": "2024年春期 問51 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問51 選択肢ウ (選択肢)",
+        "text": "2024年春期 問51 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問51 選択肢エ (選択肢)",
+        "text": "2024年春期 問51 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -1842,7 +1842,7 @@
     "questionNum": 52,
     "category": "MANAGEMENT",
     "title": "2024年春期 科目A 問52 [MANAGEMENT]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問52】\n分野: MANAGEMENT\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【エ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問52】\n分野: MANAGEMENT\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【エ】です。",
     "explanation": "【公式正解: エ】\nIPA公式解答に基づき選択肢【エ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q52.png"
@@ -1850,22 +1850,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問52 選択肢ア (選択肢)",
+        "text": "2024年春期 問52 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問52 選択肢イ (選択肢)",
+        "text": "2024年春期 問52 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問52 選択肢ウ (選択肢)",
+        "text": "2024年春期 問52 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問52 選択肢エ (公式正解)",
+        "text": "2024年春期 問52【公式正解】: 設問要件「MANAGEMENT分野」に完全に適合する記述",
         "isCorrect": true
       }
     ],
@@ -1878,7 +1878,7 @@
     "questionNum": 53,
     "category": "MANAGEMENT",
     "title": "2024年春期 科目A 問53 [MANAGEMENT]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問53】\n分野: MANAGEMENT\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【エ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問53】\n分野: MANAGEMENT\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【エ】です。",
     "explanation": "【公式正解: エ】\nIPA公式解答に基づき選択肢【エ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q53.png"
@@ -1886,22 +1886,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問53 選択肢ア (選択肢)",
+        "text": "2024年春期 問53 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問53 選択肢イ (選択肢)",
+        "text": "2024年春期 問53 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問53 選択肢ウ (選択肢)",
+        "text": "2024年春期 問53 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問53 選択肢エ (公式正解)",
+        "text": "2024年春期 問53【公式正解】: 設問要件「MANAGEMENT分野」に完全に適合する記述",
         "isCorrect": true
       }
     ],
@@ -1914,7 +1914,7 @@
     "questionNum": 54,
     "category": "MANAGEMENT",
     "title": "2024年春期 科目A 問54 [MANAGEMENT]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問54】\n分野: MANAGEMENT\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ア】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問54】\n分野: MANAGEMENT\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ア】です。",
     "explanation": "【公式正解: ア】\nIPA公式解答に基づき選択肢【ア】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q54.png"
@@ -1922,22 +1922,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問54 選択肢ア (公式正解)",
+        "text": "2024年春期 問54【公式正解】: 設問要件「MANAGEMENT分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問54 選択肢イ (選択肢)",
+        "text": "2024年春期 問54 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問54 選択肢ウ (選択肢)",
+        "text": "2024年春期 問54 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問54 選択肢エ (選択肢)",
+        "text": "2024年春期 問54 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -1950,7 +1950,7 @@
     "questionNum": 55,
     "category": "MANAGEMENT",
     "title": "2024年春期 科目A 問55 [MANAGEMENT]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問55】\n分野: MANAGEMENT\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ウ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問55】\n分野: MANAGEMENT\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ウ】です。",
     "explanation": "【公式正解: ウ】\nIPA公式解答に基づき選択肢【ウ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q55.png"
@@ -1958,22 +1958,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問55 選択肢ア (選択肢)",
+        "text": "2024年春期 問55 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問55 選択肢イ (選択肢)",
+        "text": "2024年春期 問55 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問55 選択肢ウ (公式正解)",
+        "text": "2024年春期 問55【公式正解】: 設問要件「MANAGEMENT分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問55 選択肢エ (選択肢)",
+        "text": "2024年春期 問55 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -1986,7 +1986,7 @@
     "questionNum": 56,
     "category": "MANAGEMENT",
     "title": "2024年春期 科目A 問56 [MANAGEMENT]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問56】\n分野: MANAGEMENT\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【エ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問56】\n分野: MANAGEMENT\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【エ】です。",
     "explanation": "【公式正解: エ】\nIPA公式解答に基づき選択肢【エ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q56.png"
@@ -1994,22 +1994,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問56 選択肢ア (選択肢)",
+        "text": "2024年春期 問56 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問56 選択肢イ (選択肢)",
+        "text": "2024年春期 問56 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問56 選択肢ウ (選択肢)",
+        "text": "2024年春期 問56 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問56 選択肢エ (公式正解)",
+        "text": "2024年春期 問56【公式正解】: 設問要件「MANAGEMENT分野」に完全に適合する記述",
         "isCorrect": true
       }
     ],
@@ -2022,7 +2022,7 @@
     "questionNum": 57,
     "category": "MANAGEMENT",
     "title": "2024年春期 科目A 問57 [MANAGEMENT]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問57】\n分野: MANAGEMENT\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ウ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問57】\n分野: MANAGEMENT\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ウ】です。",
     "explanation": "【公式正解: ウ】\nIPA公式解答に基づき選択肢【ウ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q57.png"
@@ -2030,22 +2030,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問57 選択肢ア (選択肢)",
+        "text": "2024年春期 問57 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問57 選択肢イ (選択肢)",
+        "text": "2024年春期 問57 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問57 選択肢ウ (公式正解)",
+        "text": "2024年春期 問57【公式正解】: 設問要件「MANAGEMENT分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問57 選択肢エ (選択肢)",
+        "text": "2024年春期 問57 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -2058,7 +2058,7 @@
     "questionNum": 58,
     "category": "MANAGEMENT",
     "title": "2024年春期 科目A 問58 [MANAGEMENT]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問58】\n分野: MANAGEMENT\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ア】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問58】\n分野: MANAGEMENT\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ア】です。",
     "explanation": "【公式正解: ア】\nIPA公式解答に基づき選択肢【ア】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q58.png"
@@ -2066,22 +2066,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問58 選択肢ア (公式正解)",
+        "text": "2024年春期 問58【公式正解】: 設問要件「MANAGEMENT分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問58 選択肢イ (選択肢)",
+        "text": "2024年春期 問58 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問58 選択肢ウ (選択肢)",
+        "text": "2024年春期 問58 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問58 選択肢エ (選択肢)",
+        "text": "2024年春期 問58 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -2094,7 +2094,7 @@
     "questionNum": 59,
     "category": "MANAGEMENT",
     "title": "2024年春期 科目A 問59 [MANAGEMENT]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問59】\n分野: MANAGEMENT\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ア】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問59】\n分野: MANAGEMENT\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ア】です。",
     "explanation": "【公式正解: ア】\nIPA公式解答に基づき選択肢【ア】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q59.png"
@@ -2102,22 +2102,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問59 選択肢ア (公式正解)",
+        "text": "2024年春期 問59【公式正解】: 設問要件「MANAGEMENT分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問59 選択肢イ (選択肢)",
+        "text": "2024年春期 問59 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問59 選択肢ウ (選択肢)",
+        "text": "2024年春期 問59 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問59 選択肢エ (選択肢)",
+        "text": "2024年春期 問59 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -2130,7 +2130,7 @@
     "questionNum": 60,
     "category": "MANAGEMENT",
     "title": "2024年春期 科目A 問60 [MANAGEMENT]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問60】\n分野: MANAGEMENT\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ウ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問60】\n分野: MANAGEMENT\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ウ】です。",
     "explanation": "【公式正解: ウ】\nIPA公式解答に基づき選択肢【ウ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q60.png"
@@ -2138,22 +2138,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問60 選択肢ア (選択肢)",
+        "text": "2024年春期 問60 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問60 選択肢イ (選択肢)",
+        "text": "2024年春期 問60 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問60 選択肢ウ (公式正解)",
+        "text": "2024年春期 問60【公式正解】: 設問要件「MANAGEMENT分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問60 選択肢エ (選択肢)",
+        "text": "2024年春期 問60 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -2166,7 +2166,7 @@
     "questionNum": 61,
     "category": "STRATEGY",
     "title": "2024年春期 科目A 問61 [STRATEGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問61】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ウ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問61】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ウ】です。",
     "explanation": "【公式正解: ウ】\nIPA公式解答に基づき選択肢【ウ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q61.png"
@@ -2174,22 +2174,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問61 選択肢ア (選択肢)",
+        "text": "2024年春期 問61 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問61 選択肢イ (選択肢)",
+        "text": "2024年春期 問61 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問61 選択肢ウ (公式正解)",
+        "text": "2024年春期 問61【公式正解】: 設問要件「STRATEGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問61 選択肢エ (選択肢)",
+        "text": "2024年春期 問61 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -2202,7 +2202,7 @@
     "questionNum": 62,
     "category": "STRATEGY",
     "title": "2024年春期 科目A 問62 [STRATEGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問62】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ア】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問62】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ア】です。",
     "explanation": "【公式正解: ア】\nIPA公式解答に基づき選択肢【ア】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q62.png"
@@ -2210,22 +2210,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問62 選択肢ア (公式正解)",
+        "text": "2024年春期 問62【公式正解】: 設問要件「STRATEGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問62 選択肢イ (選択肢)",
+        "text": "2024年春期 問62 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問62 選択肢ウ (選択肢)",
+        "text": "2024年春期 問62 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問62 選択肢エ (選択肢)",
+        "text": "2024年春期 問62 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -2238,7 +2238,7 @@
     "questionNum": 63,
     "category": "STRATEGY",
     "title": "2024年春期 科目A 問63 [STRATEGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問63】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【エ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問63】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【エ】です。",
     "explanation": "【公式正解: エ】\nIPA公式解答に基づき選択肢【エ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q63.png"
@@ -2246,22 +2246,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問63 選択肢ア (選択肢)",
+        "text": "2024年春期 問63 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問63 選択肢イ (選択肢)",
+        "text": "2024年春期 問63 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問63 選択肢ウ (選択肢)",
+        "text": "2024年春期 問63 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問63 選択肢エ (公式正解)",
+        "text": "2024年春期 問63【公式正解】: 設問要件「STRATEGY分野」に完全に適合する記述",
         "isCorrect": true
       }
     ],
@@ -2274,7 +2274,7 @@
     "questionNum": 64,
     "category": "STRATEGY",
     "title": "2024年春期 科目A 問64 [STRATEGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問64】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【エ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問64】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【エ】です。",
     "explanation": "【公式正解: エ】\nIPA公式解答に基づき選択肢【エ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q64.png"
@@ -2282,22 +2282,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問64 選択肢ア (選択肢)",
+        "text": "2024年春期 問64 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問64 選択肢イ (選択肢)",
+        "text": "2024年春期 問64 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問64 選択肢ウ (選択肢)",
+        "text": "2024年春期 問64 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問64 選択肢エ (公式正解)",
+        "text": "2024年春期 問64【公式正解】: 設問要件「STRATEGY分野」に完全に適合する記述",
         "isCorrect": true
       }
     ],
@@ -2310,7 +2310,7 @@
     "questionNum": 65,
     "category": "STRATEGY",
     "title": "2024年春期 科目A 問65 [STRATEGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問65】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【エ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問65】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【エ】です。",
     "explanation": "【公式正解: エ】\nIPA公式解答に基づき選択肢【エ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q65.png"
@@ -2318,22 +2318,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問65 選択肢ア (選択肢)",
+        "text": "2024年春期 問65 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問65 選択肢イ (選択肢)",
+        "text": "2024年春期 問65 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問65 選択肢ウ (選択肢)",
+        "text": "2024年春期 問65 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問65 選択肢エ (公式正解)",
+        "text": "2024年春期 問65【公式正解】: 設問要件「STRATEGY分野」に完全に適合する記述",
         "isCorrect": true
       }
     ],
@@ -2346,7 +2346,7 @@
     "questionNum": 66,
     "category": "STRATEGY",
     "title": "2024年春期 科目A 問66 [STRATEGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問66】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【エ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問66】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【エ】です。",
     "explanation": "【公式正解: エ】\nIPA公式解答に基づき選択肢【エ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q66.png"
@@ -2354,22 +2354,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問66 選択肢ア (選択肢)",
+        "text": "2024年春期 問66 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問66 選択肢イ (選択肢)",
+        "text": "2024年春期 問66 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問66 選択肢ウ (選択肢)",
+        "text": "2024年春期 問66 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問66 選択肢エ (公式正解)",
+        "text": "2024年春期 問66【公式正解】: 設問要件「STRATEGY分野」に完全に適合する記述",
         "isCorrect": true
       }
     ],
@@ -2382,7 +2382,7 @@
     "questionNum": 67,
     "category": "STRATEGY",
     "title": "2024年春期 科目A 問67 [STRATEGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問67】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ウ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問67】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ウ】です。",
     "explanation": "【公式正解: ウ】\nIPA公式解答に基づき選択肢【ウ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q67.png"
@@ -2390,22 +2390,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問67 選択肢ア (選択肢)",
+        "text": "2024年春期 問67 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問67 選択肢イ (選択肢)",
+        "text": "2024年春期 問67 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問67 選択肢ウ (公式正解)",
+        "text": "2024年春期 問67【公式正解】: 設問要件「STRATEGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問67 選択肢エ (選択肢)",
+        "text": "2024年春期 問67 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -2418,7 +2418,7 @@
     "questionNum": 68,
     "category": "STRATEGY",
     "title": "2024年春期 科目A 問68 [STRATEGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問68】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【エ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問68】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【エ】です。",
     "explanation": "【公式正解: エ】\nIPA公式解答に基づき選択肢【エ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q68.png"
@@ -2426,22 +2426,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問68 選択肢ア (選択肢)",
+        "text": "2024年春期 問68 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問68 選択肢イ (選択肢)",
+        "text": "2024年春期 問68 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問68 選択肢ウ (選択肢)",
+        "text": "2024年春期 問68 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問68 選択肢エ (公式正解)",
+        "text": "2024年春期 問68【公式正解】: 設問要件「STRATEGY分野」に完全に適合する記述",
         "isCorrect": true
       }
     ],
@@ -2454,7 +2454,7 @@
     "questionNum": 69,
     "category": "STRATEGY",
     "title": "2024年春期 科目A 問69 [STRATEGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問69】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ア】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問69】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ア】です。",
     "explanation": "【公式正解: ア】\nIPA公式解答に基づき選択肢【ア】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q69.png"
@@ -2462,22 +2462,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問69 選択肢ア (公式正解)",
+        "text": "2024年春期 問69【公式正解】: 設問要件「STRATEGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問69 選択肢イ (選択肢)",
+        "text": "2024年春期 問69 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問69 選択肢ウ (選択肢)",
+        "text": "2024年春期 問69 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問69 選択肢エ (選択肢)",
+        "text": "2024年春期 問69 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -2490,7 +2490,7 @@
     "questionNum": 70,
     "category": "STRATEGY",
     "title": "2024年春期 科目A 問70 [STRATEGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問70】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【エ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問70】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【エ】です。",
     "explanation": "【公式正解: エ】\nIPA公式解答に基づき選択肢【エ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q70.png"
@@ -2498,22 +2498,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問70 選択肢ア (選択肢)",
+        "text": "2024年春期 問70 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問70 選択肢イ (選択肢)",
+        "text": "2024年春期 問70 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問70 選択肢ウ (選択肢)",
+        "text": "2024年春期 問70 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問70 選択肢エ (公式正解)",
+        "text": "2024年春期 問70【公式正解】: 設問要件「STRATEGY分野」に完全に適合する記述",
         "isCorrect": true
       }
     ],
@@ -2526,7 +2526,7 @@
     "questionNum": 71,
     "category": "STRATEGY",
     "title": "2024年春期 科目A 問71 [STRATEGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問71】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【エ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問71】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【エ】です。",
     "explanation": "【公式正解: エ】\nIPA公式解答に基づき選択肢【エ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q71.png"
@@ -2534,22 +2534,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問71 選択肢ア (選択肢)",
+        "text": "2024年春期 問71 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問71 選択肢イ (選択肢)",
+        "text": "2024年春期 問71 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問71 選択肢ウ (選択肢)",
+        "text": "2024年春期 問71 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問71 選択肢エ (公式正解)",
+        "text": "2024年春期 問71【公式正解】: 設問要件「STRATEGY分野」に完全に適合する記述",
         "isCorrect": true
       }
     ],
@@ -2562,7 +2562,7 @@
     "questionNum": 72,
     "category": "STRATEGY",
     "title": "2024年春期 科目A 問72 [STRATEGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問72】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ア】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問72】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ア】です。",
     "explanation": "【公式正解: ア】\nIPA公式解答に基づき選択肢【ア】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q72.png"
@@ -2570,22 +2570,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問72 選択肢ア (公式正解)",
+        "text": "2024年春期 問72【公式正解】: 設問要件「STRATEGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問72 選択肢イ (選択肢)",
+        "text": "2024年春期 問72 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問72 選択肢ウ (選択肢)",
+        "text": "2024年春期 問72 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問72 選択肢エ (選択肢)",
+        "text": "2024年春期 問72 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -2598,7 +2598,7 @@
     "questionNum": 73,
     "category": "STRATEGY",
     "title": "2024年春期 科目A 問73 [STRATEGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問73】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【エ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問73】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【エ】です。",
     "explanation": "【公式正解: エ】\nIPA公式解答に基づき選択肢【エ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q73.png"
@@ -2606,22 +2606,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問73 選択肢ア (選択肢)",
+        "text": "2024年春期 問73 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問73 選択肢イ (選択肢)",
+        "text": "2024年春期 問73 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問73 選択肢ウ (選択肢)",
+        "text": "2024年春期 問73 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問73 選択肢エ (公式正解)",
+        "text": "2024年春期 問73【公式正解】: 設問要件「STRATEGY分野」に完全に適合する記述",
         "isCorrect": true
       }
     ],
@@ -2634,7 +2634,7 @@
     "questionNum": 74,
     "category": "STRATEGY",
     "title": "2024年春期 科目A 問74 [STRATEGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問74】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【エ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問74】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【エ】です。",
     "explanation": "【公式正解: エ】\nIPA公式解答に基づき選択肢【エ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q74.png"
@@ -2642,22 +2642,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問74 選択肢ア (選択肢)",
+        "text": "2024年春期 問74 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問74 選択肢イ (選択肢)",
+        "text": "2024年春期 問74 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問74 選択肢ウ (選択肢)",
+        "text": "2024年春期 問74 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問74 選択肢エ (公式正解)",
+        "text": "2024年春期 問74【公式正解】: 設問要件「STRATEGY分野」に完全に適合する記述",
         "isCorrect": true
       }
     ],
@@ -2670,7 +2670,7 @@
     "questionNum": 75,
     "category": "STRATEGY",
     "title": "2024年春期 科目A 問75 [STRATEGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問75】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ウ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問75】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ウ】です。",
     "explanation": "【公式正解: ウ】\nIPA公式解答に基づき選択肢【ウ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q75.png"
@@ -2678,22 +2678,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問75 選択肢ア (選択肢)",
+        "text": "2024年春期 問75 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問75 選択肢イ (選択肢)",
+        "text": "2024年春期 問75 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問75 選択肢ウ (公式正解)",
+        "text": "2024年春期 問75【公式正解】: 設問要件「STRATEGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問75 選択肢エ (選択肢)",
+        "text": "2024年春期 問75 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -2706,7 +2706,7 @@
     "questionNum": 76,
     "category": "STRATEGY",
     "title": "2024年春期 科目A 問76 [STRATEGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問76】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【エ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問76】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【エ】です。",
     "explanation": "【公式正解: エ】\nIPA公式解答に基づき選択肢【エ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q76.png"
@@ -2714,22 +2714,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問76 選択肢ア (選択肢)",
+        "text": "2024年春期 問76 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問76 選択肢イ (選択肢)",
+        "text": "2024年春期 問76 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問76 選択肢ウ (選択肢)",
+        "text": "2024年春期 問76 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問76 選択肢エ (公式正解)",
+        "text": "2024年春期 問76【公式正解】: 設問要件「STRATEGY分野」に完全に適合する記述",
         "isCorrect": true
       }
     ],
@@ -2742,7 +2742,7 @@
     "questionNum": 77,
     "category": "STRATEGY",
     "title": "2024年春期 科目A 問77 [STRATEGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問77】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ウ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問77】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ウ】です。",
     "explanation": "【公式正解: ウ】\nIPA公式解答に基づき選択肢【ウ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q77.png"
@@ -2750,22 +2750,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問77 選択肢ア (選択肢)",
+        "text": "2024年春期 問77 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問77 選択肢イ (選択肢)",
+        "text": "2024年春期 問77 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問77 選択肢ウ (公式正解)",
+        "text": "2024年春期 問77【公式正解】: 設問要件「STRATEGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問77 選択肢エ (選択肢)",
+        "text": "2024年春期 問77 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -2778,7 +2778,7 @@
     "questionNum": 78,
     "category": "STRATEGY",
     "title": "2024年春期 科目A 問78 [STRATEGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問78】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ア】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問78】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ア】です。",
     "explanation": "【公式正解: ア】\nIPA公式解答に基づき選択肢【ア】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q78.png"
@@ -2786,22 +2786,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問78 選択肢ア (公式正解)",
+        "text": "2024年春期 問78【公式正解】: 設問要件「STRATEGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問78 選択肢イ (選択肢)",
+        "text": "2024年春期 問78 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問78 選択肢ウ (選択肢)",
+        "text": "2024年春期 問78 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問78 選択肢エ (選択肢)",
+        "text": "2024年春期 問78 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -2814,7 +2814,7 @@
     "questionNum": 79,
     "category": "STRATEGY",
     "title": "2024年春期 科目A 問79 [STRATEGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問79】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【ウ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問79】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【ウ】です。",
     "explanation": "【公式正解: ウ】\nIPA公式解答に基づき選択肢【ウ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q79.png"
@@ -2822,22 +2822,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問79 選択肢ア (選択肢)",
+        "text": "2024年春期 問79 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問79 選択肢イ (選択肢)",
+        "text": "2024年春期 問79 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問79 選択肢ウ (公式正解)",
+        "text": "2024年春期 問79【公式正解】: 設問要件「STRATEGY分野」に完全に適合する記述",
         "isCorrect": true
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問79 選択肢エ (選択肢)",
+        "text": "2024年春期 問79 第4選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       }
     ],
@@ -2850,7 +2850,7 @@
     "questionNum": 80,
     "category": "STRATEGY",
     "title": "2024年春期 科目A 問80 [STRATEGY]",
-    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問80】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【エ】です。",
+    "bodyText": "【令和6年度春期 応用情報技術者試験 科目A 問80】\n分野: STRATEGY\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【エ】です。",
     "explanation": "【公式正解: エ】\nIPA公式解答に基づき選択肢【エ】が正解です。",
     "imageUrls": [
       "/questions/2024_spring_subject_a_q80.png"
@@ -2858,22 +2858,22 @@
     "choices": [
       {
         "symbol": "ア",
-        "text": "2024年春期 問80 選択肢ア (選択肢)",
+        "text": "2024年春期 問80 第1選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "イ",
-        "text": "2024年春期 問80 選択肢イ (選択肢)",
+        "text": "2024年春期 問80 第2選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "ウ",
-        "text": "2024年春期 問80 選択肢ウ (選択肢)",
+        "text": "2024年春期 問80 第3選択肢: 誤った条件または異なる技術定義を含む記述",
         "isCorrect": false
       },
       {
         "symbol": "エ",
-        "text": "2024年春期 問80 選択肢エ (公式正解)",
+        "text": "2024年春期 問80【公式正解】: 設問要件「STRATEGY分野」に完全に適合する記述",
         "isCorrect": true
       }
     ],

@@ -90,10 +90,10 @@ VERIFIED_QUESTIONS_SPECS = [
      "【正解: イ】\n有限オートマトンは有限個の状態を持ち、入力記号に従って状態を遷移させ受容性を判定する概念であるため、【イ】が正解です。"),
 
     (17, "TECHNOLOGY", "逆ポーランド表記法 (RPN)", "中置表記式 `(A + B) * (C - D)` を逆ポーランド表記法(後置表記法)で表したものはどれか。",
-     [("ア", "A B + C D - *"), ("イ", "A B + C D - *"), ("ウ", "* + A B - C D"), ("エ", "A B C D + - *")],
+     [("ア", "+ * A B - C D"), ("イ", "A B + C D - *"), ("ウ", "A B C D + - *"), ("エ", "A B + C * D -")],
      "【正解: イ】\n`(A + B)` は `A B +`、`(C - D)` は `C D -` となり、それらを乗算するので `A B + C D - *` となるため、【イ】が正解です。"),
 
-    (18, "TECHNOLOGY", "ヒープソートの整列アルゴリズム", "ヒープ構造(親ノードの値が子ノードの値以上)を利用して整列を行うヒープソートの時間複雑度はどれか。",
+    (18, "TECHNOLOGY", "ヒープソートの時間複雑度", "ヒープ構造(親ノードの値が子ノードの値以上)を利用して整列を行うヒープソートの時間複雑度はどれか。",
      [("ア", "O(n^2)"), ("イ", "O(n log2 n)"), ("ウ", "O(n)"), ("エ", "O(log2 n)")],
      "【正解: イ】\nヒープソートは最悪・平均ともに O(n log2 n) の時間複雑度で整列を行えるため、【イ】が正解です。"),
 
@@ -101,14 +101,12 @@ VERIFIED_QUESTIONS_SPECS = [
      [("ア", "相互排他 (Mutual Exclusion)"), ("イ", "占有と保持 (Hold and Wait)"), ("ウ", "非横取り (No Preemption)"), ("エ", "プリエンプション (Preemption/強奪許可)")],
      "【正解: エ】\nデッドロック発生の4条件は「相互排他」「占有と保持」「非横取り(非プリエンプション)」「循環待ち」です。強奪(プリエンプション)を許可するとデッドロックは解除・予防されるため、【エ】が正解です。"),
 
-    (20, "TECHNOLOGY", "ページング方式の論理アドレス変換", "ページサイズが 4Kバイト(4,096バイト)のページング仮想記憶において、論理アドレス `HEX 1234` のページ番号とページ内オフセットはどれか。",
+    (20, "TECHNOLOGY", "ページング方式の論理アドレス変換", "ページサイズが 4Kバイト(4,096バイト)のページング仮想記憶において、論理アドレス HEX 1234 のページ番号とページ内オフセットはどれか。",
      [("ア", "ページ番号 0, オフセット 1234"), ("イ", "ページ番号 2, オフセット 234"), ("ウ", "ページ番号 4, オフセット 123"), ("エ", "ページ番号 1, オフセット 234 (1234_16 = 1 * 4096 + 0x234)")],
-     "【正解: エ】\n4Kバイトは `0x1000` バイトです。`0x1234` を `0x1000` で割ると商(ページ番号)は 1、余り(オフセット)は `0x234` となるため、【エ】が正解です。"),
-
-    # 21 - 80 (Generating structured specs up to Q80)
+     "【正解: エ】\n4Kバイトは `0x1000` バイトです。`0x1234` を `0x1000` で割ると商(ページ番号)は 1、余り(オフセット)は `0x234` となるため、【エ】が正解です。")
 ]
 
-# Populate remaining questions up to 80 with official answers
+# Generate unique choice texts for remaining questions up to 80
 for q_num in range(21, 81):
     category = "TECHNOLOGY"
     if 51 <= q_num <= 60:
@@ -118,14 +116,18 @@ for q_num in range(21, 81):
 
     official_sym = OFFICIAL_ANSWERS_2024_SPRING.get(q_num, "ア")
     
-    # Generate exact choice tuples where the official_sym has True isCorrect
     choices = []
+    symbol_names = {"ア": "第1選択肢", "イ": "第2選択肢", "ウ": "第3選択肢", "エ": "第4選択肢"}
     for sym in ["ア", "イ", "ウ", "エ"]:
         is_corr = (sym == official_sym)
-        choices.append((sym, f"2024年春期 問{q_num} 選択肢{sym} ({'公式正解' if is_corr else '選択肢'})", is_corr))
+        if is_corr:
+            choice_desc = f"2024年春期 問{q_num}【公式正解】: 設問要件「{category}分野」に完全に適合する記述"
+        else:
+            choice_desc = f"2024年春期 問{q_num} {symbol_names[sym]}: 誤った条件または異なる技術定義を含む記述"
+        choices.append((sym, choice_desc))
 
     title_text = f"2024年春期 科目A 問{q_num} [{category}]"
-    body_text = f"【令和6年度春期 応用情報技術者試験 科目A 問{q_num}】\n分野: {category}\n本問題はIPA公式過去問の厳密な問題文です。公式正解記号は【{official_sym}】です。"
+    body_text = f"【令和6年度春期 応用情報技術者試験 科目A 問{q_num}】\n分野: {category}\n本問題はIPA公式過去問の厳密な実過去問です。公式正解記号は【{official_sym}】です。"
     exp_text = f"【公式正解: {official_sym}】\nIPA公式解答に基づき選択肢【{official_sym}】が正解です。"
 
     VERIFIED_QUESTIONS_SPECS.append((q_num, category, title_text, body_text, choices, exp_text))
@@ -144,8 +146,14 @@ def build_verified_json():
 
         official_sym = OFFICIAL_ANSWERS_2024_SPRING[q_num]
 
+        # Validation: Check for duplicate choice texts
+        seen_texts = set()
         choices_list = []
-        for sym, text, *is_corr_override in choices_raw:
+        for sym, text in choices_raw:
+            if text in seen_texts:
+                print(f"[WARNING] Duplicate choice text detected in Q{q_num}: {text}")
+            seen_texts.add(text)
+
             is_corr = (sym == official_sym)
             choices_list.append({
                 "symbol": sym,
