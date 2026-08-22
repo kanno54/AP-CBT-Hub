@@ -9,6 +9,7 @@ export default function Navbar() {
 
   const navItems = [
     { name: 'ダッシュボード', path: '/', icon: LayoutDashboard },
+    { name: 'シラバス', path: '/syllabus', icon: GraduationCap },
     { name: '科目A 択一演習', path: '/subject-a', icon: FileCheck },
     { name: '科目B CBT記述', path: '/subject-b', icon: Edit3 },
     { name: '弱点集中復習', path: '/review', icon: Target },
