@@ -9,7 +9,6 @@ if sys.platform == 'win32':
 
 DATA_PATH = os.path.join(os.getcwd(), 'data', 'questions_full.json')
 
-# Rich individual explanation dictionary mapping question number and category/title patterns
 SUBJECT_A_EXPLANATIONS = {
     1: """【正解の解説】
 【ア】が正解です。
@@ -41,7 +40,7 @@ IPv6のアドレス長は128ビットであり、16ビット（2バイト）ご�
 ・ア：正解。128ビット長、16ビット単位のコロン区切り16進数表記です。
 ・イ：誤り。32ビット長・ドット区切り10進数はIPv4の表記仕様です。
 ・ウ：誤り。IPv6のアドレス空間は2の128乗であり、IPv4（2の32乗）の2の96乗倍（約3.4×10^38倍）です。
-・エ：误り。IPv6ではブロードキャストが廃止され、マルチキャスト通信が代替として使用されます。""",
+・エ：誤り。IPv6ではブロードキャストが廃止され、マルチキャスト通信が代替として使用されます。""",
 
     4: """【正解の解説】
 【ア】が正解です。
@@ -97,14 +96,36 @@ EVMの各計算式：
 ・エ：誤り。単なるシステム保守更新作業です。"""
 }
 
-SUBJECT_B_EXPLANATION = """【科目B 総合解説】
+SUBJECT_B_KNOWLEDGE_GRAPH = {
+    "coreConcept": "Webアプリケーションセキュリティ (CSRF・SQLi対策)",
+    "relatedTerms": [
+        "CSRF",
+        "SameSite属性",
+        "Secure属性",
+        "SQLインジェクション",
+        "プレペアードステートメント",
+        "バインド変数",
+        "XSS",
+        "セッションID"
+    ],
+    "examPatterns": [
+        "Cookie属性の適切な設定（SameSite/Secure/HttpOnly）によるCSRF防御",
+        "動的SQL文字列結合と静的バインド変数（プレペアードステートメント）の対比",
+        "他サイトからの悪意ある自動リクエスト送信メカニズムと予防手順"
+    ]
+}
+
+SUBJECT_B_EXPLANATION = json.dumps({
+    "overview": """【科目B 総合解説】
 本問題は、Webアプリケーションの認証認可設計およびSQLインジェクション対策をテーマとした実務的シナリオです。
 
 1. CSRF (クロスサイトリクエストフォージェリ) 対策:
    他サイト上の悪意あるスクリプトによって、ターゲットユーザーのブラウザから認証Cookie付きリクエストが自動送信される攻撃を防ぐため、Cookieに `SameSite=Strict` (または `Lax`) 属性および `Secure` 属性を設定することが不可欠です。
 
 2. SQLインジェクション対策:
-   動的SQL文の文字列結合は入力値によるSQL構文改変を許すため、プレースホルダ（バインド変数）を使用した静的プレペアードステートメント（Prepared Statement）の利用が根本対策となります。"""
+   動的SQL文の文字列結合は入力値によるSQL構文改変を許すため、プレースホルダ（バインド変数）を使用した静的プレペアードステートメント（Prepared Statement）の利用が根本対策となります。""",
+    "knowledgeGraph": SUBJECT_B_KNOWLEDGE_GRAPH
+}, ensure_ascii=False)
 
 
 def update_explanations():
@@ -115,7 +136,7 @@ def update_explanations():
     with open(DATA_PATH, 'r', encoding='utf-8') as f:
         questions = json.load(f)
 
-    print(f"Updating explanations for {len(questions)} question records...")
+    print(f"Updating explanations with Knowledge Graph data for {len(questions)} question records...")
 
     updated_count = 0
     for q in questions:
@@ -136,7 +157,7 @@ def update_explanations():
     with open(DATA_PATH, 'w', encoding='utf-8') as f:
         json.dump(questions, f, ensure_ascii=False, indent=2)
 
-    print(f"Successfully updated individual explanations for all {updated_count} questions in {DATA_PATH}!")
+    print(f"Successfully updated Knowledge Graph explanations in {DATA_PATH}!")
 
 if __name__ == "__main__":
     update_explanations()

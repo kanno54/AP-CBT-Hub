@@ -46,6 +46,7 @@ interface Question {
 function SubjectAContent() {
   const searchParams = useSearchParams();
   const initialQuestionId = searchParams.get('questionId');
+  const keywordParam = searchParams.get('keyword');
 
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -55,6 +56,11 @@ function SubjectAContent() {
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
   const [selectedYear, setSelectedYear] = useState<string>('ALL');
   const [weaknessOnly, setWeaknessOnly] = useState<boolean>(false);
+  const [keywordFilter, setKeywordFilter] = useState<string | null>(keywordParam);
+
+  useEffect(() => {
+    setKeywordFilter(keywordParam);
+  }, [keywordParam]);
 
   // Quiz state
   const [selectedSymbol, setSelectedSymbol] = useState<string | null>(null);
@@ -82,6 +88,10 @@ function SubjectAContent() {
       weaknessOnly: weaknessOnly ? 'true' : 'false',
     });
 
+    if (keywordFilter) {
+      params.append('keyword', keywordFilter);
+    }
+
     fetch(`/api/questions?${params.toString()}`)
       .then((res) => res.json())
       .then((res) => {
@@ -101,7 +111,7 @@ function SubjectAContent() {
 
   useEffect(() => {
     fetchQuestions();
-  }, [selectedCategory, selectedYear, weaknessOnly]);
+  }, [selectedCategory, selectedYear, weaknessOnly, keywordFilter]);
 
   const currentQ = questions[currentIndex];
 
@@ -221,6 +231,24 @@ function SubjectAContent() {
           </label>
         </div>
       </div>
+
+      {/* Keyword Filter Banner */}
+      {keywordFilter && (
+        <div className="flex items-center justify-between p-4 rounded-2xl bg-indigo-950/40 border border-indigo-500/30 text-xs text-indigo-200 animate-fade-in shadow-lg">
+          <div className="flex items-center gap-2">
+            <Filter className="w-4 h-4 text-indigo-400 shrink-0" />
+            <span>
+              キーワード <strong className="text-white underline font-bold px-1">{keywordFilter}</strong> に関連する科目A過去問を横断抽出中
+            </span>
+          </div>
+          <button
+            onClick={() => setKeywordFilter(null)}
+            className="px-3 py-1 rounded-xl bg-indigo-500/20 hover:bg-indigo-500/40 text-indigo-200 font-semibold border border-indigo-500/40 text-xs transition-colors flex items-center gap-1"
+          >
+            <RotateCcw className="w-3.5 h-3.5" /> 絞り込み解除
+          </button>
+        </div>
+      )}
 
       {loading ? (
         <div className="glass-panel p-12 text-center rounded-2xl space-y-3">

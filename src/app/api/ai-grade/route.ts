@@ -5,6 +5,25 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { subQuestionNum, userInput, answerText, explanation, maxScore = 10, characterLimit } = body;
 
+    const knowledgeGraph = {
+      coreConcept: "Webアプリケーションセキュリティ (CSRF・SQLi対策)",
+      relatedTerms: [
+        "CSRF",
+        "SameSite=Strict",
+        "Secure属性",
+        "SQLインジェクション",
+        "プレペアードステートメント",
+        "バインド変数",
+        "XSS",
+        "セッションID"
+      ],
+      examPatterns: [
+        "Cookie属性（SameSite=Strict / Secure / HttpOnly）によるCSRF・セッション盗聴防止",
+        "動的SQL文字列結合と静的バインド変数（プレペアードステートメント）の対比",
+        "外部悪意サイトからの自サイトセッション付き自動リクエスト送信の成立要件と防御原則"
+      ]
+    };
+
     if (!userInput || typeof userInput !== 'string' || !userInput.trim()) {
       return NextResponse.json({
         success: true,
@@ -14,6 +33,7 @@ export async function POST(request: NextRequest) {
           matchedKeywords: [],
           missingKeywords: [],
           feedback: '解答が入力されていません。キーワードを含めた記述を入力してください。',
+          knowledgeGraph,
         },
       });
     }
@@ -45,7 +65,7 @@ export async function POST(request: NextRequest) {
     // Check length penalty
     let lengthRatio = 1.0;
     if (characterLimit && trimmedInput.length > characterLimit) {
-      lengthRatio = 0.8; // Minor penalty for exceeding character limit
+      lengthRatio = 0.8;
     }
 
     const calculatedScore = Math.min(
@@ -75,6 +95,7 @@ export async function POST(request: NextRequest) {
         matchedKeywords,
         missingKeywords,
         feedback,
+        knowledgeGraph,
       },
     });
   } catch (error: any) {

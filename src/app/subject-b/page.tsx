@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 import {
   Edit3,
   Clock,
@@ -20,7 +21,8 @@ import {
   Filter,
   Trash2,
   Bot,
-  HelpCircle,
+  Compass,
+  ExternalLink,
 } from 'lucide-react';
 import * as diff from 'diff';
 
@@ -43,7 +45,14 @@ interface QuestionB {
   category: string;
   title: string | null;
   bodyText: string;
+  explanation: string | null;
   modelAnswers: ModelAnswer[];
+}
+
+interface KnowledgeGraph {
+  coreConcept: string;
+  relatedTerms: string[];
+  examPatterns: string[];
 }
 
 interface AIEvaluationResult {
@@ -52,6 +61,7 @@ interface AIEvaluationResult {
   matchedKeywords: string[];
   missingKeywords: string[];
   feedback: string;
+  knowledgeGraph?: KnowledgeGraph;
 }
 
 function SubjectBContent() {
@@ -213,6 +223,42 @@ function SubjectBContent() {
     return currentQ.modelAnswers.reduce((sum, ma) => sum + (ma.maxScore || 0), 0);
   };
 
+  // Extract Knowledge Graph Data from Question Explanation or AI Evaluation
+  const getKnowledgeGraphData = (): KnowledgeGraph => {
+    const defaultKG: KnowledgeGraph = {
+      coreConcept: "Webアプリケーションセキュリティ (CSRF・SQLi対策)",
+      relatedTerms: [
+        "CSRF",
+        "SameSite属性",
+        "Secure属性",
+        "SQLインジェクション",
+        "プレペアードステートメント",
+        "バインド変数",
+        "XSS",
+        "セッションID"
+      ],
+      examPatterns: [
+        "Cookie属性（SameSite=Strict / Secure / HttpOnly）によるCSRF・セッション盗聴防止",
+        "動的SQL文字列結合と静的バインド変数（プレペアードステートメント）の対比",
+        "外部悪意サイトからの自サイトセッション付き自動リクエスト送信の成立要件と防御原則"
+      ]
+    };
+
+    if (currentQ?.explanation) {
+      try {
+        const parsed = JSON.parse(currentQ.explanation);
+        if (parsed.knowledgeGraph) return parsed.knowledgeGraph;
+      } catch (e) {
+        // Fallback
+      }
+    }
+
+    const firstEval = Object.values(aiEvaluations)[0];
+    if (firstEval?.knowledgeGraph) return firstEval.knowledgeGraph;
+
+    return defaultKG;
+  };
+
   // Run AI Evaluation for all subquestions
   const runAiGrading = async () => {
     if (!currentQ) return;
@@ -273,6 +319,8 @@ function SubjectBContent() {
     }
   };
 
+  const kgData = getKnowledgeGraphData();
+
   return (
     <div className="space-y-6 animate-fade-in">
       {/* Floating Selection Highlighter Popup Menu */}
@@ -318,10 +366,10 @@ function SubjectBContent() {
             <div className="flex items-center gap-2">
               <h1 className="text-xl font-bold text-slate-100">科目B CBT記述演習モード</h1>
               <span className="text-xs px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 font-semibold border border-indigo-500/30">
-                本番CBT Dual-Pane & AI採点
+                本番CBT Dual-Pane & ナレッジグラフ
               </span>
             </div>
-            <p className="text-xs text-slate-400">設問文付きエディタ / ドラッグマーカー / AIキーワード判定採点 / Diff比較</p>
+            <p className="text-xs text-slate-400">設問文付きエディタ / マーカー / AIキーワード採点 / 周辺知識ナレッジグラフ & 科目A横断検索</p>
           </div>
         </div>
 
@@ -458,7 +506,7 @@ function SubjectBContent() {
             </div>
           </div>
 
-          {/* Right Pane: CBT Sub-question Prompt & Inputs & AI Grading */}
+          {/* Right Pane: CBT Sub-question Prompt & Inputs & AI Grading & Knowledge Graph */}
           <div className="lg:col-span-6 flex flex-col gap-6">
             <div className="glass-panel p-6 rounded-2xl border border-slate-800 flex-1 space-y-6 overflow-y-auto max-h-[780px]">
               <div className="flex items-center justify-between border-b border-slate-800 pb-3">
@@ -618,6 +666,59 @@ function SubjectBContent() {
                   );
                 })}
               </div>
+
+              {/* Knowledge Graph Card Section */}
+              {isSubmitted && (
+                <div className="p-5 rounded-2xl bg-gradient-to-br from-indigo-950/40 via-slate-900/80 to-slate-950/90 border border-indigo-500/30 space-y-4 animate-fade-in shadow-xl">
+                  <div className="flex items-center justify-between border-b border-indigo-500/20 pb-3">
+                    <div className="flex items-center gap-2">
+                      <Compass className="w-5 h-5 text-indigo-400" />
+                      <h3 className="text-sm font-bold text-slate-100">周辺知識・関連概念カード (Knowledge Graph)</h3>
+                    </div>
+                    <span className="text-[11px] text-indigo-300 bg-indigo-500/10 px-2.5 py-0.5 rounded-full border border-indigo-500/20 font-medium">
+                      💡 用語タップで科目A過去問へジャンプ
+                    </span>
+                  </div>
+
+                  {/* 1. Core Concept */}
+                  <div className="space-y-1">
+                    <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">① 出題コア概念 (Core Concept)</span>
+                    <p className="text-sm font-extrabold text-indigo-200 bg-indigo-950/60 p-2.5 rounded-xl border border-indigo-500/30">
+                      {kgData.coreConcept}
+                    </p>
+                  </div>
+
+                  {/* 2. Related Terms Tags with Subject A Cross Search Links */}
+                  <div className="space-y-2">
+                    <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">② 周辺・対比キーワード (クリックで科目A過去問を横断検索)</span>
+                    <div className="flex flex-wrap gap-2">
+                      {kgData.relatedTerms.map((term: string, idx: number) => (
+                        <Link
+                          key={idx}
+                          href={`/subject-a?keyword=${encodeURIComponent(term)}`}
+                          className="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-indigo-600/30 text-indigo-300 hover:text-white border border-indigo-500/30 hover:border-indigo-400 text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm hover:scale-105"
+                        >
+                          <span>{term}</span>
+                          <ExternalLink className="w-3 h-3 text-indigo-400" />
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* 3. Exam Patterns */}
+                  <div className="space-y-2 pt-1 border-t border-slate-800">
+                    <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">③ 出題パターン (IPA定石の論点)</span>
+                    <ul className="space-y-1.5 text-xs text-slate-300">
+                      {kgData.examPatterns.map((pattern: string, idx: number) => (
+                        <li key={idx} className="flex items-start gap-2 bg-slate-950/50 p-2 rounded-lg border border-slate-800/80">
+                          <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0"></span>
+                          <span>{pattern}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              )}
 
               {/* Bottom Submit / Action Bar */}
               <div className="pt-4 border-t border-slate-800 flex items-center justify-between">

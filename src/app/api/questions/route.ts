@@ -32,6 +32,8 @@ export async function GET(request: NextRequest) {
       orderBy: [{ year: 'desc' }, { questionNum: 'asc' }],
     });
 
+    const keyword = searchParams.get('keyword');
+
     // If weaknessOnly filter is requested, filter questions where accuracy rate is < 60%
     let resultQuestions = questions;
     if (weaknessOnly) {
@@ -40,6 +42,21 @@ export async function GET(request: NextRequest) {
         const correctCount = q.answers.filter((a) => a.isCorrect).length;
         const accuracy = correctCount / q.answers.length;
         return accuracy < 0.6;
+      });
+    }
+
+    // If keyword filter is provided, perform case-insensitive keyword search
+    if (keyword && keyword.trim()) {
+      const kwLower = keyword.trim().toLowerCase();
+      resultQuestions = resultQuestions.filter((q) => {
+        const textToSearch = [
+          q.title || '',
+          q.bodyText || '',
+          q.explanation || '',
+          q.category || '',
+          ...q.choices.map((c) => c.text),
+        ].join(' ').toLowerCase();
+        return textToSearch.includes(kwLower);
       });
     }
 
