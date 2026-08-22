@@ -158,14 +158,17 @@ async function main() {
 
   console.log(`Upserting ${questionsToLoad.length} AP past questions with Syllabus mapping...`);
 
-  const summaryBySession: Record<string, number> = {};
+  const summaryABySession: Record<string, number> = {};
+  const summaryBBySession: Record<string, number> = {};
 
   for (const qItem of questionsToLoad) {
     const { choices, modelAnswers, imageUrls, ...qInfo } = qItem;
 
     const sessionKey = `${qInfo.year}年 ${qInfo.season === 'SPRING' ? '春期' : '秋期'}`;
     if (qInfo.examType === 'SUBJECT_A') {
-      summaryBySession[sessionKey] = (summaryBySession[sessionKey] || 0) + 1;
+      summaryABySession[sessionKey] = (summaryABySession[sessionKey] || 0) + 1;
+    } else {
+      summaryBBySession[sessionKey] = (summaryBBySession[sessionKey] || 0) + 1;
     }
 
     // Map syllabus category
@@ -174,7 +177,17 @@ async function main() {
     const qNum = qInfo.questionNum;
 
     if (qInfo.examType === 'SUBJECT_B') {
-      syllabusCategoryId = l3Map['TECH_SEC_THREAT'];
+      if (qNum === 1) syllabusCategoryId = l3Map['TECH_SEC_THREAT'];
+      else if (qNum === 2) syllabusCategoryId = l3Map['STRAT_ST_DX'];
+      else if (qNum === 3) syllabusCategoryId = l3Map['TECH_ALG_TREE'];
+      else if (qNum === 4) syllabusCategoryId = l3Map['TECH_ARCH_BCP'];
+      else if (qNum === 5) syllabusCategoryId = l3Map['TECH_NET_IP'];
+      else if (qNum === 6) syllabusCategoryId = l3Map['TECH_DB_NORM'];
+      else if (qNum === 7) syllabusCategoryId = l2Map['TECH_ARCH'];
+      else if (qNum === 8) syllabusCategoryId = l3Map['MGMT_PM_EVM'];
+      else if (qNum === 9) syllabusCategoryId = l2Map['MGMT_SM'];
+      else if (qNum === 10) syllabusCategoryId = l2Map['STRAT_ST'];
+      else if (qNum === 11) syllabusCategoryId = l2Map['TECH_ALG'];
     } else if (qNum === 1 || (qNum >= 31 && qNum <= 34)) {
       syllabusCategoryId = l3Map['TECH_SEC_CRYPTO'];
     } else if (qNum === 2 || (qNum >= 27 && qNum <= 30) || (qNum >= 35 && qNum <= 40)) {
@@ -263,14 +276,18 @@ async function main() {
   }
 
   console.log('\n==========================================');
-  console.log('【年度別・科目A 登録問題数 DB投入結果】');
+  console.log('【全10期・年度別 登録問題数 DB投入結果】');
   console.log('==========================================');
   let totalSubjectA = 0;
-  for (const [sess, count] of Object.entries(summaryBySession)) {
-    console.log(`  ・${sess}: ${count} 問`);
-    totalSubjectA += count;
+  let totalSubjectB = 0;
+  for (const sess of Object.keys(summaryABySession)) {
+    const cntA = summaryABySession[sess] || 0;
+    const cntB = summaryBBySession[sess] || 0;
+    console.log(`  ・${sess}: 科目A ${cntA}問 | 科目B ${cntB}問`);
+    totalSubjectA += cntA;
+    totalSubjectB += cntB;
   }
-  console.log(`  ★ データベース総投入件数: ${questionsToLoad.length} 問 (うち科目A: ${totalSubjectA}問)`);
+  console.log(`  ★ データベース総投入件数: ${questionsToLoad.length} 問 (科目A: ${totalSubjectA}問 / 科目B: ${totalSubjectB}問)`);
   console.log('==========================================\n');
 }
 

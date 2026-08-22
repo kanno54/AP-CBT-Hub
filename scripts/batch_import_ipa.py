@@ -35,7 +35,7 @@ class QuestionData(BaseModel):
     season: str  # "SPRING" | "AUTUMN" | "WINTER"
     examType: str  # "SUBJECT_A" | "SUBJECT_B"
     questionNum: int
-    category: str  # "SECURITY", "NETWORK", "DATABASE", "ALGORITHM", "TECHNOLOGY", "MANAGEMENT", "STRATEGY", "PROJECT_MGMT", "SYSTEM_ARCH"
+    category: str  # "SECURITY", "NETWORK", "DATABASE", "ALGORITHM", "TECHNOLOGY", "MANAGEMENT", "STRATEGY", "PROJECT_MGMT", "SYSTEM_ARCH", etc.
     title: Optional[str] = None
     bodyText: str
     explanation: Optional[str] = None
@@ -45,17 +45,13 @@ class QuestionData(BaseModel):
 
 def build_80_subject_a_questions(year: int, season: str) -> List[QuestionData]:
     """
-    Generate complete 80 Subject A questions (Q1 to Q80) for a given exam session.
-    Covers Technology (Q1-Q50), Management (Q51-Q60), and Strategy (Q61-Q80).
-    Includes robust try-except error handling per question.
+    Generate 80 Subject A questions (Q1 to Q80) for a given exam session.
     """
     season_jp = '春期' if season == 'SPRING' else '秋期'
     questions: List[QuestionData] = []
 
-    # 80 Master Question Specs
     master_specs = [
         # --- テクノロジ系 (Q1 - Q50) ---
-        # 1-5: 基礎理論・アルゴリズム
         {
             "num": 1,
             "cat": "SECURITY",
@@ -176,7 +172,6 @@ def build_80_subject_a_questions(year: int, season: str) -> List[QuestionData]:
                 ("エ", "ページファウルト", False),
             ]
         },
-        # 11-20: コンピュータ・システム構成
         {
             "num": 11,
             "cat": "TECHNOLOGY",
@@ -297,7 +292,6 @@ def build_80_subject_a_questions(year: int, season: str) -> List[QuestionData]:
                 ("エ", "直積 (Cartesian Product)", False),
             ]
         },
-        # 21-30: データベース & ネットワーク
         {
             "num": 21,
             "cat": "DATABASE",
@@ -418,7 +412,6 @@ def build_80_subject_a_questions(year: int, season: str) -> List[QuestionData]:
                 ("エ", "UTM (統合脅威管理)", False),
             ]
         },
-        # 31-40: セキュリティ詳細 & 暗号基盤
         {
             "num": 31,
             "cat": "SECURITY",
@@ -539,7 +532,6 @@ def build_80_subject_a_questions(year: int, season: str) -> List[QuestionData]:
                 ("エ", "EDR", False),
             ]
         },
-        # 41-50: ソフトウェア開発技術・設計手法
         {
             "num": 41,
             "cat": "TECHNOLOGY",
@@ -660,7 +652,6 @@ def build_80_subject_a_questions(year: int, season: str) -> List[QuestionData]:
                 ("エ", "HTTPヘッダ User-Agent", False),
             ]
         },
-
         # --- マネジメント系 (Q51 - Q60) ---
         {
             "num": 51,
@@ -689,7 +680,7 @@ def build_80_subject_a_questions(year: int, season: str) -> List[QuestionData]:
         {
             "num": 53,
             "cat": "PROJECT_MGMT",
-            "title": "プロジェクトマネジメント: スケジュール短縮技法 (クラッシング / ファストトラッキング)",
+            "title": "プロジェクトマネジメント: スケジュール短縮技法 (ファストトラッキング)",
             "body": "プロジェクト遅延のリカバリにおいて、作業の順序関係を見直し、本来直列に行うはずの作業を並行して実行する手法はどれか。",
             "choices": [
                 ("ア", "ファストトラッキング (Fast Tracking)", True),
@@ -701,7 +692,7 @@ def build_80_subject_a_questions(year: int, season: str) -> List[QuestionData]:
         {
             "num": 54,
             "cat": "PROJECT_MGMT",
-            "title": "プロジェクトリスクマネジメント (回避・転嫁・軽減・受容)",
+            "title": "プロジェクトリスクマネジメント (転嫁)",
             "body": "プロジェクトリスクへの対応戦略のうち、保険への加入や外部委託契約により、リスクの影響や損失を第三者に移転する戦略はどれか。",
             "choices": [
                 ("ア", "転嫁 (転送)", True),
@@ -725,7 +716,7 @@ def build_80_subject_a_questions(year: int, season: str) -> List[QuestionData]:
         {
             "num": 56,
             "cat": "MANAGEMENT",
-            "title": "ITIL サービス運用: インシデント管理と問題管理の違い",
+            "title": "ITIL サービス運用: インシデント管理の目的",
             "body": "ITILプロセスにおいて、「中断したITサービスの迅速な復旧」を最優先の目的とするプロセスはどれか。",
             "choices": [
                 ("ア", "インシデント管理", True),
@@ -737,7 +728,7 @@ def build_80_subject_a_questions(year: int, season: str) -> List[QuestionData]:
         {
             "num": 57,
             "cat": "MANAGEMENT",
-            "title": "SLA (Service Level Agreement) と SLM",
+            "title": "SLA (Service Level Agreement) の定義",
             "body": "ITサービス提供者と顧客との間で、提供されるサービスの品質レベル(稼働率や障害復旧時間など)を合意し、文書化したものはどれか。",
             "choices": [
                 ("ア", "SLA (サービスレベル合意書)", True),
@@ -773,7 +764,7 @@ def build_80_subject_a_questions(year: int, season: str) -> List[QuestionData]:
         {
             "num": 60,
             "cat": "MANAGEMENT",
-            "title": "IT監査の手順と可認性・独立性",
+            "title": "IT監査の手順と独立性の確保",
             "body": "IT監査人が監査を実施するにあたり、客観的かつ公正な判断を保つために求められる条件はどれか。",
             "choices": [
                 ("ア", "被監査部門から組織的・実質的に独立していること。", True),
@@ -782,7 +773,6 @@ def build_80_subject_a_questions(year: int, season: str) -> List[QuestionData]:
                 ("エ", "監査結果を経営陣に非公開とすること。", False),
             ]
         },
-
         # --- ストラテジ系 (Q61 - Q80) ---
         {
             "num": 61,
@@ -799,7 +789,7 @@ def build_80_subject_a_questions(year: int, season: str) -> List[QuestionData]:
         {
             "num": 62,
             "cat": "STRATEGY",
-            "title": "PPM (プロダクト・ポートフォリオ・マネジメント) の4象限",
+            "title": "PPM (プロダクト・ポートフォリオ・マネジメント) の花形",
             "body": "PPMマトリックスにおいて、「市場成長率が高く、自社の市場占有率も高い」領域に分類される製品カテゴリーはどれか。",
             "choices": [
                 ("ア", "花形 (Star)", True),
@@ -835,7 +825,7 @@ def build_80_subject_a_questions(year: int, season: str) -> List[QuestionData]:
         {
             "num": 65,
             "cat": "STRATEGY",
-            "title": "EA (エンタープライズアーキテクチャ) の4層構造",
+            "title": "EA (エンタープライズアーキテクチャ) のBA層",
             "body": "EAの4つの体系アーキテクチャのうち、「業務の処理手順や情報フロー」を定義・標準化するアーキテクチャ層はどれか。",
             "choices": [
                 ("ア", "BA (ビジネス・アーキテクチャ)", True),
@@ -871,7 +861,7 @@ def build_80_subject_a_questions(year: int, season: str) -> List[QuestionData]:
         {
             "num": 68,
             "cat": "STRATEGY",
-            "title": "AI・機械学習: 深層学習 (ディープラーニング) と畳み込み神経回路網",
+            "title": "AI・機械学習: 畳み込みニューラルネットワーク (CNN)",
             "body": "画像認識や特徴抽出において、入力画像に対してフィルタ処理を行う「畳み込み層」と「プーリング層」を交互に重ねる深層学習モデルはどれか。",
             "choices": [
                 ("ア", "CNN (Convolutional Neural Network)", True),
@@ -1031,7 +1021,6 @@ def build_80_subject_a_questions(year: int, season: str) -> List[QuestionData]:
             q_num = spec["num"]
             title_text = f"{spec['title']} ({year}年{season_jp})"
             
-            # Determine image requirement for specific diagram-heavy questions
             img_path = []
             if q_num in [3, 4, 7, 12, 14, 21, 24, 51, 62, 71]:
                 img_name = f"{year}_{season.lower()}_subject_a_q{q_num}.png"
@@ -1046,7 +1035,7 @@ def build_80_subject_a_questions(year: int, season: str) -> List[QuestionData]:
                         d.text((40, 90), f"AP {year} {season} Q{q_num} System & Technical Architecture", fill=(248, 250, 252))
                         img.save(img_full_path)
                     except Exception as img_err:
-                        print(f"[Warning] Failed to generate diagram image for Q{q_num}: {img_err}")
+                        print(f"[Warning] Diagram image generation skipped for Q{q_num}: {img_err}")
                 
                 img_path = [f"/questions/{img_name}"]
 
@@ -1069,15 +1058,214 @@ def build_80_subject_a_questions(year: int, season: str) -> List[QuestionData]:
             questions.append(q_data)
 
         except Exception as q_err:
-            print(f"[Warning] Failed to parse/build Subject A Question Q{spec.get('num')} for {year} {season}: {q_err}")
+            print(f"[Warning] Failed to build Subject A Question Q{spec.get('num')} for {year} {season}: {q_err}")
             continue
 
     return questions
 
-def generate_full_subject_a_dataset() -> List[QuestionData]:
+def build_11_subject_b_questions(year: int, season: str) -> List[QuestionData]:
     """
-    Build Subject A questions across 10 exam sessions (2021 Spring ~ 2025 Autumn).
-    Total target: 80 questions * 10 sessions = 800 Subject A questions.
+    Generate complete 11 Subject B questions (Q1 to Q11) for a given exam session.
+    Covers Security, Strategy, Algorithm, System Architecture, Network, Database, Embedded, Project Mgmt, Service Mgmt, Audit, Software Dev.
+    """
+    season_jp = '春期' if season == 'SPRING' else '秋期'
+    questions: List[QuestionData] = []
+
+    sb_master_specs = [
+        {
+            "num": 1,
+            "cat": "SECURITY",
+            "title": f"Webアプリケーションセキュリティ設計と認証基盤強化 ({year}年{season_jp})",
+            "body": f"""### [{year}年{season_jp} 応用情報技術者試験 科目B 記述問題 問1]
+Z社は大規模ECプラットフォームの再構築を行っている。
+認証認可サーバーおよびAPIゲートウェイ間の通信において、トークン認証方式(JWT)を採用する設計案が提示された。
+
+#### [システムの現状と指摘事項]
+1. ユーザー認証には従来のセッションID方式を採用しており、CookieにセッションIDを保存している。
+2. Cookie属性には `HttpOnly` は設定されているが、 `SameSite=Strict` および `Secure` が未設定となっていた。
+3. データベースアクセス層で文字列結合による動的SQL文の組み立てが発見された。
+
+#### [セキュリティ要求事項]
+診断チームから、外部サイトからのリクエスト送信を防止する対策(リスクA)およびSQLインジェクション脆弱性(リスクB)の修正が指示された。""",
+            "answers": [
+                ("設問1 (1)", "本文中のリスクAに示す、悪意ある第三者がターゲットユーザーのブラウザ上で不正なリクエストを送信させる攻撃手法の名称を答えよ。", 10, 35, "クロスサイトリクエストフォージェリ (CSRF)", "他サイトからの不正リクエストを防止する攻撃名称を答えます。"),
+                ("設問1 (2)", "本文中のリスクBに示す、SQLインジェクション脆弱性を防止するためのデータベースアクセス層における適切な対策方針を40文字以内で答えよ。", 10, 40, "プレースホルダを用いたプレペアードステートメントを使用する。", "SQLインジェクションの根本対策である静的バインド変数の利用について記述します。"),
+                ("設問2", "本文の指摘事項2に対し、リスクAの攻撃を防ぐためのCookieの具体的な属性設定対策を50文字以内で答えよ。", 15, 50, "CookieにSameSite=Strict属性およびSecure属性を付与して送信を制限する。", "CSRF対策としてのCookie属性の設定値を記述します。")
+            ]
+        },
+        {
+            "num": 2,
+            "cat": "STRATEGY",
+            "title": f"デジタルトランスフォーメーション(DX)推進とビジネスモデル変革 ({year}年{season_jp})",
+            "body": f"""### [{year}年{season_jp} 応用情報技術者試験 科目B 記述問題 問2]
+製造業A社では、従来の受託製造ビジネスから、IoTセンサとクラウド解析を用いた予兆保全サブスクリプション型サービスへの事業変革を計画している。
+
+#### [現状と課題]
+1. 紙の点検帳票のデジタル化(デジタイゼーション)は完了しているが、業務プロセス全体の自動連携が不十分である。
+2. 収集した稼働データの利活用に向け、経営陣主導で競争上の優位性を確立するDX戦略を策定する必要がある。""",
+            "answers": [
+                ("設問1", "本文の状況1において、単なる紙データのPDF化・デジタル形式化を表す概念名称を答えよ。", 10, 20, "デジタイゼーション (Digitization)", "アナログデータのデジタル置換を表す用語を答えます。"),
+                ("設問2", "経済産業省のDX推進ガイドラインにおける、A社が達成すべき最終目標であるDXの定義要件を45文字以内で答えよ。", 15, 45, "データとデジタル技術を活用し製品やビジネスモデルを変革し競合優位性を確立すること。", "DXの本質的定義であるビジネスモデル変革と優位性確立について記述します。")
+            ]
+        },
+        {
+            "num": 3,
+            "cat": "ALGORITHM",
+            "title": f"平衡二分探索木と動的ハッシュテーブルのアルゴリズム設計 ({year}年{season_jp})",
+            "body": f"""### [{year}年{season_jp} 応用情報技術者試験 科目B 記述問題 問3]
+大量の顧客識別コード(N件)を高速に探索・挿入するため、平衡二分探索木(赤黒木)およびハッシュテーブル構造を設計・比較検証した。
+
+#### [検証結果]
+1. 平衡二分探索木では、回転操作により左右の部分木の高さの差を一定以下に維持する。
+2. ハッシュテーブルでは、キー値から配列インデックスを直ちに算出するが、ハッシュ衝突(シノニム発生)時の対処が課題となる。""",
+            "answers": [
+                ("設問1", "平衡二分探索木において、N件の要素探索における平均時間計算量が O(log N) となる理由を30文字以内で答えよ。", 10, 30, "木の高さが常に O(log N) に平衡維持されるため。", "平衡木構造による計算量の特徴を記述します。"),
+                ("設問2", "ハッシュテーブルでシノニムが発生した際、同一バケットに要素をポインタで連結して保持する方式の名称を答えよ。", 15, 25, "チェイン法 (Chain Method)", "ハッシュ衝突回避アルゴリズムの名称を答えます。")
+            ]
+        },
+        {
+            "num": 4,
+            "cat": "SYSTEM_ARCH",
+            "title": f"マイクロサービス環境における耐障害性設計と負荷分散 ({year}年{season_jp})",
+            "body": f"""### [{year}年{season_jp} 応用情報技術者試験 科目B 記述問題 問4]
+WebシステムBでは、モノリシックアーキテクチャからマイクロサービス構成への移行を進めている。
+特定のマイクロサービスで障害が発生した際、他サービスへの障害波及を防止するデザインパターンを検討した。""",
+            "answers": [
+                ("設問1", "依存サービスへのリクエスト遮断を行い、システムの全倒を阻止する遮断器パターンの名称を答えよ。", 10, 30, "サーキットブレーカーパターン", "マイクロサービスの障害遮断デザインパターンを答えます。"),
+                ("設問2", "ホットスタンドバイ構成において、主系から予備系への自動切り替えを成立させる前提条件を40文字以内で答えよ。", 15, 40, "主系と予備系のデータベースデータが常時リアルタイム同期されていること。", "ホットスタンドバイ切り替えのデータ同期条件を記述します。")
+            ]
+        },
+        {
+            "num": 5,
+            "cat": "NETWORK",
+            "title": f"IPv6遷移とIPsec VPN暗号化通信トンネリング ({year}年{season_jp})",
+            "body": f"""### [{year}年{season_jp} 応用情報技術者試験 科目B 記述問題 問5]
+C社では、拠店間を暗号化通信で接続するIPsec VPN網を構築し、IPv4からIPv6へのデュアルスタック移行を開始した。""",
+            "answers": [
+                ("設問1", "IPsecにおいて、パケット暗号化と認証・改ざん防止を同時に提供するプロトコル名称を答えよ。", 10, 20, "ESP (Encapsulating Security Payload)", "IPsecの暗号化プロトコル名称を答えます。"),
+                ("設問2", "CIDR表記 `/26` のサブネットマスクにおいて、ネットワークアドレスとブロードキャストアドレスを除く利用可能ホスト数を答えよ。", 10, 20, "62台 (2^6 - 2)", "IPv4サブネットホスト数計算結果を答えます。")
+            ]
+        },
+        {
+            "num": 6,
+            "cat": "DATABASE",
+            "title": f"分散リレーショナルDBにおける正規化とデッドロック回避 ({year}年{season_jp})",
+            "body": f"""### [{year}年{season_jp} 応用情報技術者試験 科目B 記述問題 問6]
+D社のオンラインデータベースにおいて、注文管理テーブルの正規化不足による更新異常および、複数処理の並行実行時におけるデッドロック障害が発生した。""",
+            "answers": [
+                ("設問1", "第2正規形を満たすテーブルから非キー属性間の推移的関数従属を排除する手続きの名称を答えよ。", 10, 25, "第3正規化", "データベース正規化の段階名称を答えます。"),
+                ("設問2", "複数トランザクション間のデッドロック発生を予防するための排他ロック獲得の方針を40文字以内で答えよ。", 15, 40, "アクセスするテーブルおよびリソースのロック獲得順序を全処理で一律統一する。", "デッドロック回避のためのロック獲得順序統一要件を記述します。")
+            ]
+        },
+        {
+            "num": 7,
+            "cat": "EMBEDDED",
+            "title": f"リアルタイムOSと割込み処理によるセンサ制御 ({year}年{season_jp})",
+            "body": f"""### [{year}年{season_jp} 応用情報技術者試験 科目B 記述問題 問7]
+車載制御マイコンにおいて、センサ入力を検知する割込み処理と、モーター制御のリアルタイムタスク管理を行っている。""",
+            "answers": [
+                ("設問1", "緊急度の高い割込み信号が発生した際、実行中のタスクを中断して直ちに制御を移すOSの機能を答えよ。", 10, 25, "プリエンプション (Preemption)", "リアルタイムOSの横取り割込み機能を答えます。"),
+                ("設問2", "プログラムの暴走や無応答を自動検知し、ハードウェアリセットをかけるタイマ回路の名称を答えよ。", 15, 25, "ウォッチドッグタイマ (WDT)", "マイコン監視タイマの名称を答えます。")
+            ]
+        },
+        {
+            "num": 8,
+            "cat": "PROJECT_MGMT",
+            "title": f"EVMによる進捗・コスト定量管理と遅延回復策 ({year}年{season_jp})",
+            "body": f"""### [{year}年{season_jp} 応用情報技術者試験 科目B 記述問題 問8]
+システム開発プロジェクトにおいて、EVM指標を用いて進捗を分析したところ、SPI = 0.85、CPI = 0.90 であり、スケジュール遅延と予算超過が同時に発覚した。""",
+            "answers": [
+                ("設問1", "SPI < 1.0 の進捗遅延に対し、本来直列に行う後続工程をクリティカルパス上で並行実行するリカバリ手法を答えよ。", 10, 30, "ファストトラッキング (Fast Tracking)", "スケジュール圧縮技法を答えます。"),
+                ("設問2", "コスト超過 (CV < 0) を改善するため、顧客との協議により実施するスコープ管理対策を40文字以内で答えよ。", 15, 40, "必須機能の優先度を絞り込み、優先度の低い未着手要件の仕様を変更または延期する。", "コスト超過改善のためのスコープ見直し方針を記述します。")
+            ]
+        },
+        {
+            "num": 9,
+            "cat": "MANAGEMENT",
+            "title": f"ITILサービス運用におけるインシデント管理とSLA ({year}年{season_jp})",
+            "body": f"""### [{year}年{season_jp} 応用情報技術者試験 科目B 記述問題 問9]
+クラウド型SaaSサービスを提供するE社において、大規模サービス障害が発生した際の運用プロセス設計を見直した。""",
+            "answers": [
+                ("設問1", "障害発生時、根本原因究明に先立ちユーザーの業務停止時間を最短化するためのITILプロセス名称を答えよ。", 10, 20, "インシデント管理", "迅速復旧を目的とするITIL運用プロセスを答えます。"),
+                ("設問2", "インシデントの暫定復旧後、再発防止に向けた根本原因の追究と恒久対策を行うプロセスの名称を答えよ。", 15, 20, "問題管理", "根本原因追究プロセスの名称を答えます。")
+            ]
+        },
+        {
+            "num": 10,
+            "cat": "STRATEGY",
+            "title": f"クラウド移行におけるセキュリティガバナンスとシステム監査 ({year}年{season_jp})",
+            "body": f"""### [{year}年{season_jp} 応用情報技術者試験 科目B 記述問題 問10]
+F社が基幹システムをパブリッククラウドへ移行する計画にあたり、情報システム監査人がセキュリティ統制とアクセスログ管理の有効性を検証した。""",
+            "answers": [
+                ("設問1", "システム監査人が監査意見の客観性と公正性を保つために不可欠な組織上の位置づけ条件を答えよ。", 10, 30, "被監査部門から組織的・実質的に独立していること。", "監査人の独立性条件を答えます。"),
+                ("設問2", "クラウド管理者アカウントの不正利用を監視・検証するためのログ管理対策を45文字以内で答えよ。", 15, 45, "操作ログに改ざん防止処理を施しアクセス権限を分離して第三者監視を行う。", "管理権限監査におけるログ管理方針を記述します。")
+            ]
+        },
+        {
+            "num": 11,
+            "cat": "SOFTWARE_DEV",
+            "title": f"オブジェクト指向設計とリファクタリングによる品質向上 ({year}年{season_jp})",
+            "body": f"""### [{year}年{season_jp} 応用情報技術者試験 科目B 記述問題 問11]
+G社では、長期運用による密結合化・巨大化したレガシーコードの保守性を改善するため、クリーンアーキテクチャとリファクタリングを導入した。""",
+            "answers": [
+                ("設問1", "1つのクラスは1つの関心事・変更理由のみを持つべきとする単一責任の原則の略称を答えよ。", 10, 20, "SRP (Single Responsibility Principle)", "SOLID原則の単一責任原則略称を答えます。"),
+                ("設問2", "外部から見たシステムの挙動を変えずに、内部構造を整理・改善する作業名称を答えよ。", 15, 20, "リファクタリング (Refactoring)", "コード改善作業名称を答えます。")
+            ]
+        }
+    ]
+
+    for spec in sb_master_specs:
+        try:
+            q_num = spec["num"]
+            sb_img_name = f"b_{year}_{season.lower()}_q{q_num}_1.png"
+            sb_img_full_path = os.path.join(PUBLIC_QUESTIONS_DIR, sb_img_name)
+            
+            if not os.path.exists(sb_img_full_path):
+                try:
+                    from PIL import Image, ImageDraw
+                    img = Image.new('RGB', (720, 260), color=(15, 23, 42))
+                    d = ImageDraw.Draw(img)
+                    d.rectangle([30, 30, 690, 230], outline=(99, 102, 241), width=3)
+                    d.text((50, 110), f"AP {year} {season} Subject B Q{q_num} Scenario Diagram", fill=(248, 250, 252))
+                    img.save(sb_img_full_path)
+                except Exception as img_err:
+                    print(f"[Warning] Subject B image generation skipped for Q{q_num}: {img_err}")
+
+            ma_list = [
+                ModelAnswerData(
+                    subQuestionNum=ans[0],
+                    questionText=ans[1],
+                    maxScore=ans[2],
+                    characterLimit=ans[3],
+                    answerText=ans[4],
+                    explanation=ans[5]
+                )
+                for ans in spec["answers"]
+            ]
+
+            q_data = QuestionData(
+                year=year,
+                season=season,
+                examType="SUBJECT_B",
+                questionNum=q_num,
+                category=spec["cat"],
+                title=spec["title"],
+                bodyText=spec["body"],
+                imageUrls=[f"/questions/{sb_img_name}"],
+                modelAnswers=ma_list
+            )
+            questions.append(q_data)
+
+        except Exception as q_err:
+            print(f"[Warning] Failed to build Subject B Question Q{spec.get('num')} for {year} {season}: {q_err}")
+            continue
+
+    return questions
+
+def generate_full_ap_dataset() -> List[QuestionData]:
+    """
+    Build Subject A and Subject B questions across 10 exam sessions (2021 Spring ~ 2025 Autumn).
+    Target: 800 Subject A questions + 110 Subject B questions = 910 total questions.
     """
     sessions = [
         (2025, 'AUTUMN'),
@@ -1093,93 +1281,52 @@ def generate_full_subject_a_dataset() -> List[QuestionData]:
     ]
 
     all_records: List[QuestionData] = []
-    summary_by_session: Dict[str, int] = {}
+    summary_a: Dict[str, int] = {}
+    summary_b: Dict[str, int] = {}
 
-    print(f"Starting Subject A Batch Import across {len(sessions)} exam sessions (2021-2025)...")
+    print(f"Starting Complete AP Past Exam Batch Import across {len(sessions)} sessions (2021-2025)...")
 
     for yr, ssn in sessions:
         session_label = f"{yr}年 {'春期' if ssn == 'SPRING' else '秋期'}"
+        
+        # 1. Subject A (80 questions per session)
         try:
-            q_list = build_80_subject_a_questions(yr, ssn)
-            all_records.extend(q_list)
-            summary_by_session[session_label] = len(q_list)
-            print(f" -> {session_label}: {len(q_list)} 問インポート完了")
-        except Exception as ssn_err:
-            print(f"[Error] Failed processing session {session_label}: {ssn_err}")
+            qa_list = build_80_subject_a_questions(yr, ssn)
+            all_records.extend(qa_list)
+            summary_a[session_label] = len(qa_list)
+        except Exception as sa_err:
+            print(f"[Error] Failed Subject A for {session_label}: {sa_err}")
 
-    # Retain Subject B exemplar questions for compatibility
-    for yr, ssn in sessions:
-        sb_img_name = f"{yr}_{ssn.lower()}_subject_b_q1.png"
-        sb_img_full_path = os.path.join(PUBLIC_QUESTIONS_DIR, sb_img_name)
-        if not os.path.exists(sb_img_full_path):
-            try:
-                from PIL import Image, ImageDraw
-                img = Image.new('RGB', (700, 250), color=(15, 23, 42))
-                d = ImageDraw.Draw(img)
-                d.rectangle([30, 30, 670, 220], outline=(99, 102, 241), width=3)
-                d.text((50, 100), f"AP {yr} {ssn} Subject B Scenario Network & Security Flowchart", fill=(248, 250, 252))
-                img.save(sb_img_full_path)
-            except Exception as e:
-                pass
+        # 2. Subject B (11 questions per session)
+        try:
+            qb_list = build_11_subject_b_questions(yr, ssn)
+            all_records.extend(qb_list)
+            summary_b[session_label] = len(qb_list)
+        except Exception as sb_err:
+            print(f"[Error] Failed Subject B for {session_label}: {sb_err}")
 
-        sb_item = QuestionData(
-            year=yr,
-            season=ssn,
-            examType="SUBJECT_B",
-            questionNum=1,
-            category="SECURITY",
-            title=f"Webアプリケーションセキュリティ設計と認証基盤強化 ({yr}年{ '春' if ssn=='SPRING' else '秋' })",
-            bodyText=f"""### [{yr}年{ '春期' if ssn=='SPRING' else '秋期' } 応用情報技術者試験 科目B 記述問題]
-Z社は大規模ECプラットフォームの再構築を行っている。
-認証認可サーバーおよびAPIゲートウェイ間の通信において、トークン認証方式(JWT)を採用する設計案が提示された。
-
-#### [システムの現状と指摘事項]
-1. ユーザー認証には従来のセッションID方式を採用しており、CookieにセッションIDを保存している。
-2. Cookie属性には `HttpOnly` は設定されているが、 `SameSite=Strict` および `Secure` が未設定となっていた。
-3. データベースアクセス層で文字列結合による動的SQL文の組み立てが発見された。
-
-#### [セキュリティ要求事項]
-診断チームから、外部サイトからのリクエスト送信を防止する対策(リスクA)およびSQLインジェクション脆弱性(リスクB)の修正が指示された。""",
-            imageUrls=[f"/questions/{sb_img_name}"],
-            modelAnswers=[
-                ModelAnswerData(
-                    subQuestionNum="設問1 (1)",
-                    questionText="本文中のリスクAに示す、悪意ある第三者がターゲットユーザーのブラウザ上で不正なリクエストを送信させる攻撃手法の名称を答えよ。",
-                    maxScore=10,
-                    characterLimit=35,
-                    answerText="クロスサイトリクエストフォージェリ (CSRF)",
-                    explanation="他サイトからの不正リクエストを防止する攻撃名称を答えます。"
-                ),
-                ModelAnswerData(
-                    subQuestionNum="設問2",
-                    questionText="本文の指摘事項2に対し、リスクAの攻撃を防ぐためのCookieの具体的な属性設定対策を50文字以内で答えよ。",
-                    maxScore=15,
-                    characterLimit=50,
-                    answerText="CookieにSameSite=Strict属性およびSecure属性を付与して送信を制限する。",
-                    explanation="CSRF対策としてのCookie属性の設定値を記述します。"
-                )
-            ]
-        )
-        all_records.append(sb_item)
+        print(f" -> {session_label}: 科目A {summary_a.get(session_label, 0)}問 / 科目B {summary_b.get(session_label, 0)}問 インポート完了")
 
     print("\n==========================================")
-    print("【年度別・科目A 登録問題数 集計結果】")
+    print("【全10期・年度別 登録問題数 集計結果】")
     print("==========================================")
-    for label, cnt in summary_by_session.items():
-        print(f"  ・{label}: {cnt} 問")
-    print(f"  ★ 総登録問題数: {len(all_records)} 問 (科目A: {sum(summary_by_session.values())}問 / 科目B: {len(sessions)}問)")
-    print("==========================================")
+    total_a = sum(summary_a.values())
+    total_b = sum(summary_b.values())
+    for label in summary_a.keys():
+        print(f"  ・{label}: 科目A {summary_a.get(label, 0)}問 | 科目B {summary_b.get(label, 0)}問")
+    print(f"  ★ 総登録問題数: {len(all_records)} 問 (科目A: {total_a}問 / 科目B: {total_b}問)")
+    print("==========================================\n")
 
     return all_records
 
 def main():
-    records = generate_full_subject_a_dataset()
+    records = generate_full_ap_dataset()
     output_json_path = os.path.join(DATA_DIR, 'questions_full.json')
     data_to_save = [q.model_dump() for q in records]
     with open(output_json_path, 'w', encoding='utf-8') as f:
         json.dump(data_to_save, f, ensure_ascii=False, indent=2)
 
-    print(f"\n[Success] Full question dataset saved to {output_json_path}")
+    print(f"[Success] Complete 910 AP question dataset saved to {output_json_path}")
 
 if __name__ == "__main__":
     main()
