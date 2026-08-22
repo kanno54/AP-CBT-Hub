@@ -8,6 +8,8 @@ export async function GET(request: NextRequest) {
     const category = searchParams.get('category');
     const year = searchParams.get('year');
     const weaknessOnly = searchParams.get('weaknessOnly') === 'true';
+    const keyword = searchParams.get('keyword');
+    const syllabusCode = searchParams.get('syllabusCode');
 
     const whereClause: any = {};
     if (examType) {
@@ -20,19 +22,52 @@ export async function GET(request: NextRequest) {
       whereClause.year = parseInt(year);
     }
 
+    // Filter by syllabusCode (Level 1, 2, or 3)
+    if (syllabusCode && syllabusCode !== 'ALL') {
+      const sylCat = await prisma.syllabusCategory.findUnique({
+        where: { code: syllabusCode },
+        include: {
+          children: {
+            include: {
+              children: true,
+            },
+          },
+        },
+      });
+
+      if (sylCat) {
+        const catIds: string[] = [sylCat.id];
+        for (const child2 of sylCat.children) {
+          catIds.push(child2.id);
+          for (const child3 of child2.children) {
+            catIds.push(child3.id);
+          }
+        }
+        whereClause.syllabusCategoryId = { in: catIds };
+      }
+    }
+
     const questions = await prisma.question.findMany({
       where: whereClause,
       include: {
         choices: true,
         modelAnswers: true,
+        syllabusCategory: {
+          include: {
+            parent: {
+              include: {
+                parent: true,
+              },
+            },
+            keywords: true,
+          },
+        },
         answers: {
           orderBy: { answeredAt: 'desc' },
         },
       },
       orderBy: [{ year: 'desc' }, { questionNum: 'asc' }],
     });
-
-    const keyword = searchParams.get('keyword');
 
     // If weaknessOnly filter is requested, filter questions where accuracy rate is < 60%
     let resultQuestions = questions;
@@ -54,18 +89,44 @@ export async function GET(request: NextRequest) {
           q.bodyText || '',
           q.explanation || '',
           q.category || '',
+          q.syllabusCategory?.name || '',
+          ...(q.syllabusCategory?.keywords.map((k) => k.name) || []),
           ...q.choices.map((c) => c.text),
         ].join(' ').toLowerCase();
         return textToSearch.includes(kwLower);
       });
     }
 
-    // Format response to include calculated user accuracy
+    // Format response
     const formatted = resultQuestions.map((q) => {
       const totalAnswers = q.answers.length;
       const correctAnswers = q.answers.filter((a) => a.isCorrect).length;
       const accuracyRate = totalAnswers > 0 ? Math.round((correctAnswers / totalAnswers) * 100) : null;
       const lastAnswer = q.answers[0] || null;
+
+      // Construct breadcrumb path
+      const breadcrumbPath: { code: string; name: string; level: number }[] = [];
+      if (q.syllabusCategory) {
+        if (q.syllabusCategory.parent?.parent) {
+          breadcrumbPath.push({
+            code: q.syllabusCategory.parent.parent.code,
+            name: q.syllabusCategory.parent.parent.name,
+            level: 1,
+          });
+        }
+        if (q.syllabusCategory.parent) {
+          breadcrumbPath.push({
+            code: q.syllabusCategory.parent.code,
+            name: q.syllabusCategory.parent.name,
+            level: 2,
+          });
+        }
+        breadcrumbPath.push({
+          code: q.syllabusCategory.code,
+          name: q.syllabusCategory.name,
+          level: q.syllabusCategory.level,
+        });
+      }
 
       return {
         id: q.id,
@@ -74,6 +135,8 @@ export async function GET(request: NextRequest) {
         examType: q.examType,
         questionNum: q.questionNum,
         category: q.category,
+        syllabusCategory: q.syllabusCategory,
+        breadcrumbPath,
         title: q.title,
         bodyText: q.bodyText,
         explanation: q.explanation,

@@ -17,6 +17,7 @@ import {
   GraduationCap,
 } from 'lucide-react';
 import SystematicLectureModal from '@/components/SystematicLectureModal';
+import SyllabusBreadcrumb, { BreadcrumbItem, SyllabusKeywordItem } from '@/components/SyllabusBreadcrumb';
 
 interface Choice {
   id: string;
@@ -32,6 +33,10 @@ interface Question {
   examType: string;
   questionNum: number;
   category: string;
+  breadcrumbPath?: BreadcrumbItem[];
+  syllabusCategory?: {
+    keywords: SyllabusKeywordItem[];
+  };
   title: string | null;
   bodyText: string;
   explanation?: string | null;
@@ -49,6 +54,7 @@ function SubjectAContent() {
   const searchParams = useSearchParams();
   const initialQuestionId = searchParams.get('questionId');
   const keywordParam = searchParams.get('keyword');
+  const syllabusCodeParam = searchParams.get('syllabusCode');
 
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -59,10 +65,15 @@ function SubjectAContent() {
   const [selectedYear, setSelectedYear] = useState<string>('ALL');
   const [weaknessOnly, setWeaknessOnly] = useState<boolean>(false);
   const [keywordFilter, setKeywordFilter] = useState<string | null>(keywordParam);
+  const [selectedSyllabusCode, setSelectedSyllabusCode] = useState<string | null>(syllabusCodeParam);
 
   useEffect(() => {
     setKeywordFilter(keywordParam);
   }, [keywordParam]);
+
+  useEffect(() => {
+    setSelectedSyllabusCode(syllabusCodeParam);
+  }, [syllabusCodeParam]);
 
   // Quiz state
   const [selectedSymbol, setSelectedSymbol] = useState<string | null>(null);
@@ -94,6 +105,9 @@ function SubjectAContent() {
     if (keywordFilter) {
       params.append('keyword', keywordFilter);
     }
+    if (selectedSyllabusCode) {
+      params.append('syllabusCode', selectedSyllabusCode);
+    }
 
     fetch(`/api/questions?${params.toString()}`)
       .then((res) => res.json())
@@ -114,7 +128,7 @@ function SubjectAContent() {
 
   useEffect(() => {
     fetchQuestions();
-  }, [selectedCategory, selectedYear, weaknessOnly, keywordFilter]);
+  }, [selectedCategory, selectedYear, weaknessOnly, keywordFilter, selectedSyllabusCode]);
 
   const currentQ = questions[currentIndex];
 
@@ -286,6 +300,33 @@ function SubjectAContent() {
               <span>解答時間: <strong className="text-blue-400 font-mono">{timeSpent}</strong> 秒</span>
             </div>
           </div>
+
+          {/* Active Syllabus Filter Banner */}
+          {selectedSyllabusCode && (
+            <div className="flex items-center justify-between p-4 rounded-2xl bg-indigo-950/40 border border-indigo-500/30 text-xs text-indigo-200 animate-fade-in shadow-lg">
+              <div className="flex items-center gap-2">
+                <Filter className="w-4 h-4 text-indigo-400 shrink-0" />
+                <span>
+                  シラバス分類 <strong className="text-white underline font-bold px-1">{selectedSyllabusCode}</strong> に絞り込んで過去問を表示中
+                </span>
+              </div>
+              <button
+                onClick={() => setSelectedSyllabusCode(null)}
+                className="px-3 py-1 rounded-xl bg-indigo-500/20 hover:bg-indigo-500/40 text-indigo-200 font-semibold border border-indigo-500/40 text-xs transition-colors flex items-center gap-1"
+              >
+                <RotateCcw className="w-3.5 h-3.5" /> 絞り込み解除
+              </button>
+            </div>
+          )}
+
+          {/* Syllabus Breadcrumb */}
+          {currentQ.breadcrumbPath && currentQ.breadcrumbPath.length > 0 && (
+            <SyllabusBreadcrumb
+              breadcrumbPath={currentQ.breadcrumbPath}
+              keywords={currentQ.syllabusCategory?.keywords}
+              onSelectSyllabusCode={(code) => setSelectedSyllabusCode(code)}
+            />
+          )}
 
           {/* Main Question Card */}
           <div className="glass-panel p-6 md:p-8 rounded-2xl border border-slate-800 space-y-6 shadow-xl">

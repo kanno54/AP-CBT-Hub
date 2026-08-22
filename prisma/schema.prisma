@@ -8,21 +8,46 @@ generator client {
   engineType = "binary"
 }
 
+// シラバス分類（大分類・中分類・小分類の階層管理）
+model SyllabusCategory {
+  id          String             @id @default(uuid())
+  code        String             @unique // 例: "TECH", "TECH_SEC", "TECH_SEC_CRYPTO"
+  level       Int                // 1: 大分類, 2: 中分類, 3: 小分類
+  name        String             // 例: "テクノロジ系", "セキュリティ", "暗号技術"
+  parentId    String?
+  parent      SyllabusCategory?  @relation("SyllabusHierarchy", fields: [parentId], references: [id], onDelete: Cascade)
+  children    SyllabusCategory[] @relation("SyllabusHierarchy")
+  keywords    SyllabusKeyword[]
+  questions   Question[]
+  createdAt   DateTime           @default(now())
+}
+
+// シラバス重要キーワードマスタ
+model SyllabusKeyword {
+  id          String           @id @default(uuid())
+  name        String           // 例: "公開鍵暗号", "RSA", "共通鍵暗号"
+  categoryId  String
+  category    SyllabusCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  createdAt   DateTime         @default(now())
+}
+
 model Question {
-  id            String       @id @default(uuid())
-  year          Int          
-  season        String       
-  examType      String       // "SUBJECT_A" | "SUBJECT_B"
-  questionNum   Int          
-  category      String       // "TECHNOLOGY", "MANAGEMENT", "STRATEGY", "SECURITY", "NETWORK", "DATABASE", etc.
-  title         String?      
-  bodyText      String       
-  explanation   String?      
-  imageUrls     String?      
-  choices       Choice[]     
-  modelAnswers  ModelAnswer[]
-  answers       UserAnswer[]
-  createdAt     DateTime     @default(now())
+  id                 String            @id @default(uuid())
+  year               Int          
+  season             String       
+  examType           String            // "SUBJECT_A" | "SUBJECT_B"
+  questionNum        Int          
+  category           String            // "TECHNOLOGY", "MANAGEMENT", "STRATEGY", "SECURITY", "NETWORK", "DATABASE", etc.
+  syllabusCategoryId String?
+  syllabusCategory   SyllabusCategory? @relation(fields: [syllabusCategoryId], references: [id], onDelete: SetNull)
+  title              String?      
+  bodyText           String       
+  explanation        String?      
+  imageUrls          String?      
+  choices            Choice[]     
+  modelAnswers       ModelAnswer[]
+  answers            UserAnswer[]
+  createdAt          DateTime          @default(now())
 
   @@unique([year, season, examType, questionNum])
 }
@@ -40,7 +65,7 @@ model ModelAnswer {
   id             String   @id @default(uuid())
   questionId     String
   subQuestionNum String   
-  questionText   String?  // 設問文（例：「リスクAに示す攻撃手法の名称を答えよ。」）
+  questionText   String?  // 設問文
   maxScore       Int?     
   characterLimit Int?     
   answerText     String   

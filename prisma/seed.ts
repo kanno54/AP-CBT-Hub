@@ -4,8 +4,136 @@ import path from 'path';
 
 const prisma = new PrismaClient();
 
+async function seedSyllabusMaster() {
+  console.log('Seeding IPA Official Syllabus Master Hierarchy...');
+
+  // Level 1: 大分類
+  const level1Data = [
+    { code: 'TECH', level: 1, name: 'テクノロジ系', parentId: null },
+    { code: 'MGMT', level: 1, name: 'マネジメント系', parentId: null },
+    { code: 'STRAT', level: 1, name: 'ストラテジ系', parentId: null },
+  ];
+
+  const l1Map: Record<string, string> = {};
+  for (const item of level1Data) {
+    const created = await prisma.syllabusCategory.upsert({
+      where: { code: item.code },
+      update: { name: item.name, level: item.level },
+      create: { code: item.code, name: item.name, level: item.level },
+    });
+    l1Map[item.code] = created.id;
+  }
+
+  // Level 2: 中分類
+  const level2Data = [
+    { code: 'TECH_SEC', level: 2, name: 'セキュリティ', parentCode: 'TECH' },
+    { code: 'TECH_NET', level: 2, name: 'ネットワーク', parentCode: 'TECH' },
+    { code: 'TECH_DB', level: 2, name: 'データベース', parentCode: 'TECH' },
+    { code: 'TECH_ALG', level: 2, name: '基礎理論・アルゴリズム', parentCode: 'TECH' },
+    { code: 'TECH_ARCH', level: 2, name: 'コンピュータ構成要素・システムアーキテクチャ', parentCode: 'TECH' },
+    { code: 'MGMT_PM', level: 2, name: 'プロジェクトマネジメント', parentCode: 'MGMT' },
+    { code: 'MGMT_SM', level: 2, name: 'サービスマネジメント', parentCode: 'MGMT' },
+    { code: 'STRAT_ST', level: 2, name: '経営戦略マネジメント・DX', parentCode: 'STRAT' },
+  ];
+
+  const l2Map: Record<string, string> = {};
+  for (const item of level2Data) {
+    const parentId = l1Map[item.parentCode];
+    const created = await prisma.syllabusCategory.upsert({
+      where: { code: item.code },
+      update: { name: item.name, level: item.level, parentId },
+      create: { code: item.code, name: item.name, level: item.level, parentId },
+    });
+    l2Map[item.code] = created.id;
+  }
+
+  // Level 3: 小分類 & Keywords
+  const level3Data = [
+    {
+      code: 'TECH_SEC_CRYPTO',
+      level: 3,
+      name: '暗号技術と鍵管理',
+      parentCode: 'TECH_SEC',
+      keywords: ['公開鍵暗号', 'RSA', '共通鍵暗号', 'AES', 'デジタル署名', '秘密鍵', '公開鍵'],
+    },
+    {
+      code: 'TECH_SEC_THREAT',
+      level: 3,
+      name: '攻撃手法とWeb脆弱性対策',
+      parentCode: 'TECH_SEC',
+      keywords: ['CSRF', 'SQLインジェクション', 'XSS', 'ゼロトラスト', 'SameSite属性', 'Secure属性', 'プレペアードステートメント'],
+    },
+    {
+      code: 'TECH_NET_IP',
+      level: 3,
+      name: 'ネットワークプロトコルと通信体系',
+      parentCode: 'TECH_NET',
+      keywords: ['IPv6', 'IPv4', 'サブネットマスク', 'IPsec', 'マルチキャスト'],
+    },
+    {
+      code: 'TECH_DB_NORM',
+      level: 3,
+      name: 'DB正規化理論と排他制御',
+      parentCode: 'TECH_DB',
+      keywords: ['第1正規形', '第2正規形', '第3正規形', '関数従属', '推移的関数従属', 'デッドロック', '排他ロック'],
+    },
+    {
+      code: 'TECH_ALG_TREE',
+      level: 3,
+      name: 'データ構造と探索計算量',
+      parentCode: 'TECH_ALG',
+      keywords: ['平衡二分探索木', 'AVL木', '赤黒木', 'ハッシュテーブル', 'O(log N)', 'O(1)', 'O(N)'],
+    },
+    {
+      code: 'TECH_ARCH_BCP',
+      level: 3,
+      name: 'システム構成要素と信頼性',
+      parentCode: 'TECH_ARCH',
+      keywords: ['BCP', 'RTO', 'RPO', '目標復旧時間', '目標復旧時点', 'ホットスタンドバイ'],
+    },
+    {
+      code: 'MGMT_PM_EVM',
+      level: 3,
+      name: 'プロジェクト進捗・コスト管理',
+      parentCode: 'MGMT_PM',
+      keywords: ['EVM', 'SPI', 'CPI', 'CV', 'PV', 'EV', 'AC', 'アーンドバリュー'],
+    },
+    {
+      code: 'STRAT_ST_DX',
+      level: 3,
+      name: 'DX推進とビジネス変革',
+      parentCode: 'STRAT_ST',
+      keywords: ['DXガイドライン', 'デジタイゼーション', 'デジタライゼーション', '競争上の優位性'],
+    },
+  ];
+
+  const l3Map: Record<string, string> = {};
+  for (const item of level3Data) {
+    const parentId = l2Map[item.parentCode];
+    const created = await prisma.syllabusCategory.upsert({
+      where: { code: item.code },
+      update: { name: item.name, level: item.level, parentId },
+      create: { code: item.code, name: item.name, level: item.level, parentId },
+    });
+    l3Map[item.code] = created.id;
+
+    // Seed Keywords
+    await prisma.syllabusKeyword.deleteMany({ where: { categoryId: created.id } });
+    for (const kw of item.keywords) {
+      await prisma.syllabusKeyword.create({
+        data: { name: kw, categoryId: created.id },
+      });
+    }
+  }
+
+  console.log('IPA Syllabus Master Hierarchy Seeded Successfully!');
+  return { l1Map, l2Map, l3Map };
+}
+
 async function main() {
   console.log('Checking AP-CBT-Hub Database seed status...');
+
+  const { l3Map, l2Map } = await seedSyllabusMaster();
 
   const fullDataPath = path.join(process.cwd(), 'data', 'questions_full.json');
   let questionsToLoad: any[] = [];
@@ -17,14 +145,51 @@ async function main() {
   }
 
   if (questionsToLoad.length === 0) {
-    console.log('No data/questions_full.json dataset found. Using default seed template...');
+    console.log('No data/questions_full.json dataset found. Skipping question seeding.');
     return;
   }
 
-  console.log(`Upserting ${questionsToLoad.length} AP past questions into database with individual explanations...`);
+  console.log(`Upserting ${questionsToLoad.length} AP past questions with Syllabus mapping...`);
 
   for (const qItem of questionsToLoad) {
     const { choices, modelAnswers, imageUrls, ...qInfo } = qItem;
+
+    // Determine syllabusCategoryId mapping from category or questionNum
+    let syllabusCategoryId = l2Map['TECH_SEC'];
+    const cat = (qInfo.category || '').toUpperCase();
+    const qNum = qInfo.questionNum;
+
+    if (qInfo.examType === 'SUBJECT_B') {
+      syllabusCategoryId = l3Map['TECH_SEC_THREAT'];
+    } else if (qNum === 1) {
+      syllabusCategoryId = l3Map['TECH_SEC_CRYPTO'];
+    } else if (qNum === 2) {
+      syllabusCategoryId = l3Map['TECH_SEC_THREAT'];
+    } else if (qNum === 3) {
+      syllabusCategoryId = l3Map['TECH_NET_IP'];
+    } else if (qNum === 4) {
+      syllabusCategoryId = l3Map['TECH_DB_NORM'];
+    } else if (qNum === 5) {
+      syllabusCategoryId = l3Map['TECH_ALG_TREE'];
+    } else if (qNum === 6) {
+      syllabusCategoryId = l3Map['TECH_ARCH_BCP'];
+    } else if (qNum === 7) {
+      syllabusCategoryId = l3Map['MGMT_PM_EVM'];
+    } else if (qNum === 8) {
+      syllabusCategoryId = l3Map['STRAT_ST_DX'];
+    } else if (cat.includes('SEC')) {
+      syllabusCategoryId = l2Map['TECH_SEC'];
+    } else if (cat.includes('NET')) {
+      syllabusCategoryId = l2Map['TECH_NET'];
+    } else if (cat.includes('DB') || cat.includes('DATA')) {
+      syllabusCategoryId = l2Map['TECH_DB'];
+    } else if (cat.includes('ALG')) {
+      syllabusCategoryId = l2Map['TECH_ALG'];
+    } else if (cat.includes('PM') || cat.includes('PROJECT')) {
+      syllabusCategoryId = l2Map['MGMT_PM'];
+    } else if (cat.includes('STRAT')) {
+      syllabusCategoryId = l2Map['STRAT_ST'];
+    }
 
     const createdQ = await prisma.question.upsert({
       where: {
@@ -37,10 +202,12 @@ async function main() {
       },
       update: {
         ...qInfo,
+        syllabusCategoryId,
         imageUrls: imageUrls ? JSON.stringify(imageUrls) : null,
       },
       create: {
         ...qInfo,
+        syllabusCategoryId,
         imageUrls: imageUrls ? JSON.stringify(imageUrls) : null,
       },
     });
@@ -77,7 +244,7 @@ async function main() {
     }
   }
 
-  console.log('Database Seeding Completed Successfully.');
+  console.log('Database Seeding Completed Successfully with Syllabus Master.');
 }
 
 main()

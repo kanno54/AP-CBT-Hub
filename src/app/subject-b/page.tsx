@@ -30,6 +30,7 @@ import {
 } from 'lucide-react';
 import * as diff from 'diff';
 import SystematicLectureModal from '@/components/SystematicLectureModal';
+import SyllabusBreadcrumb, { BreadcrumbItem, SyllabusKeywordItem } from '@/components/SyllabusBreadcrumb';
 
 interface ModelAnswer {
   id: string;
@@ -48,6 +49,10 @@ interface QuestionB {
   examType: string;
   questionNum: number;
   category: string;
+  breadcrumbPath?: BreadcrumbItem[];
+  syllabusCategory?: {
+    keywords: SyllabusKeywordItem[];
+  };
   title: string | null;
   bodyText: string;
   explanation: string | null;
@@ -541,6 +546,14 @@ function SubjectBContent() {
                 </button>
               </div>
             </div>
+
+            {/* Syllabus Breadcrumb */}
+            {currentQ.breadcrumbPath && currentQ.breadcrumbPath.length > 0 && (
+              <SyllabusBreadcrumb
+                breadcrumbPath={currentQ.breadcrumbPath}
+                keywords={currentQ.syllabusCategory?.keywords}
+              />
+            )}
 
             {/* Problem Header */}
             <div className="flex items-center justify-between border-b border-slate-800 pb-3">
