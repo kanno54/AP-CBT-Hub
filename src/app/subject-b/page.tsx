@@ -29,6 +29,7 @@ import {
   X,
 } from 'lucide-react';
 import * as diff from 'diff';
+import SystematicLectureModal from '@/components/SystematicLectureModal';
 
 interface ModelAnswer {
   id: string;
@@ -372,94 +373,16 @@ function SubjectBContent() {
 
   return (
     <div className="space-y-6 animate-fade-in">
-      {/* Systematic Lecture Modal Overlay */}
-      {isLectureOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-fade-in">
-          <div className="glass-panel w-full max-w-4xl max-h-[90vh] rounded-3xl border border-indigo-500/40 p-6 md:p-8 overflow-y-auto space-y-6 shadow-2xl relative">
-            {/* Header */}
-            <div className="flex items-start justify-between border-b border-slate-800 pb-4">
-              <div className="flex items-center gap-3">
-                <div className="p-3 rounded-2xl bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-                  <GraduationCap className="w-7 h-7 text-indigo-400" />
-                </div>
-                <div>
-                  <span className="text-xs font-bold text-indigo-400 uppercase tracking-widest">
-                    AP Systematic Lecture Card
-                  </span>
-                  <h2 className="text-xl md:text-2xl font-black text-slate-100">
-                    {lectureData?.themeTitle || '体系化ガイド（全体像・比較表・定石）'}
-                  </h2>
-                </div>
-              </div>
-              <button
-                onClick={() => setIsLectureOpen(false)}
-                className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-slate-200 transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {isLectureLoading ? (
-              <div className="p-12 text-center space-y-3">
-                <div className="w-10 h-10 border-4 border-indigo-500/30 border-t-indigo-500 rounded-full animate-spin mx-auto"></div>
-                <p className="text-slate-400 text-sm">出題テーマから体系的講義・比較マトリックス表を生成中...</p>
-              </div>
-            ) : lectureData ? (
-              <div className="space-y-6">
-                {/* Lecture Summary Box */}
-                <div className="p-5 rounded-2xl bg-gradient-to-r from-indigo-950/50 via-slate-900 to-slate-950 border border-indigo-500/30 text-slate-200 text-sm leading-relaxed whitespace-pre-line shadow-inner">
-                  {lectureData.overview}
-                </div>
-
-                {/* Comparison Matrix Table */}
-                <div className="space-y-3">
-                  <h3 className="text-sm font-bold text-slate-200 flex items-center gap-2">
-                    <Table className="w-4 h-4 text-indigo-400" />
-                    概念比較マトリックス表 (Comparison Matrix)
-                  </h3>
-                  <div className="overflow-x-auto rounded-2xl border border-slate-800 bg-slate-950/80">
-                    <table className="w-full text-left text-xs text-slate-200">
-                      <thead className="bg-indigo-950/60 text-indigo-300 uppercase tracking-wider font-bold border-b border-slate-800">
-                        <tr>
-                          <th className="p-3.5 w-1/4">概念・用語</th>
-                          <th className="p-3.5 w-1/4">発生メカニズム・定義</th>
-                          <th className="p-3.5 w-1/4">技術的対策・標準設定</th>
-                          <th className="p-3.5 w-1/4">解答キーポイント</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-slate-800/80">
-                        {lectureData.comparisonTable.map((row, i) => (
-                          <tr key={i} className="hover:bg-indigo-950/20 transition-colors">
-                            <td className="p-3.5 font-bold text-indigo-200">{row.concept}</td>
-                            <td className="p-3.5 text-slate-300 leading-relaxed">{row.mechanism}</td>
-                            <td className="p-3.5 text-emerald-300 font-medium leading-relaxed">{row.countermeasure}</td>
-                            <td className="p-3.5 text-amber-200 leading-relaxed font-semibold">{row.keyPoint}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-
-                {/* Exam Golden Rules */}
-                <div className="p-5 rounded-2xl bg-amber-950/20 border border-amber-500/30 space-y-3">
-                  <h3 className="text-sm font-bold text-amber-300 flex items-center gap-2">
-                    <Lightbulb className="w-4 h-4 text-amber-400" />
-                    IPA試験で加点される「解答の定石ルール」
-                  </h3>
-                  <ul className="space-y-2 text-xs text-amber-100 font-medium">
-                    {lectureData.examRules.map((rule, idx) => (
-                      <li key={idx} className="flex items-start gap-2 bg-slate-950/60 p-3 rounded-xl border border-amber-500/20">
-                        <span className="w-2 h-2 rounded-full bg-amber-400 mt-1.5 shrink-0"></span>
-                        <span>{rule}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ) : null}
-          </div>
-        </div>
+      {/* Systematic Lecture Modal Component */}
+      {currentQ && (
+        <SystematicLectureModal
+          isOpen={isLectureOpen}
+          onClose={() => setIsLectureOpen(false)}
+          questionId={currentQ.id}
+          title={currentQ.title}
+          bodyText={currentQ.bodyText}
+          modelAnswerText={currentQ.modelAnswers?.[0]?.answerText}
+        />
       )}
 
       {/* Floating Selection Highlighter Popup Menu */}

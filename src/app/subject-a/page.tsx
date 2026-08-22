@@ -14,7 +14,9 @@ import {
   BookOpen,
   RotateCcw,
   Save,
+  GraduationCap,
 } from 'lucide-react';
+import SystematicLectureModal from '@/components/SystematicLectureModal';
 
 interface Choice {
   id: string;
@@ -69,6 +71,7 @@ function SubjectAContent() {
   const [timeSpent, setTimeSpent] = useState<number>(0);
   const [notes, setNotes] = useState<string>('');
   const [savedNotesMessage, setSavedNotesMessage] = useState<string>('');
+  const [isLectureOpen, setIsLectureOpen] = useState<boolean>(false);
 
   // Timer ticker
   useEffect(() => {
@@ -342,14 +345,24 @@ function SubjectAContent() {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex items-center justify-between pt-4">
-              <button
-                disabled={!selectedSymbol || isSubmitted}
-                onClick={handleSubmit}
-                className="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold text-sm transition-all duration-200 shadow-lg shadow-blue-500/20 flex items-center gap-2"
-              >
-                解答を送信して判定 <CheckCircle2 className="w-4 h-4" />
-              </button>
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-4">
+              <div className="flex items-center gap-3">
+                <button
+                  disabled={!selectedSymbol || isSubmitted}
+                  onClick={handleSubmit}
+                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold text-sm transition-all duration-200 shadow-lg shadow-blue-500/20 flex items-center gap-2"
+                >
+                  解答を送信して判定 <CheckCircle2 className="w-4 h-4" />
+                </button>
+
+                <button
+                  onClick={() => setIsLectureOpen(true)}
+                  className="px-4 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white font-bold text-xs flex items-center gap-1.5 transition-all shadow-md shadow-indigo-500/20"
+                >
+                  <GraduationCap className="w-4 h-4 text-indigo-200" />
+                  🎓 体系化ガイド
+                </button>
+              </div>
 
               {isSubmitted && (
                 <button
@@ -452,6 +465,17 @@ function SubjectAContent() {
             </button>
           </div>
         </div>
+      )}
+
+      {currentQ && (
+        <SystematicLectureModal
+          isOpen={isLectureOpen}
+          onClose={() => setIsLectureOpen(false)}
+          questionId={currentQ.id}
+          title={currentQ.title}
+          bodyText={currentQ.bodyText}
+          modelAnswerText={currentQ.choices.find((c) => c.isCorrect)?.text}
+        />
       )}
     </div>
   );

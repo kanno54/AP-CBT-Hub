@@ -23,7 +23,98 @@ export async function POST(request: NextRequest) {
 
     let lectureData: SystematicLectureData;
 
-    if (fullText.includes('csrf') || fullText.includes('sql') || fullText.includes('security') || fullText.includes('ゼロトラスト') || fullText.includes('暗号') || fullText.includes('鍵')) {
+    if (fullText.includes('署名') || fullText.includes('公開鍵') || fullText.includes('暗号') || fullText.includes('鍵')) {
+      lectureData = {
+        themeTitle: '公開鍵暗号方式・デジタル署名と鍵管理の体系',
+        overview: '公開鍵暗号方式における暗号化とデジタル署名（改ざん防止・本人認証）のメカニズムおよび、各処理で使用する「送信者・受信者の鍵」の対応関係講義です。',
+        comparisonTable: [
+          {
+            concept: 'デジタル署名の生成 (送信時)',
+            mechanism: '送信者Aがメッセージのハッシュ値を算出。',
+            countermeasure: '「送信者Aの秘密鍵」でハッシュ値を暗号化して署名作成。',
+            keyPoint: '送信者A本人しか秘密鍵を持たないため「なりすまし防止・非否認」が確立。',
+          },
+          {
+            concept: 'デジタル署名の検証 (受信時)',
+            mechanism: '受信者Bが受け取った署名を復号。',
+            countermeasure: '「送信者Aの公開鍵」で署名を復号しハッシュ値を照合。',
+            keyPoint: '誰でも入手できる送信者Aの公開鍵で検証可能。一致すれば「改ざんゼロ」。',
+          },
+          {
+            concept: 'メッセージの暗号化 (送信時)',
+            mechanism: '送信者Aが第三者に盗聴されないよう本文を暗号化。',
+            countermeasure: '「受信者Bの公開鍵」でメッセージを暗号化。',
+            keyPoint: '受信者Bしか復号できない状態にする。',
+          },
+          {
+            concept: 'メッセージの復号 (受信時)',
+            mechanism: '受信者Bが暗号文を解読。',
+            countermeasure: '「受信者Bの秘密鍵」で暗号文を復号。',
+            keyPoint: '受信者Bの秘密鍵のみで復号が可能。',
+          },
+        ],
+        examRules: [
+          '【鍵の役割黄金律】 署名生成＝『送信者の秘密鍵』 / 署名検証＝『送信者の公開鍵』',
+          '【暗号復号黄金律】 メッセージ暗号化＝『受信者の公開鍵』 / メッセージ解読＝『受信者の秘密鍵』',
+        ],
+      };
+    } else if (fullText.includes('二分') || fullText.includes('計算量') || fullText.includes('木') || fullText.includes('アルゴリズム') || fullText.includes('o(')) {
+      lectureData = {
+        themeTitle: 'データ構造と探索アルゴリズム・時間複雑度 (Big-O) の体系',
+        overview: '探索構造におけるデータ構造別の平均時間複雑度（O表記）と比較一覧です。平衡二分探索木とハッシュテーブルの性能特性を正しく整理しましょう。',
+        comparisonTable: [
+          {
+            concept: '平衡二分探索木 (AVL木 / 赤黒木)',
+            mechanism: '木の高さが常に O(log N) に保たれる二分木。',
+            countermeasure: '左右の部分木の高さの差を一定内に自動維持。',
+            keyPoint: '平均・最悪共に探索・挿入・削除の計算量は O(log N)。',
+          },
+          {
+            concept: 'ハッシュテーブル (Hash Table)',
+            mechanism: 'キー値からハッシュ関数で配列インデックスを直接算出。',
+            countermeasure: 'ハッシュ衝突発生時にチェイン法やオープンアドレス法で回避。',
+            keyPoint: '平均検索計算量は極めて高速な O(1)。',
+          },
+          {
+            concept: '線形リスト / 非平衡木',
+            mechanism: '要素を先頭から順番に1つずつ走査して検索。',
+            countermeasure: '要素数が膨大になると検索効率が著しく低下。',
+            keyPoint: '平均探索計算量は O(N)。',
+          },
+        ],
+        examRules: [
+          '【計算量暗記】 平衡二分探索木 ＝ O(log N) / ハッシュテーブル平均 ＝ O(1) / 線形探索 ＝ O(N)',
+        ],
+      };
+    } else if (fullText.includes('dx') || fullText.includes('ガイドライン') || fullText.includes('変革')) {
+      lectureData = {
+        themeTitle: 'デジタルトランスフォーメーション (DX) 定義と企業変革の体系',
+        overview: '経済産業省「DX推進ガイドライン」におけるデジタイゼーション（ペーパーレス化）、デジタライゼーション（業務IT化）、そしてDX（ビジネスモデル変革）の3段階の定義比較です。',
+        comparisonTable: [
+          {
+            concept: 'デジタイゼーション (Digitization)',
+            mechanism: 'アナログな紙・物理データのデジタル化。',
+            countermeasure: '紙書類のスキャン、PDF化、ペーパーレス化の推進。',
+            keyPoint: '「データのデジタル形式への置き換え」段階。',
+          },
+          {
+            concept: 'デジタライゼーション (Digitalization)',
+            mechanism: '個別の業務プロセス全体のデジタル化・効率化。',
+            countermeasure: 'ワークフローシステム導入、クラウドツールによる自動化。',
+            keyPoint: '「業務プロセスのIT化」段階。',
+          },
+          {
+            concept: 'DX (Digital Transformation)',
+            mechanism: 'データとデジタル技術による製品・サービス・ビジネスモデルの根本変革。',
+            countermeasure: '顧客ニーズを起点とした企業風土・組織・プロセス全体の刷新。',
+            keyPoint: '「競争上の優位性を確立するビジネス変革」段階。',
+          },
+        ],
+        examRules: [
+          '【DX定義の正解肢キーワード】 『データとデジタル技術を活用し、製品・サービス・ビジネスモデルを変革し、競争上の優位性を確立すること』',
+        ],
+      };
+    } else if (fullText.includes('csrf') || fullText.includes('sql') || fullText.includes('security') || fullText.includes('ゼロトラスト')) {
       lectureData = {
         themeTitle: 'Webアプリケーションセキュリティと認証・認可基盤の体系',
         overview: '現代のWebシステム開発において頻出する主要な脆弱性（CSRF・SQLi・XSS）の発生機構と、標準的な技術対策の比較一覧です。IPA試験では「攻撃名」「発生原因」「具体的対策記述」の3点がセットで問われます。',
@@ -56,17 +147,16 @@ export async function POST(request: NextRequest) {
         examRules: [
           '【定石対策記述 1】 CSRF対策: 『CookieにSameSite=Strict属性およびSecure属性を付与する』',
           '【定石対策記述 2】 SQLi対策: 『プレースホルダを用いた静的プレペアードステートメントを使用する』',
-          '【鍵の役割定石】 デジタル署名生成＝『送信者の秘密鍵』 / 暗号文解読＝『受信者の秘密鍵』',
         ],
       };
-    } else if (fullText.includes('正規形') || fullText.includes('database') || fullText.includes('db') || fullText.includes('デッドロック') || fullText.includes('トランザクション')) {
+    } else if (fullText.includes('正規形') || fullText.includes('database') || fullText.includes('db') || fullText.includes('デッドロック')) {
       lectureData = {
         themeTitle: 'データベース構造化・正規化理論とトランザクション制御の体系',
-        overview: 'リレーショナルデータベースにおけるデータ矛盾を防ぐ正規化（第1〜第3正規形）と、並行処理における排他制御（ロック・デッドロック回避）の構造比較講義です。',
+        overview: 'リレーショナルデータベースにおけるデータ矛盾を防ぐ正規化（第1〜第3正規形）と、排他制御（ロック・デッドロック回避）の構造比較講義です。',
         comparisonTable: [
           {
             concept: '第1正規形 (1NF)',
-            mechanism: '表の中の繰り返し群（配列・複数値）が存在する状態。',
+            mechanism: '表の中に繰り返し群（配列・複数値）が存在する状態。',
             countermeasure: '繰り返し群を分離し、すべての列の値を単一の原子値（Atomic Value）にする。',
             keyPoint: '「繰り返し要素の排除」が必須条件。',
           },
@@ -90,30 +180,8 @@ export async function POST(request: NextRequest) {
           },
         ],
         examRules: [
-          '【定石の定義 1】 第3正規形: 『完全関数従属を満たし、非キー属性間の推移的関数従属が存在しない状態』',
-          '【定石対策記述 2】 デッドロック回避: 『資源アクセスのロック獲得順序を全処理で一律に固定する』',
-        ],
-      };
-    } else if (fullText.includes('ipv6') || fullText.includes('network') || fullText.includes('プロトコル') || fullText.includes('ip')) {
-      lectureData = {
-        themeTitle: 'ネットワークプロトコルとアドレス体系 (IPv6/IPv4) の全体像',
-        overview: '次世代インターネットプロトコルIPv6の仕様と、従来のIPv4プロトコルの相違点およびセキュリティ機能の整理です。',
-        comparisonTable: [
-          {
-            concept: 'IPv4 アドレス体系',
-            mechanism: '32ビット長（4バイト）。10進数ドット区切り表記。アドレス枯渇が深刻。',
-            countermeasure: 'NAT/NAPT機能によるプライベートIPアドレス変換。',
-            keyPoint: 'ブロードキャスト通信が存在。',
-          },
-          {
-            concept: 'IPv6 アドレス体系',
-            mechanism: '128ビット長（16バイト）。16進数コロン区切り表記。ほぼ無限のアドレス数。',
-            countermeasure: '標準機能としてIPsec暗号化プロトコルを標準実装。',
-            keyPoint: 'ブロードキャストが廃止されマルチキャストが代替。',
-          },
-        ],
-        examRules: [
-          '【定石知識 1】 IPv6仕様: 128ビット長・16進数コロン区切り・IPsec標準化・マルチキャスト通信採用',
+          '【定石の定義】 第3正規形: 『完全関数従属を満たし、非キー属性間の推移的関数従属が存在しない状態』',
+          '【定石対策記述】 デッドロック回避: 『資源アクセスのロック獲得順序を全処理で一律に固定する』',
         ],
       };
     } else {
@@ -147,8 +215,8 @@ export async function POST(request: NextRequest) {
           },
         ],
         examRules: [
-          '【計算定石 1】 EVM指標: CV = EV - AC / SV = EV - PV / SPI = EV / PV / CPI = EV / AC',
-          '【指標使い分け 2】 RTO ＝ 復旧までの『時間』 / RPO ＝ 復元のデータ『時点・過去ポイント』',
+          '【計算定石】 EVM指標: CV = EV - AC / SV = EV - PV / SPI = EV / PV / CPI = EV / AC',
+          '【指標使い分け】 RTO ＝ 復旧までの『時間』 / RPO ＝ 復元のデータ『時点・過去ポイント』',
         ],
       };
     }
