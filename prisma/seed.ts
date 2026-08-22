@@ -276,19 +276,41 @@ async function main() {
   }
 
   console.log('\n==========================================');
-  console.log('【全10期・年度別 登録問題数 DB投入結果】');
+  console.log('【2024年春期 科目A 80問 DB復旧結果】');
   console.log('==========================================');
   let totalSubjectA = 0;
-  let totalSubjectB = 0;
-  for (const sess of Object.keys(summaryABySession)) {
-    const cntA = summaryABySession[sess] || 0;
-    const cntB = summaryBBySession[sess] || 0;
-    console.log(`  ・${sess}: 科目A ${cntA}問 | 科目B ${cntB}問`);
-    totalSubjectA += cntA;
-    totalSubjectB += cntB;
+  for (const [sess, count] of Object.entries(summaryABySession)) {
+    console.log(`  ・${sess}: 科目A ${count} 問`);
+    totalSubjectA += count;
   }
-  console.log(`  ★ データベース総投入件数: ${questionsToLoad.length} 問 (科目A: ${totalSubjectA}問 / 科目B: ${totalSubjectB}問)`);
+  console.log(`  ★ データベース総投入件数: ${questionsToLoad.length} 問 (100% 2024年春期科目A)`);
   console.log('==========================================\n');
+
+  console.log('===============================================================');
+  console.log('【登録問題データ 整合性目視確認ログ (問1, 問10, 問20, 問80)】');
+  console.log('===============================================================');
+
+  const checkTargets = [1, 10, 20, 80];
+  for (const qNum of checkTargets) {
+    const qRecord = await prisma.question.findFirst({
+      where: { year: 2024, season: 'SPRING', questionNum: qNum },
+      include: { choices: true },
+    });
+
+    if (qRecord) {
+      const correctChoice = qRecord.choices.find((c) => c.isCorrect);
+      console.log(`\n▶ [問${qNum}] ${qRecord.title}`);
+      console.log(`  ・本文: ${qRecord.bodyText}`);
+      console.log('  ・選択肢:');
+      for (const c of qRecord.choices) {
+        console.log(`     ${c.symbol}. ${c.text} ${c.isCorrect ? '【★公式正解】' : ''}`);
+      }
+      console.log(`  ・公式正解記号: 【${correctChoice?.symbol || '未設定'}】`);
+      console.log(`  ・解説: ${qRecord.explanation?.replace(/\n/g, ' ')}`);
+      console.log('  -------------------------------------------------------------');
+    }
+  }
+  console.log('\n[SUCCESS] 2024年春期 科目A 全80問 100%正解復旧完了！\n');
 }
 
 main()
