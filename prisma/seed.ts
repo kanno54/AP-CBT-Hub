@@ -149,6 +149,13 @@ async function main() {
     return;
   }
 
+  console.log('Cleaning up existing question records to prevent duplicates...');
+  await prisma.userAnswer.deleteMany({});
+  await prisma.modelAnswer.deleteMany({});
+  await prisma.choice.deleteMany({});
+  await prisma.question.deleteMany({});
+  console.log('Database cleanup completed.');
+
   console.log(`Upserting ${questionsToLoad.length} AP past questions with Syllabus mapping...`);
 
   const summaryBySession: Record<string, number> = {};

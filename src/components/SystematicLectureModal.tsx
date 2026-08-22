@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { GraduationCap, Table, Lightbulb, X, RotateCcw } from 'lucide-react';
+import { GraduationCap, Table, Lightbulb, X, ShieldCheck, Zap, KeyRound } from 'lucide-react';
 
 export interface ComparisonRow {
   concept: string;
@@ -85,57 +85,59 @@ export default function SystematicLectureModal({
     /* Viewport Fixed Centered Modal Overlay */
     <div
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6 bg-slate-950/80 backdrop-blur-md animate-fade-in overflow-hidden"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 md:p-6 bg-slate-950/80 backdrop-blur-md animate-fade-in overflow-hidden"
     >
       {/* Modal Dialog Card (Fixed height limit, scrollable content only) */}
       <div
         onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside card
-        className="glass-panel w-full max-w-4xl max-h-[85vh] flex flex-col rounded-3xl border border-indigo-500/40 shadow-2xl overflow-hidden animate-scale-up"
+        className="glass-panel w-full max-w-4xl max-h-[88vh] md:max-h-[85vh] flex flex-col rounded-2xl md:rounded-3xl border border-indigo-500/40 shadow-2xl overflow-hidden animate-scale-up"
       >
         {/* Fixed Top Header */}
-        <div className="flex items-center justify-between p-5 md:p-6 border-b border-slate-800/80 bg-slate-900/90 shrink-0">
-          <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-2xl bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-              <GraduationCap className="w-6 h-6 md:w-7 md:h-7 text-indigo-400" />
+        <div className="flex items-center justify-between p-4 md:p-6 border-b border-slate-800/80 bg-slate-900/90 shrink-0">
+          <div className="flex items-center gap-2.5 md:gap-3">
+            <div className="p-2 md:p-2.5 rounded-xl md:rounded-2xl bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0">
+              <GraduationCap className="w-5 h-5 md:w-7 md:h-7 text-indigo-400" />
             </div>
             <div>
-              <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest block">
+              <span className="text-[9px] md:text-[10px] font-bold text-indigo-400 uppercase tracking-widest block">
                 AP Systematic Lecture Card
               </span>
-              <h2 className="text-base md:text-xl font-black text-slate-100 leading-snug">
+              <h2 className="text-sm md:text-xl font-black text-slate-100 leading-snug line-clamp-1">
                 {data?.themeTitle || '体系化ガイド（全体像・比較表・定石）'}
               </h2>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-slate-200 transition-colors"
+            className="p-1.5 md:p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-slate-200 transition-colors shrink-0"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4 md:w-5 md:h-5" />
           </button>
         </div>
 
         {/* Scrollable Content Body */}
-        <div className="flex-1 overflow-y-auto p-5 md:p-8 space-y-6 custom-scrollbar">
+        <div className="flex-1 overflow-y-auto p-4 md:p-8 space-y-4 md:space-y-6 custom-scrollbar">
           {loading ? (
-            <div className="p-12 text-center space-y-3">
-              <div className="w-10 h-10 border-4 border-indigo-500/30 border-t-indigo-500 rounded-full animate-spin mx-auto"></div>
-              <p className="text-slate-400 text-sm">出題テーマから体系的講義・比較マトリックス表を生成中...</p>
+            <div className="p-10 md:p-12 text-center space-y-3">
+              <div className="w-8 h-8 md:w-10 md:h-10 border-4 border-indigo-500/30 border-t-indigo-500 rounded-full animate-spin mx-auto"></div>
+              <p className="text-slate-400 text-xs md:text-sm">出題テーマから体系的講義・比較マトリックス表を生成中...</p>
             </div>
           ) : data ? (
             <>
               {/* Lecture Summary Box */}
-              <div className="p-5 rounded-2xl bg-gradient-to-r from-indigo-950/60 via-slate-900 to-slate-950 border border-indigo-500/30 text-slate-200 text-sm leading-relaxed whitespace-pre-line shadow-inner">
+              <div className="p-4 md:p-5 rounded-xl md:rounded-2xl bg-gradient-to-r from-indigo-950/60 via-slate-900 to-slate-950 border border-indigo-500/30 text-slate-200 text-xs md:text-sm leading-relaxed whitespace-pre-line shadow-inner">
                 {data.overview}
               </div>
 
-              {/* Comparison Matrix Table */}
+              {/* Comparison Section */}
               <div className="space-y-3">
-                <h3 className="text-sm font-bold text-slate-200 flex items-center gap-2">
-                  <Table className="w-4 h-4 text-indigo-400" />
+                <h3 className="text-xs md:text-sm font-bold text-slate-200 flex items-center gap-2">
+                  <Table className="w-4 h-4 text-indigo-400 shrink-0" />
                   概念比較マトリックス表 (Comparison Matrix)
                 </h3>
-                <div className="overflow-x-auto rounded-2xl border border-slate-800 bg-slate-950/90">
+
+                {/* PC Layout: 4-Column Table (hidden on mobile) */}
+                <div className="hidden md:block overflow-x-auto rounded-2xl border border-slate-800 bg-slate-950/90">
                   <table className="w-full text-left text-xs text-slate-200">
                     <thead className="bg-indigo-950/80 text-indigo-300 uppercase tracking-wider font-bold border-b border-slate-800">
                       <tr>
@@ -157,19 +159,66 @@ export default function SystematicLectureModal({
                     </tbody>
                   </table>
                 </div>
+
+                {/* Mobile Layout: Responsive Card List (block on mobile) */}
+                <div className="block md:hidden space-y-3">
+                  {data.comparisonTable.map((row, i) => (
+                    <div
+                      key={i}
+                      className="p-4 rounded-xl bg-slate-900/90 border border-indigo-500/30 space-y-2.5 shadow-md"
+                    >
+                      {/* Concept Badge Header */}
+                      <div className="flex items-center gap-1.5 pb-2 border-b border-slate-800">
+                        <span className="text-xs font-black text-indigo-300 bg-indigo-500/20 px-2.5 py-1 rounded-lg border border-indigo-500/30">
+                          {row.concept}
+                        </span>
+                      </div>
+
+                      {/* Mechanism */}
+                      <div className="space-y-1 text-xs">
+                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                          <Zap className="w-3 h-3 text-indigo-400" /> 発生メカニズム・定義
+                        </span>
+                        <p className="text-slate-200 bg-slate-950/60 p-2 rounded-lg border border-slate-800/80 leading-relaxed">
+                          {row.mechanism}
+                        </p>
+                      </div>
+
+                      {/* Countermeasure */}
+                      <div className="space-y-1 text-xs">
+                        <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1">
+                          <ShieldCheck className="w-3 h-3 text-emerald-400" /> 技術的対策・標準設定
+                        </span>
+                        <p className="text-emerald-200 bg-emerald-950/30 p-2 rounded-lg border border-emerald-500/20 font-medium leading-relaxed">
+                          {row.countermeasure}
+                        </p>
+                      </div>
+
+                      {/* Key Point */}
+                      <div className="space-y-1 text-xs">
+                        <span className="text-[10px] font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1">
+                          <KeyRound className="w-3 h-3 text-amber-400" /> 解答キーポイント
+                        </span>
+                        <p className="text-amber-200 bg-amber-950/30 p-2 rounded-lg border border-amber-500/20 font-semibold leading-relaxed">
+                          {row.keyPoint}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               {/* Exam Golden Rules */}
-              <div className="p-5 rounded-2xl bg-amber-950/20 border border-amber-500/30 space-y-3">
-                <h3 className="text-sm font-bold text-amber-300 flex items-center gap-2">
-                  <Lightbulb className="w-4 h-4 text-amber-400" />
+              <div className="p-4 md:p-5 rounded-xl md:rounded-2xl bg-amber-950/20 border border-amber-500/30 space-y-2.5 md:space-y-3">
+                <h3 className="text-xs md:text-sm font-bold text-amber-300 flex items-center gap-2">
+                  <Lightbulb className="w-4 h-4 text-amber-400 shrink-0" />
                   IPA試験で加点される「解答の定石ルール」
                 </h3>
                 <ul className="space-y-2 text-xs text-amber-100 font-medium">
                   {data.examRules.map((rule, idx) => (
-                    <li key={idx} className="flex items-start gap-2 bg-slate-950/60 p-3 rounded-xl border border-amber-500/20">
-                      <span className="w-2 h-2 rounded-full bg-amber-400 mt-1.5 shrink-0"></span>
-                      <span>{rule}</span>
+                    <li key={idx} className="flex items-start gap-2 bg-slate-950/60 p-2.5 md:p-3 rounded-lg md:rounded-xl border border-amber-500/20">
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0"></span>
+                      <span className="leading-relaxed">{rule}</span>
                     </li>
                   ))}
                 </ul>
@@ -179,11 +228,11 @@ export default function SystematicLectureModal({
         </div>
 
         {/* Fixed Bottom Action Footer */}
-        <div className="p-4 border-t border-slate-800 bg-slate-900/90 flex items-center justify-between shrink-0">
-          <span className="text-xs text-slate-400">Esc キーまたは外枠クリックで閉じられます</span>
+        <div className="p-3 md:p-4 border-t border-slate-800 bg-slate-900/90 flex items-center justify-between shrink-0">
+          <span className="text-[10px] md:text-xs text-slate-400">Esc キーまたは外枠クリックで閉じられます</span>
           <button
             onClick={onClose}
-            className="px-5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs transition-colors"
+            className="px-4 md:px-5 py-1.5 md:py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs transition-colors"
           >
             閉じる
           </button>
