@@ -1,0 +1,59 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "binary"
+}
+
+model Question {
+  id            String       @id @default(uuid())
+  year          Int          
+  season        String       
+  examType      String       // "SUBJECT_A" | "SUBJECT_B"
+  questionNum   Int          
+  category      String       // "TECHNOLOGY", "MANAGEMENT", "STRATEGY", "SECURITY", "NETWORK", "DATABASE", etc.
+  title         String?      
+  bodyText      String       
+  imageUrls     String?      
+  choices       Choice[]     
+  modelAnswers  ModelAnswer[]
+  answers       UserAnswer[]
+  createdAt     DateTime     @default(now())
+
+  @@unique([year, season, examType, questionNum])
+}
+
+model Choice {
+  id          String   @id @default(uuid())
+  questionId  String
+  symbol      String   
+  text        String
+  isCorrect   Boolean
+  question    Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+}
+
+model ModelAnswer {
+  id             String   @id @default(uuid())
+  questionId     String
+  subQuestionNum String   
+  maxScore       Int?     
+  characterLimit Int?     
+  answerText     String   
+  explanation    String?  
+  question       Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+}
+
+model UserAnswer {
+  id             String      @id @default(uuid())
+  questionId     String
+  selectedSymbol String?     
+  inputAnswer    String?     
+  isCorrect      Boolean?    
+  timeSpentSec   Int         
+  notes          String?     
+  answeredAt     DateTime    @default(now())
+  question       Question    @relation(fields: [questionId], references: [id], onDelete: Cascade)
+}

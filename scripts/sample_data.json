@@ -1,0 +1,134 @@
+[
+  {
+    "year": 2025,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 1,
+    "category": "SECURITY",
+    "title": "公開鍵暗号方式における暗号化と復号",
+    "bodyText": "送信者Aが受信者Bに暗号化された電子メールを送信する場合、送信者Aがメッセージの暗号化に使用する鍵として、最も適切なものはどれか。",
+    "choices": [
+      { "symbol": "ア", "text": "送信者Aの公開鍵", "isCorrect": false },
+      { "symbol": "イ", "text": "送信者Aの秘密鍵", "isCorrect": false },
+      { "symbol": "ウ", "text": "受信者Bの公開鍵", "isCorrect": true },
+      { "symbol": "エ", "text": "受信者Bの秘密鍵", "isCorrect": false }
+    ]
+  },
+  {
+    "year": 2025,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 2,
+    "category": "NETWORK",
+    "title": "IPv6アドレスの表記",
+    "bodyText": "IPv6のアドレス表現形式および特徴に関する記述のうち、適切なものはどれか。",
+    "choices": [
+      { "symbol": "ア", "text": "128ビット長のアドレスを16ビットごとにコロン(:)で区切り、16進数で表記する。", "isCorrect": true },
+      { "symbol": "イ", "text": "32ビット長のアドレスを8ビットごとにドット(.)で区切り、10進数で表記する。", "isCorrect": false },
+      { "symbol": "ウ", "text": "アドレス空間はIPv4の2倍の広さを持つ。", "isCorrect": false },
+      { "symbol": "エ", "text": "ブロードキャスト通信が標準で必須機能としてサポートされている。", "isCorrect": false }
+    ]
+  },
+  {
+    "year": 2025,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 3,
+    "category": "DATABASE",
+    "title": "リレーショナルデータベースの正規化",
+    "bodyText": "第3正規形に関する記述として、最も適切なものはどれか。",
+    "choices": [
+      { "symbol": "ア", "text": "すべての非キー属性が主キーに対して完全関数従属し、かつ推移的関数従属が存在しない状態。", "isCorrect": true },
+      { "symbol": "イ", "text": "繰り返し群が取り除かれた状態。", "isCorrect": false },
+      { "symbol": "ウ", "text": "すべての非キー属性が主キーに対して部分関数従属している状態。", "isCorrect": false },
+      { "symbol": "エ", "text": "主キー以外の属性間にのみ関数従属が存在する状態。", "isCorrect": false }
+    ]
+  },
+  {
+    "year": 2025,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 4,
+    "category": "ALGORITHM",
+    "title": "二分探索木の探索効率",
+    "bodyText": "要素数がNである平衡二分探索木において、特定の値を探索する際の平均時間複雑度はどれか。",
+    "choices": [
+      { "symbol": "ア", "text": "O(1)", "isCorrect": false },
+      { "symbol": "イ", "text": "O(log N)", "isCorrect": true },
+      { "symbol": "ウ", "text": "O(N)", "isCorrect": false },
+      { "symbol": "エ", "text": "O(N log N)", "isCorrect": false }
+    ]
+  },
+  {
+    "year": 2025,
+    "season": "SPRING",
+    "examType": "SUBJECT_A",
+    "questionNum": 5,
+    "category": "PROJECT_MGMT",
+    "title": "EVMにおけるCV(Cost Variance)の算出",
+    "bodyText": "アーンドバリューマネジメント(EVM)において、アーンドバリュー(EV)が100万円、アクチュアルコスト(AC)が120万円、プランドバリュー(PV)が110万円であるとき、コスト分散(CV)は何万円か。",
+    "choices": [
+      { "symbol": "ア", "text": "-20", "isCorrect": true },
+      { "symbol": "イ", "text": "-10", "isCorrect": false },
+      { "symbol": "ウ", "text": "10", "isCorrect": false },
+      { "symbol": "エ", "text": "20", "isCorrect": false }
+    ]
+  },
+  {
+    "year": 2025,
+    "season": "SPRING",
+    "examType": "SUBJECT_B",
+    "questionNum": 1,
+    "category": "SECURITY",
+    "title": "Webアプリケーションセキュリティの強化とゼロトラスト対応",
+    "bodyText": "### [問題概要]\nECサイトを運営するX社では、近年多発する認証バイパスおよびSQLインジェクション攻撃への対策として、認証・認可基盤の見直しを行っている。\n\n#### [システムの現状]\n1. ユーザー認証には従来のセッションID方式を採用しており、CookieにセッションIDを保存している。\n2. Cookie属性には `HttpOnly` は設定されているが、 `SameSite` 属性および `Secure` 属性が未設定となっている。\n3. DBアクセス層において、一部の検索処理で文字列結合による動的SQL生成を行っている箇所が判明した。\n\n#### [攻撃シナリオ分析]\nセキュリティ診断チームの報告によると、悪意ある第三者がターゲットユーザーのブラウザ上で不正なリクエストを送信させ、意図しない送金や登録変更を実行させるリスク(リスクA)が指摘された。\nまた、ログインフォームの入力値に特定の特殊文字を挿入することで、データベース内の全顧客情報を不正取得されるリスク(リスクB)も確認された。\n\n以下の各設問に答えなさい。",
+    "modelAnswers": [
+      {
+        "subQuestionNum": "設問1 (1)",
+        "maxScore": 7,
+        "characterLimit": 35,
+        "answerText": "クロスサイトリクエストフォージェリ (CSRF)",
+        "explanation": "SameSite属性未設定により他サイトからのCookie送信を伴うCSRF攻撃を受けるリスクを説明する問題です。"
+      },
+      {
+        "subQuestionNum": "設問1 (2)",
+        "maxScore": 8,
+        "characterLimit": 40,
+        "answerText": "プレースホルダを用いたプレペアードステートメントを使用する。",
+        "explanation": "SQLインジェクション対策の基本である静的プレースホルダ（バインド変数）の利用について答えます。"
+      },
+      {
+        "subQuestionNum": "設問2",
+        "maxScore": 10,
+        "characterLimit": 50,
+        "answerText": "CookieにSameSite=Strict属性およびSecure属性を付与して送信を制限する。",
+        "explanation": "リスクA（CSRF攻撃）に対する具体的なCookie属性の対策設定について記述します。"
+      }
+    ]
+  },
+  {
+    "year": 2025,
+    "season": "SPRING",
+    "examType": "SUBJECT_B",
+    "questionNum": 2,
+    "category": "DATABASE",
+    "title": "大規模分散データベースの整合性とデッドロック回避",
+    "bodyText": "### [システム構成]\nY社はマルチリージョンで稼働するマイクロサービスアーキテクチャを採用している。\n在庫管理サービスでは、商品購入に伴う在庫数の減算処理においてトランザクション制御を行っている。\n\n#### [発生した障害]\nアクセス集中時に特定商品の購入要求が同時に多数発生した際、複数トランザクション間でデッドロックが発生し、システム全体が応答停止する事態が発生した。\n\n| トランザクション | 処理順序 | 対象リソース | 保持ロック | 要求ロック |\n| --- | --- | --- | --- | --- |\n| TX-A | 1 -> 2 | 商品マスター -> 在庫テーブル | 商品マスター(排他) | 在庫テーブル(排他) |\n| TX-B | 1 -> 2 | 在庫テーブル -> 商品マスター | 在庫テーブル(排他) | 商品マスター(排他) |\n\n分析の結果、トランザクション間でリソースにアクセスする順番が統一されていないことが原因と特定された。\n\n以下の各設問に答えなさい。",
+    "modelAnswers": [
+      {
+        "subQuestionNum": "設問1",
+        "maxScore": 10,
+        "characterLimit": 45,
+        "answerText": "すべてのトランザクションでリソースへのアクセス順番を統一する。",
+        "explanation": "デッドロック回避の最も効果的な原則である「アクセス順序の一貫性維持」に関する回答です。"
+      },
+      {
+        "subQuestionNum": "設問2",
+        "maxScore": 15,
+        "characterLimit": 50,
+        "answerText": "悲観的ロックから楽観的ロックに変更し、バージョン番号による衝突検知を行う。",
+        "explanation": "高コンテンション環境でのデッドロック防止およびスループット向上のための楽観的ロック手法を説明します。"
+      }
+    ]
+  }
+]
