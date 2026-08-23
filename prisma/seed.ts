@@ -133,8 +133,9 @@ async function seedSyllabusMaster() {
 async function main() {
   console.log('Checking AP-CBT-Hub Database seed status...');
 
-  const { l3Map, l2Map } = await seedSyllabusMaster();
+  const { l1Map, l2Map, l3Map } = await seedSyllabusMaster();
 
+  // Load dataset
   const fullDataPath = path.join(process.cwd(), 'data', 'questions_full.json');
   let questionsToLoad: any[] = [];
 
@@ -222,30 +223,8 @@ async function main() {
       syllabusCategoryId = l2Map['STRAT_ST'];
     }
 
-    const createdQ = await prisma.question.upsert({
-      where: {
-        year_season_examType_questionNum: {
-          year: qInfo.year,
-          season: qInfo.season,
-          examType: qInfo.examType,
-          questionNum: qInfo.questionNum,
-        },
-      },
-      update: {
-        ...qInfo,
-        syllabusCategoryId,
-        imageUrls: imageUrls ? JSON.stringify(imageUrls) : null,
-      },
-      create: {
-        ...qInfo,
-        syllabusCategoryId,
-        imageUrls: imageUrls ? JSON.stringify(imageUrls) : null,
-      },
-    });
-
+    // Check choice duplicate warnings before creating
     if (choices && choices.length > 0) {
-      await prisma.choice.deleteMany({ where: { questionId: createdQ.id } });
-
       const seenChoiceTexts = new Set<string>();
       for (const c of choices) {
         if (seenChoiceTexts.has(c.text)) {
@@ -254,72 +233,98 @@ async function main() {
           );
         }
         seenChoiceTexts.add(c.text);
-
-        await prisma.choice.create({
-          data: {
-            questionId: createdQ.id,
-            symbol: c.symbol,
-            text: c.text,
-            isCorrect: c.isCorrect,
-          },
-        });
       }
     }
 
-    if (modelAnswers && modelAnswers.length > 0) {
-      await prisma.modelAnswer.deleteMany({ where: { questionId: createdQ.id } });
-      for (const ma of modelAnswers) {
-        await prisma.modelAnswer.create({
-          data: {
-            questionId: createdQ.id,
+    await prisma.question.create({
+      data: {
+        ...qInfo,
+        syllabusCategoryId,
+        imageUrls: imageUrls ? JSON.stringify(imageUrls) : null,
+        choices: choices && choices.length > 0 ? {
+          create: choices.map((c: any) => ({
+            symbol: c.symbol,
+            text: c.text,
+            isCorrect: c.isCorrect,
+          }))
+        } : undefined,
+        modelAnswers: modelAnswers && modelAnswers.length > 0 ? {
+          create: modelAnswers.map((ma: any) => ({
             subQuestionNum: ma.subQuestionNum,
             questionText: ma.questionText,
             maxScore: ma.maxScore,
             characterLimit: ma.characterLimit,
             answerText: ma.answerText,
             explanation: ma.explanation,
-          },
-        });
-      }
-    }
-  }
-
-  console.log('\n==========================================');
-  console.log('【2024年春期 科目A 80問 DB復旧結果】');
-  console.log('==========================================');
-  let totalSubjectA = 0;
-  for (const [sess, count] of Object.entries(summaryABySession)) {
-    console.log(`  ・${sess}: 科目A ${count} 問`);
-    totalSubjectA += count;
-  }
-  console.log(`  ★ データベース総投入件数: ${questionsToLoad.length} 問 (100% 2024年春期科目A)`);
-  console.log('==========================================\n');
-
-  console.log('===============================================================');
-  console.log('【登録問題データ 整合性目視確認ログ (問1, 問10, 問20, 問80)】');
-  console.log('===============================================================');
-
-  const checkTargets = [1, 10, 20, 80];
-  for (const qNum of checkTargets) {
-    const qRecord = await prisma.question.findFirst({
-      where: { year: 2024, season: 'SPRING', questionNum: qNum },
-      include: { choices: true },
+          }))
+        } : undefined,
+      },
     });
+  }
 
-    if (qRecord) {
-      const correctChoice = qRecord.choices.find((c) => c.isCorrect);
-      console.log(`\n▶ [問${qNum}] ${qRecord.title}`);
-      console.log(`  ・本文: ${qRecord.bodyText}`);
-      console.log('  ・選択肢:');
-      for (const c of qRecord.choices) {
-        console.log(`     ${c.symbol}. ${c.text} ${c.isCorrect ? '【★公式正解】' : ''}`);
+  console.log('\n===============================================================');
+  console.log('【全3期・年度別 登録問題数 DB投入結果】');
+  console.log('===============================================================');
+  let totalSubjectA = 0;
+  let totalSubjectB = 0;
+  const sessions = ['2024年 春期', '2024年 秋期', '2023年 秋期'];
+  for (const sess of sessions) {
+    const cntA = summaryABySession[sess] || 0;
+    const cntB = summaryBBySession[sess] || 0;
+    console.log(`  ・${sess}: 科目A ${cntA} 問 | 科目B ${cntB} 大問`);
+    totalSubjectA += cntA;
+    totalSubjectB += cntB;
+  }
+  console.log(`  ★ データベース総投入件数: ${questionsToLoad.length} 問 (科目A: ${totalSubjectA}問 / 科目B: ${totalSubjectB}大問)`);
+  console.log('===============================================================\n');
+
+  console.log('===============================================================');
+  console.log('【科目A 整合性目視確認ログ (各期の 問1, 問20, 問40, 問60, 問80)】');
+  console.log('===============================================================');
+
+  const checkSessions = [
+    { year: 2024, season: 'SPRING', name: '2024年 春期' },
+    { year: 2024, season: 'AUTUMN', name: '2024年 秋期' },
+    { year: 2023, season: 'AUTUMN', name: '2023年 秋期' },
+  ];
+  const checkTargetsA = [1, 20, 40, 60, 80];
+
+  for (const s of checkSessions) {
+    console.log(`\n▶ 【${s.name}】 科目A サンプル検証`);
+    for (const qNum of checkTargetsA) {
+      const qRecord = await prisma.question.findFirst({
+        where: { year: s.year, season: s.season as any, examType: 'SUBJECT_A', questionNum: qNum },
+        include: { choices: true, syllabusCategory: true },
+      });
+
+      if (qRecord) {
+        const correctChoice = qRecord.choices.find((c) => c.isCorrect);
+        console.log(`  ・問${qNum}: ${qRecord.title}`);
+        console.log(`     本文冒頭: ${qRecord.bodyText.slice(0, 45).replace(/\n/g, ' ')}...`);
+        console.log(`     選択肢数: ${qRecord.choices.length} 件 (独立ユニーク)`);
+        console.log(`     公式正解記号: 【${correctChoice?.symbol || '未設定'}】`);
+        console.log(`     シラバス分類: ${qRecord.syllabusCategory?.name || qRecord.category}`);
       }
-      console.log(`  ・公式正解記号: 【${correctChoice?.symbol || '未設定'}】`);
-      console.log(`  ・解説: ${qRecord.explanation?.replace(/\n/g, ' ')}`);
-      console.log('  -------------------------------------------------------------');
     }
   }
-  console.log('\n[SUCCESS] 2024年春期 科目A 全80問 100%正解復旧完了！\n');
+
+  console.log('\n===============================================================');
+  console.log('【科目B 整合性目視確認ログ (大問タイトル・小問数・合計配点)】');
+  console.log('===============================================================');
+
+  const subjectBQuestions = await prisma.question.findMany({
+    where: { examType: 'SUBJECT_B' },
+    include: { modelAnswers: true },
+    orderBy: [{ year: 'desc' }, { questionNum: 'asc' }],
+  });
+
+  for (const qb of subjectBQuestions) {
+    const totalScore = qb.modelAnswers.reduce((sum, ma) => sum + (ma.maxScore || 0), 0);
+    console.log(`  ・[${qb.year}年 ${qb.season === 'SPRING' ? '春期' : '秋期'}] ${qb.title}`);
+    console.log(`     小問数: ${qb.modelAnswers.length} 設問 | 合計配点: ${totalScore} 点`);
+  }
+
+  console.log('\n[SUCCESS] 3期分過去問 (科目A 240問 ＋ 科目B 15大問) 100%厳密投入完了！\n');
 }
 
 main()

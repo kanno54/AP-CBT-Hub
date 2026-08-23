@@ -5,9 +5,9 @@
     "examType": "SUBJECT_B",
     "questionNum": 1,
     "category": "SECURITY",
-    "title": "問1 情報セキュリティ: Webアプリケーションの脆弱性対策とCSRF防御",
-    "bodyText": "## 【長文シナリオ】 ECサイトにおけるCSRF脆弱性検証と安全な設計\n\nA社は顧客向けECサイトを運営している。最近、セキュリティベンダーによる脆弱性診断を実施したところ、購入処理およびパスワード変更機能においてクロスサイトリクエストフォージェリ（CSRF）の脆弱性が指摘された。\n\n### システム構成と問題の概要\n会員ユーザーがログインすると、ECサイトのWebサーバーはセッション識別子（Session ID）をCookieに発行する。\n利用者が悪意のある攻撃者が設置した罠Webサイト（http://evil-example.com）を閲覧した場合、罠サイト上のJavaScriptが自動的にA社のECサイトへフォーム送信（POSTリクエスト）を行う。\nこの際、ブラウザは保存されているA社ECサイトのCookie（セッションID）を自動的に添付して送信してしまう。\n\n### 指摘された脆弱性の原因\n1. パスワード変更リクエストおよび商品購入リクエストにおいて、送信元が正当なA社ECサイトの画面から行われたかを検証する機構（ワンタイムトークン検証等）が存在しない。\n2. Cookieの SameSite 属性が指定されていないため、クロスサイトリクエスト時にもCookieが自動送信される。\n\n### 対策の検討\n情報セキュリティ担当者のB君は以下の2つの対策を策定した。\n- **対策1 (Cookie属性の強化)**: セッションCookieに SameSite=Strict および Secure 属性を付与する。\n- **対策2 (CSRFトークンの導入)**: フォーム表示時に暗号学的に安全な擬似乱数生成器を用いて一意なトークンを発行し、セッションに保持させるとともに暗黙のパラメータとしてフォーム内に埋め込み、サーバー側で照合する。",
-    "explanation": "【Knowledge Graph】\n■ コア概念: CSRF対策とCookie属性の設計\n■ 関連キーワード: CSRF, SameSite属性, XSS, トークン検証\n■ IPA出題パターン: 攻撃成立のメカニズム, 根本対策と多層防御の対比, Cookie属性の挙動",
+    "title": "問1 情報セキュリティ: ECサイトにおけるCSRF脆弱性検証とCookie属性設計",
+    "bodyText": "## 【長文シナリオ】 ECサイトにおけるCSRF脆弱性検証と安全な設計\n\nA社は顧客向けECサイトを運営している。最近、セキュリティベンダーによる脆弱性診断を実施したところ、購入処理およびパスワード変更機能においてクロスサイトリクエストフォージェリ（CSRF）の脆弱性が指摘された。\n\n### システム構成と問題の概要\n会員ユーザーがログインすると、ECサイトのWebサーバーはセッション識別子（Session ID）をCookieに発行する。\n利用者が悪意のある攻撃者が設置した罠Webサイト（`http://evil-example.com`）を閲覧した場合、罠サイト上のJavaScriptが自動的にA社のECサイトへフォーム送信（POSTリクエスト）を行う。\nこの際、ブラウザは保存されているA社ECサイトのCookie（セッションID）を自動的に添付して送信してしまう。\n\n### 対策の検討\n- **対策1 (Cookie属性の強化)**: セッションCookieに SameSite=Strict および Secure 属性を付与する。\n- **対策2 (CSRFトークンの導入)**: フォーム表示時に暗号学的に安全な擬似乱数生成器を用いて一意なトークンを発行し、セッションに保持させるとともに暗黙のパラメータとしてフォーム内に埋め込み、サーバー側で照合する。",
+    "explanation": "【Knowledge Graph】\n■ コア概念: CSRF対策とCookie属性設計\n■ 関連キーワード: CSRF, SameSite, XSS, ワンタイムトークン\n■ IPA出題パターン: 攻撃成立のメカニズム, Cookie属性の挙動, トークン検証",
     "imageUrls": [
       "/questions/b_2024_spring_q1_1.png"
     ],
@@ -19,7 +19,7 @@
         "characterLimit": 30,
         "maxScore": 10,
         "answerText": "利用者のセッションIDを偽造して不正送金を指示するリクエスト",
-        "explanation": "【解説】CSRF攻撃は、被害者のブラウザに保持された認証Cookie（セッションID）を自動送信させ、被害者本人の権限で意図しない処理を実行させる攻撃です。"
+        "explanation": "【解説】CSRF攻撃は、被害者のブラウザに保持された認証Cookieを自動送信させ、意図しないリクエストを実行させる攻撃です。"
       },
       {
         "subQuestionNum": "設問1 (2)",
@@ -27,7 +27,7 @@
         "characterLimit": null,
         "maxScore": 5,
         "answerText": "SameSite",
-        "explanation": "【解説】SameSite属性はクロスサイトリクエスト時におけるCookieの自動送信挙動を制御する仕様です。Strictに設定することでCSRF攻撃を強力に防御できます。"
+        "explanation": "【解説】SameSite属性はクロスサイトリクエスト時におけるCookie自動送信の制限仕様です。"
       },
       {
         "subQuestionNum": "設問2",
@@ -35,7 +35,7 @@
         "characterLimit": 40,
         "maxScore": 10,
         "answerText": "セッションに保持されたトークンとリクエストパラメータのトークンが一致すること",
-        "explanation": "【解説】CSRFトークン検証では、サーバー側セッションに保持した一意なトークン値と、クライアントからPOST送信されたパラメータのトークン値が一致することを確認します。"
+        "explanation": "【解説】サーバー側セッションのトークンとクライアントパラメータのトークンの一致を検証します。"
       }
     ]
   },
@@ -46,7 +46,7 @@
     "questionNum": 2,
     "category": "STRATEGY",
     "title": "問2 経営戦略・DX: クラウドサービス移行とビジネスモデル変革",
-    "bodyText": "## 【長文シナリオ】 製造業におけるクラウド移行とDX推進計画\n\n中堅精密機器メーカーのC社は、基幹システムの老朽化と保守コスト高騰に対応するため、オンプレミス型基幹システムからSaaS/PaaSを中心とするクラウド環境への全面移行計画を策定した。\n\n### 経産省DXガイドラインに基づく評価\nC社の経営企画部は、経産省「DX推進ガイドライン」に基づき、自社のIT活用段階を評価した。\n- **第1段階 (デジタイゼーション)**: 紙の業務帳票や図面データのPDFスキャン化およびペーパーレス化。\n- **第2段階 (デジタライゼーション)**: 営業部門と工場間のワークフロー自動化による業務効率化。\n- **第3段階 (DX)**: 収集したIoT稼働データをリアルタイム解析し、機器の予防保全サブスクリプション型サービスという新たなビジネスモデルの変革。\n\nC社は第3段階である「DXの実現による競争上の優位性の確立」を目標に掲げ、経営陣主導のIT変革を開始した。",
+    "bodyText": "## 【長文シナリオ】 製造業におけるクラウド移行とDX推進計画\n\n中堅精密機器メーカーのC社は、基幹システムの老朽化に対応するためSaaS/PaaS中心のクラウド環境への移行計画を策定した。\n\n### 経産省DXガイドラインに基づく評価\n- **第1段階 (デジタイゼーション)**: 紙帳票・図面データのPDFスキャン化およびペーパーレス化。\n- **第2段階 (デジタライゼーション)**: 営業と工場間のワークフロー自動化による効率化。\n- **第3段階 (DX)**: IoT稼働データをリアルタイム解析し、機器の予防保全サブスクリプション型サービスという新たなビジネスモデルへの変革。",
     "explanation": "【Knowledge Graph】\n■ コア概念: DX定義とクラウド変革\n■ 関連キーワード: DXガイドライン, デジタイゼーション, サブスクリプション, SaaS\n■ IPA出題パターン: IT化とDXの相違点, TCO削減効果, 競争優位の確立",
     "imageUrls": [
       "/questions/b_2024_spring_q2_1.png"
@@ -59,7 +59,7 @@
         "characterLimit": 35,
         "maxScore": 10,
         "answerText": "製品やビジネスモデルを変革し競争上の優位性を確立すること",
-        "explanation": "【解説】DX（デジタルトランスフォーメーション）の定義は、単なる業務効率化にとどまらず、製品・サービス・ビジネスモデルを変革し、競争優位を確立することです。"
+        "explanation": "【解説】DXの真の定義は製品・サービス・ビジネスモデルを変革し競争優位を確立することです。"
       },
       {
         "subQuestionNum": "設問2",
@@ -67,7 +67,7 @@
         "characterLimit": 25,
         "maxScore": 10,
         "answerText": "自社でのハードウェア保守や運用コストが不要になるため",
-        "explanation": "【解説】SaaS利用により自社でのサーバー導入・ハード更新・基盤運用保守費用が削減され、総所有コスト(TCO)が最適化されます。"
+        "explanation": "【解説】自社ハード更新保守コストが不要になるためTCOが削減されます。"
       }
     ]
   },
@@ -77,9 +77,9 @@
     "examType": "SUBJECT_B",
     "questionNum": 3,
     "category": "ALGORITHM",
-    "title": "問3 プログラミング・アルゴリズム: ダイクストラ法による最短経路探索",
-    "bodyText": "## 【長文シナリオ】 物流配送ルート最適化アルゴリズムの実装\n\n物流企業D社は、配送トラックの最短ルートおよび配送コストを自動計算するプログラミングアルゴリズムを開発している。\n\n### アルゴリズムの概要\n配送拠点（ノード）と道路網（エッジ）を重み付き有向グラフ G = (V, E) として表現する。\n各エッジの重み w(u, v) は、拠点 u から拠点 v までの移動時間（分）を表す。\n\n始点ノード S から全ノードへの最短距離を求めるため、ダイクストラ法（Dijkstra's Algorithm）を適用する。\n\n### アルゴリズムのステップ\n1. 始点 S の最短確定距離 d[S] = 0、その他の全ノード v の距離 d[v] = ∞ に初期化する。\n2. 確定フラグ配列 visited[] をすべて false に初期化する。\n3. 毎ステップで未確定ノードの中から d[u] が最小となるノード u を選択し、visited[u] = true と置く。\n4. ノード u から隣接する全ノード v について、d[u] + w(u, v) < d[v] であれば、d[v] を更新する。\n5. 全ノードの距離が確定するまで3〜4を繰り返す。",
-    "explanation": "【Knowledge Graph】\n■ コア概念: グラフ最短経路探索と時間複雑度\n■ 関連キーワード: ダイクストラ法, 優先度付きキュー, ヒープソート, O((N+M)log N)\n■ IPA出題パターン: 計算量アプローチ, アルゴリズム適用条件, データ構造選択",
+    "title": "問3 プログラミング: ダイクストラ法による最短経路探索",
+    "bodyText": "## 【長文シナリオ】 物流配送ルート最適化アルゴリズムの実装\n\n物流企業D社は、配送トラックの最短ルートを自動計算するアルゴリズムを開発している。\n\n### アルゴリズムの概要\n配送拠点（ノード）と道路網（エッジ）を重み付き有向グラフ G = (V, E) として表現する。\n始点ノード S から全ノードへの最短距離を求めるため、ダイクストラ法（Dijkstra's Algorithm）を適用する。",
+    "explanation": "【Knowledge Graph】\n■ コア概念: 最短経路アルゴリズムと計算量\n■ 関連キーワード: ダイクストラ法, 優先度付きキュー, ヒープソート\n■ IPA出題パターン: 計算量評価, アルゴリズム前提条件",
     "imageUrls": [
       "/questions/b_2024_spring_q3_1.png"
     ],
@@ -91,7 +91,7 @@
         "characterLimit": null,
         "maxScore": 10,
         "answerText": "O((N + M) log N)",
-        "explanation": "【解説】優先度付きキュー(Binary Heap)を用いると、最小要素の取り出しおよび更新が O(log N) で行えるため、全体計算量は O((N + M) log N) となります。"
+        "explanation": "【解説】優先度付きキュー(Binary Heap)を用いると全体計算量は O((N + M) log N) となります。"
       },
       {
         "subQuestionNum": "設問2",
@@ -99,7 +99,7 @@
         "characterLimit": 20,
         "maxScore": 10,
         "answerText": "すべてのエッジの重みが非負（0以上）であること",
-        "explanation": "【解説】ダイクストラ法は負の重みを持つエッジが存在する場合、正しい最短経路を算出できません（負の重みがある場合はベルマンフォード法等を使用）。"
+        "explanation": "【解説】ダイクストラ法はエッジの重みがすべて非負(0以上)であることが前提です。"
       }
     ]
   },
@@ -109,9 +109,9 @@
     "examType": "SUBJECT_B",
     "questionNum": 6,
     "category": "DATABASE",
-    "title": "問6 データベース: データベース正規化と排他制御デッドロック回避",
-    "bodyText": "## 【長文シナリオ】 受発注管理データベースの正規化とトランザクション排他制御\n\nE社は自社基幹システムのデータベース設計の見直しを行っている。\n\n### テーブル設計と正規化\n従来の「受注テーブル」には、受注番号、顧客コード、顧客名、商品コード、商品名、単価、数量、受注日付 が混在していた。\nデータベース設計者のF君は、更新異常およびデータ重複を防止するため、以下の段階で正規化を行った。\n- **第1正規形**: 繰り返し属性を分解し単一原子値化。\n- **第2正規形**: 複合主キー（受注番号, 行番号）に対する部分関数従属を解消し、受注ヘッダと受注明細に分割。\n- **第3正規形**: 非キー属性（顧客コード -> 顧客名、商品コード -> 商品名）の推移的関数従属を解消し、「顧客テーブル」「商品テーブル」を独立化。\n\n### トランザクションとデッドロック\n受注処理において、商品在庫数を更新する排他ロック処理を追加した際、複数端末から同時に大量注文が入るとデッドロックが発生することが判明した。\n検討の結果、すべてのトランザクションで商品更新の「ロック獲得順序」を一律統一する改修を行った。",
-    "explanation": "【Knowledge Graph】\n■ コア概念: DB正規化理論とデッドロック予防\n■ 関連キーワード: 第3正規形, 推移的関数従属, デッドロック, ロック順序固定\n■ IPA出題パターン: 正規形の判定ルール, デッドロック発生回避策, 完全関数従属",
+    "title": "問6 データベース: データベース正規化とデッドロック回避",
+    "bodyText": "## 【長文シナリオ】 受発注管理データベースの正規化とトランザクション排他制御\n\nE社は自社基幹システムのデータベース設計の見直しを行っている。\n\n### テーブル正規化と排他制御\n従来の「受注テーブル」には繰り返し群や推移的関数従属が存在したため、第1〜第3正規化を実施した。また注文処理時のデッドロック回避のためロック順序を固定化した。",
+    "explanation": "【Knowledge Graph】\n■ コア概念: DB正規化理論とデッドロック予防\n■ 関連キーワード: 第3正規形, 推移的関数従属, デッドロック\n■ IPA出題パターン: 正規形の定義, デッドロック回避手段",
     "imageUrls": [
       "/questions/b_2024_spring_q6_1.png"
     ],
@@ -123,7 +123,7 @@
         "characterLimit": 35,
         "maxScore": 10,
         "answerText": "完全関数従属を満たし推移的関数従属が存在しない状態",
-        "explanation": "【解説】第3正規形は、第2正規形（完全関数従属）を満たした上で、非キー属性から他の非キー属性への推移的関数従属を排除した状態です。"
+        "explanation": "【解説】第3正規形は完全関数従属を満たし推移的関数従属を排除した状態です。"
       },
       {
         "subQuestionNum": "設問2",
@@ -131,7 +131,7 @@
         "characterLimit": 30,
         "maxScore": 10,
         "answerText": "全処理で対象リソースのロック獲得順序を一律に固定する",
-        "explanation": "【解説】デッドロックは互いに相手が保持するロックを待つ循環待ちで発生するため、全トランザクションでリソースのロック順序を揃えることで予防できます。"
+        "explanation": "【解説】ロック獲得順序を一致させることで循環待ちデッドロックを防止します。"
       }
     ]
   },
@@ -142,8 +142,8 @@
     "questionNum": 8,
     "category": "PROJECT_MGMT",
     "title": "問8 プロジェクトマネジメント: EVM進捗評価とスケジュール分析",
-    "bodyText": "## 【長文シナリオ】 システム開発プロジェクトにおけるEVM定量管理\n\nG社は大手銀行の基幹系システム構築プロジェクトを進行している。プロジェクトマネージャ(PM)のH氏は、進捗およびコストの定量管理のため EVM (Earned Value Management) 手法を採用している。\n\n### プロジェクト状況 (第6ヶ月末)\n第6ヶ月末時点の計画および実績データは以下の通りである。\n- **PV (Planned Value / 計画値)**: 5,000 万円\n- **EV (Earned Value / 出来高)**: 4,500 万円\n- **AC (Actual Cost / 実コスト)**: 5,200 万円\n\n### EVM指標の算出\nH氏は第6ヶ月末の状況を以下の指標により評価した。\n- **コスト分散 (CV = EV - AC)**: 4,500 - 5,200 = -700 万円（予算超過）\n- **スケジュール効率指標 (SPI = EV / PV)**: 4,500 / 5,000 = 0.90 （進捗遅延）\n\n分析の結果、特定の機能開発で技術的課題が発生し遅延していることが明らかなったため、クリティカルパス上の作業を並行実施する「ファストトラッキング」の適用を決定した。",
-    "explanation": "【Knowledge Graph】\n■ コア概念: EVM定量管理とクラッシング/ファストトラッキング\n■ 関連キーワード: EVM, SPI, CPI, ファストトラッキング, クリティカルパス\n■ IPA出題パターン: EVM計算公式, コスト超過・遅延の判定, スケジュールリカバリ手段",
+    "bodyText": "## 【長文シナリオ】 システム開発プロジェクトにおけるEVM定量管理\n\nG社は大手銀行の基幹系システム構築プロジェクトを進行している。PMのH氏はEVM手法を採用している。\n第6ヶ月末実績: PV=5,000万円, EV=4,500万円, AC=5,200万円。SPI=0.90 (遅延)。リカバリのためファストトラッキングを検討中。",
+    "explanation": "【Knowledge Graph】\n■ コア概念: EVM指標計算とスケジュールリカバリ\n■ 関連キーワード: EVM, SPI, CPI, ファストトラッキング\n■ IPA出題パターン: EVM数値評価, ファストトラッキングの定義",
     "imageUrls": [
       "/questions/b_2024_spring_q8_1.png"
     ],
@@ -155,7 +155,7 @@
         "characterLimit": null,
         "maxScore": 5,
         "answerText": "0.87",
-        "explanation": "【解説】CPI = EV / AC = 4,500 / 5,200 ≒ 0.8653... 四捨五入して 0.87 となります。1.0未満であるためコスト効率が悪化していることを示します。"
+        "explanation": "【解説】CPI = 4,500 / 5,200 ≒ 0.8653 -> 四捨五入して 0.87 です。"
       },
       {
         "subQuestionNum": "設問2",
@@ -163,7 +163,327 @@
         "characterLimit": 30,
         "maxScore": 10,
         "answerText": "本来順番に行う順次作業を並行して同時に実施する",
-        "explanation": "【解説】ファストトラッキングは、本来シーケンシャルに行う予定だった後続作業を先行作業と並行して実施することで全体の工期を短縮する手法です。"
+        "explanation": "【解説】順次行う予定だった作業を並行実施して工期短縮する手法です。"
+      }
+    ]
+  },
+  {
+    "year": 2024,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_B",
+    "questionNum": 1,
+    "category": "SECURITY",
+    "title": "問1 情報セキュリティ: ゼロトラスト基盤と認証認可統合",
+    "bodyText": "## 【長文シナリオ】 クラウドネイティブ環境におけるゼロトラストネットワークアーキテクチャ\n\nH社は社内システムのクラウド移行に伴い、従来の境界防御型ネットワークからゼロトラストアーキテクチャ(ZTNA)への転換を実施した。\n\n### 認証とアクセス制御\n全通信について「何も信頼せず常に検証する」原則を適用し、IdP(IDプロバイダ)と連携したSAML 2.0 / OAuth 2.0 によるシングルサインオン(SSO)および多要素認証(MFA)を導入した。",
+    "explanation": "【Knowledge Graph】\n■ コア概念: ゼロトラストとMFA認証統合\n■ 関連キーワード: ゼロトラスト, IdP, MFA, SAML\n■ IPA出題パターン: ゼロトラストの思想, 多要素認証の3要素",
+    "imageUrls": [
+      "/questions/b_2024_autumn_q1_1.png"
+    ],
+    "choices": [],
+    "modelAnswers": [
+      {
+        "subQuestionNum": "設問1",
+        "questionText": "ゼロトラストセキュリティにおけるアクセス制御の根本思想を30字以内で述べよ。",
+        "characterLimit": 30,
+        "maxScore": 10,
+        "answerText": "社内外部を問わずすべてのアクセスを信用せず常に認証認可する",
+        "explanation": "【解説】ゼロトラストの核心思想は、境界内であっても信頼せず毎回認証認可を行うことです。"
+      },
+      {
+        "subQuestionNum": "設問2",
+        "questionText": "MFA(多要素認証)において、パスワード認証(知識情報)と併用するのに適切な要素を2つ答えよ。",
+        "characterLimit": null,
+        "maxScore": 10,
+        "answerText": "所持情報（ワンタイムアプリ端末）および生体情報（指紋・顔認証）",
+        "explanation": "【解説】MFAは「知識」「所持」「生体」の異なる要素を組み合わせます。"
+      }
+    ]
+  },
+  {
+    "year": 2024,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_B",
+    "questionNum": 3,
+    "category": "ALGORITHM",
+    "title": "問3 プログラミング: 動的計画法(DP)によるナップサック問題",
+    "bodyText": "## 【長文シナリオ】 リソース割当最適化における動的計画法の適用\n\nシステム開発会社I社は、サーバーリソースの制限下で利益を最大化するリソース割当プログラムを開発している。\n\n### アルゴリズム設計\n容量 W のサーバーに対し、サイズ w[i] と価値 v[i] を持つ N 個のタスクから最適な組み合わせを選ぶ0/1ナップサック問題として定式化し、動的計画法(Dynamic Programming)を用いて解く。",
+    "explanation": "【Knowledge Graph】\n■ コア概念: 動的計画法と最適化アルゴリズム\n■ 関連キーワード: 動的計画法, 0/1ナップサック, 計算量O(NW)\n■ IPA出題パターン: DPテーブルの構造, 貪欲法との比較",
+    "imageUrls": [
+      "/questions/b_2024_autumn_q3_1.png"
+    ],
+    "choices": [],
+    "modelAnswers": [
+      {
+        "subQuestionNum": "設問1",
+        "questionText": "タスク数 N、容量 W の場合における動的計画法の計算量をO表記で答えよ。",
+        "characterLimit": null,
+        "maxScore": 10,
+        "answerText": "O(N * W)",
+        "explanation": "【解説】2次元DPテーブルの更新処理により計算量は O(N * W) となります。"
+      },
+      {
+        "subQuestionNum": "設問2",
+        "questionText": "動的計画法が貪欲法(Greedy Algorithm)と比較して最適解を確実に保証できる理由を30字以内で説明せよ。",
+        "characterLimit": 30,
+        "maxScore": 10,
+        "answerText": "すべての部分問題の最適解を記録し網羅的に評価するため",
+        "explanation": "【解説】DPは部分問題の最適解を保持して組み合わせを網羅評価するため、大局的最適解を保証します。"
+      }
+    ]
+  },
+  {
+    "year": 2024,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_B",
+    "questionNum": 5,
+    "category": "NETWORK",
+    "title": "問5 ネットワーク: IPsec VPN拠線暗号化とDNSSEC導入",
+    "bodyText": "## 【長文シナリオ】 拠点間VPN通信の暗号化とDNSキャッシュポイズニング防御\n\nJ社は本社と支社間の暗号化通信に IPsec (ESPプロトコル / トンネルモード) を導入した。また、DNSレスポンス偽造を防ぐため DNSSEC (DNS Security Extensions) の導入を決定した。",
+    "explanation": "【Knowledge Graph】\n■ コア概念: IPsec VPNとDNSSECセキュリティ\n■ 関連キーワード: IPsec, ESP, トンネルモード, DNSSEC\n■ IPA出題パターン: トンネルモードとトランスポートモードの相違, DNSSECの署名検証",
+    "imageUrls": [
+      "/questions/b_2024_autumn_q5_1.png"
+    ],
+    "choices": [],
+    "modelAnswers": [
+      {
+        "subQuestionNum": "設問1",
+        "questionText": "IPsec トンネルモードにおいて、ESPプロトコルが暗号化する範囲を25字以内で説明せよ。",
+        "characterLimit": 25,
+        "maxScore": 10,
+        "answerText": "元のIPヘッダを含むIPパケット全体",
+        "explanation": "【解説】トンネルモードでは元のIPヘッダを含むパケット全体を暗号化し、新たな外側IPヘッダを付与します。"
+      },
+      {
+        "subQuestionNum": "設問2",
+        "questionText": "DNSSECにおいて、DNS応答レコードの改ざん検知および真正性検証のために用いられる技術を20字以内で述べよ。",
+        "characterLimit": 20,
+        "maxScore": 10,
+        "answerText": "DNSサーバーの公開鍵によるデジタル署名",
+        "explanation": "【解説】DNSSECはDNS応答データに電子署名を付与し検証することで偽造を防ぎます。"
+      }
+    ]
+  },
+  {
+    "year": 2024,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_B",
+    "questionNum": 6,
+    "category": "DATABASE",
+    "title": "問6 データベース: SQLクエリ高速化とインデックス設計",
+    "bodyText": "## 【長文シナリオ】 大容量トランザクションDBにおけるSQL最適化\n\nK社の受発注システムにおいて、月次集計クエリのレスポンスが遅延していた。データベース管理者のL君は、実行計画(Execution Plan)を解析し、複合インデックスの作成およびHAVING句の最適化を実施した。",
+    "explanation": "【Knowledge Graph】\n■ コア概念: SQL実行計画とインデックスカーディナリティ\n■ 関連キーワード: B+ツリー, カーディナリティ, HAVING句, 実行計画\n■ IPA出題パターン: WHEREとHAVINGの使い分け, インデックスの効きやすさ",
+    "imageUrls": [
+      "/questions/b_2024_autumn_q6_1.png"
+    ],
+    "choices": [],
+    "modelAnswers": [
+      {
+        "subQuestionNum": "設問1",
+        "questionText": "WHERE句とHAVING句のフィルタリング処理タイミングの違いを30字以内で説明せよ。",
+        "characterLimit": 30,
+        "maxScore": 10,
+        "answerText": "WHERE句はグループ化前、HAVING句はGROUP BY後",
+        "explanation": "【解説】WHERE句はレコード集約前に行選択を行い、HAVING句はGROUP BYによる集約結果に対して評価を行います。"
+      },
+      {
+        "subQuestionNum": "設問2",
+        "questionText": "B+ツリーインデックスにおいて、検索効率が最も高くなる列のカーディナリティ（値の種類数）の特徴を20字以内で述べよ。",
+        "characterLimit": 20,
+        "maxScore": 10,
+        "answerText": "カーディナリティが高く値の種類が多い列",
+        "explanation": "【解説】カーディナリティが高い（一意性が高く値の種類が多い）列ほどB+ツリーの絞り込み効果が高くなります。"
+      }
+    ]
+  },
+  {
+    "year": 2024,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_B",
+    "questionNum": 8,
+    "category": "PROJECT_MGMT",
+    "title": "問8 プロジェクトマネジメント: アジャイル開発とスクラム管理",
+    "bodyText": "## 【長文シナリオ】 顧客体験向上プロジェクトにおけるスクラム開発導入\n\nM社は新Webサービスの開発において、スクラム(Scrum)フレームワークを導入した。タイムボックス形式のスプリント(2週間)を繰り返し、スプリントバックログの完了状況をバーンダウンチャートで可視化した。",
+    "explanation": "【Knowledge Graph】\n■ コア概念: スクラム役割定義とバーンダウンチャート\n■ 関連キーワード: スクラム, プロダクトオーナー, スプリント, バーンダウンチャート\n■ IPA出題パターン: PO/SMの役割分担, バーンダウンチャートの読み取り",
+    "imageUrls": [
+      "/questions/b_2024_autumn_q8_1.png"
+    ],
+    "choices": [],
+    "modelAnswers": [
+      {
+        "subQuestionNum": "設問1",
+        "questionText": "スクラムにおけるプロダクトオーナー(PO)の主要な責務を25字以内で述べよ。",
+        "characterLimit": 25,
+        "maxScore": 10,
+        "answerText": "プロダクトバックログの優先順位を管理決定する",
+        "explanation": "【解説】POは製品価値最大化のためプロダクトバックログの優先順位を管理・決定します。"
+      },
+      {
+        "subQuestionNum": "設問2",
+        "questionText": "スプリントバックログの残作業時間を日次で記録する「バーンダウンチャート」の傾きが緩やかである場合の意味を25字以内で説明せよ。",
+        "characterLimit": 25,
+        "maxScore": 10,
+        "answerText": "予定よりも作業消化ペースが遅れていること",
+        "explanation": "【解説】バーンダウンチャートの傾きが緩やかであることは、残作業が減っておらず進捗が遅延していることを示します。"
+      }
+    ]
+  },
+  {
+    "year": 2023,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_B",
+    "questionNum": 1,
+    "category": "SECURITY",
+    "title": "問1 情報セキュリティ: WAF導入とSQLインジェクション対策",
+    "bodyText": "## 【長文シナリオ】 WebシステムにおけるSQLi脆弱性の検知とWAF運用\n\nN社のポータルサイトで大規模な個人情報流出懸念が発生した。調査の結果、検索入力フォームにおける動的SQL構文結合によるSQLインジェクション脆弱性が原因と判明した。緊急対策としてWAFを導入し、恒久対策として静的プレペアードステートメントへリファクタリングした。",
+    "explanation": "【Knowledge Graph】\n■ コア概念: SQLインジェクションとプレペアードステートメント\n■ 関連キーワード: SQLi, WAF, プレースホルダ, バインド変数\n■ IPA出題パターン: SQLi成立メカニズム, プレペアードステートメントの根本性",
+    "imageUrls": [
+      "/questions/b_2023_autumn_q1_1.png"
+    ],
+    "choices": [],
+    "modelAnswers": [
+      {
+        "subQuestionNum": "設問1",
+        "questionText": "SQLインジェクション攻撃が成立する根本的な発生原因を30字以内で述べよ。",
+        "characterLimit": 30,
+        "maxScore": 10,
+        "answerText": "ユーザー入力値によりSQL構文自体が改変・実行されるため",
+        "explanation": "【解説】SQLiは入力値の動的結合により、パラメータではなくSQL構文そのものが書き換えられて実行されることで発生します。"
+      },
+      {
+        "subQuestionNum": "設問2",
+        "questionText": "SQLインジェクションの根本対策として最も有効な「静的プレペアードステートメント」の仕組みを35字以内で説明せよ。",
+        "characterLimit": 35,
+        "maxScore": 10,
+        "answerText": "プレースホルダを用いてSQL構文とデータ値をデータベース側で厳格分離する",
+        "explanation": "【解説】静的プレペアードステートメントは、SQL構文を事前コンパイルし、入力値を単なる値(データ)として処理するため攻撃を無効化します。"
+      }
+    ]
+  },
+  {
+    "year": 2023,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_B",
+    "questionNum": 3,
+    "category": "ALGORITHM",
+    "title": "問3 プログラミング: ハッシュテーブルの衝突解決法",
+    "bodyText": "## 【長文シナリオ】 大容量データ検索エンジンにおけるハッシュ衝突回避処理\n\nO社は高速キーワード検索エンジンのデータ構造としてハッシュテーブル(Hash Table)を採用した。キー値からハッシュ値を計算して格納インデックスを決定するが、同値のハッシュ値が発生するハッシュ衝突(Collision/シノニム発生)の対策として「チェイン法」を実装した。",
+    "explanation": "【Knowledge Graph】\n■ コア概念: ハッシュ衝突とチェイン法/オープンアドレス法\n■ 関連キーワード: ハッシュテーブル, チェイン法, シノニム, O(1)\n■ IPA出題パターン: 平均計算量と最悪計算量の相違, 衝突解決のアルゴリズム",
+    "imageUrls": [
+      "/questions/b_2023_autumn_q3_1.png"
+    ],
+    "choices": [],
+    "modelAnswers": [
+      {
+        "subQuestionNum": "設問1",
+        "questionText": "ハッシュ衝突発生時に同一ハッシュ値の要素を単方向単一連結リストで保持する「チェイン法」の平均および最悪の検索時間複雑度をそれぞれ答えよ。",
+        "characterLimit": null,
+        "maxScore": 10,
+        "answerText": "平均 O(1)、最悪 O(N)",
+        "explanation": "【解説】ハッシュテーブルは衝突が少なければ平均 O(1) ですが、全要素が同一ハッシュ値に集中する最悪時は線形リスト検索となり O(N) となります。"
+      },
+      {
+        "subQuestionNum": "設問2",
+        "questionText": "オープンアドレス法（線形探索法）と比較したチェイン法のメリットを25字以内で述べよ。",
+        "characterLimit": 25,
+        "maxScore": 10,
+        "answerText": "テーブルが満杯になっても要素を追加登録できる点",
+        "explanation": "【解説】チェイン法は動的メモリ確保による連結リスト構造のため、配列上限を超えても要素の追加が可能です。"
+      }
+    ]
+  },
+  {
+    "year": 2023,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_B",
+    "questionNum": 5,
+    "category": "NETWORK",
+    "title": "問5 ネットワーク: IPv6 アドレス設計とCIDRサブネット計算",
+    "bodyText": "## 【長文シナリオ】 企業ネットワークのIPv6全面移行とサブネット分割設計\n\nP社はグローバル拠点拡張に伴い、IPv4アドレス枯渇対策として社内ネットワークをIPv6へ完全移行する。割り当てられた `/48` プレフィックスから、各拠点・部門へ `/64` サブネットを効率的に切り出す設計を行った。",
+    "explanation": "【Knowledge Graph】\n■ コア概念: IPv6アドレス構造とサブネット分割\n■ 関連キーワード: IPv6, 128ビット, CIDR, インターフェースID\n■ IPA出題パターン: IPv6表記ルール, サブネットマスク計算",
+    "imageUrls": [
+      "/questions/b_2023_autumn_q5_1.png"
+    ],
+    "choices": [],
+    "modelAnswers": [
+      {
+        "subQuestionNum": "設問1",
+        "questionText": "IPv6 アドレス空間のビット長および表記形式の特徴を30字以内で述べよ。",
+        "characterLimit": 30,
+        "maxScore": 10,
+        "answerText": "128ビット長であり16ビットごとにコロンで区切り16進数表記する",
+        "explanation": "【解説】IPv6は128ビットのアドレス空間を持ち、16ビットごとにコロンで区切った16進数で表記します。"
+      },
+      {
+        "subQuestionNum": "設問2",
+        "questionText": "IPv6の標準的な `/64` サブネットにおけるホストインターフェース識別子のビット長を答えよ。",
+        "characterLimit": null,
+        "maxScore": 10,
+        "answerText": "64 ビット",
+        "explanation": "【解説】IPv6の標準サブネット `/64` では、前半64ビットがネットワークプレフィックス、後半64ビットがインターフェースIDとなります。"
+      }
+    ]
+  },
+  {
+    "year": 2023,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_B",
+    "questionNum": 6,
+    "category": "DATABASE",
+    "title": "問6 データベース: 参照コンストレイントとACID特性",
+    "bodyText": "## 【長文シナリオ】 金融決済DBにおけるACID特性維持と外部キー制約\n\nQ銀行の決済処理システムにおいて、口座間振込トランザクションの信頼性を担保するため、DBMSのACID特性(特に原子性と独立性)の検証を実施した。また、口座存在チェックのため外部キー(FOREIGN KEY)参照制約を設定した。",
+    "explanation": "【Knowledge Graph】\n■ コア概念: ACID特性と参照整合性制約\n■ 関連キーワード: ACID, 原子性, 外部キー, CASCADE\n■ IPA出題パターン: ACID特性4要素の使い分け, 外部キー制約の削除オプション",
+    "imageUrls": [
+      "/questions/b_2023_autumn_q6_1.png"
+    ],
+    "choices": [],
+    "modelAnswers": [
+      {
+        "subQuestionNum": "設問1",
+        "questionText": "トランザクションにおけるACID特性のうち、「障害発生時であっても処理が全貫徹されるか全取り消し(ロールバック)されるかのどちらか一方になる性質」を表す名称を答えよ。",
+        "characterLimit": null,
+        "maxScore": 10,
+        "answerText": "原子性 (Atomicity)",
+        "explanation": "【解説】処理が完全に成功するか完全に無効化される(All or Nothing)の性質は原子性(Atomicity)です。"
+      },
+      {
+        "subQuestionNum": "設問2",
+        "questionText": "外部キー制約(FOREIGN KEY)において、親テーブルの行削除時に子テーブルの該当行も自動削除するカスケード動作のキーワードを答えよ。",
+        "characterLimit": null,
+        "maxScore": 10,
+        "answerText": "ON DELETE CASCADE",
+        "explanation": "【解説】外部キー制約の ON DELETE CASCADE オプションにより、参照元レコード削除時に参照先レコードも連動削除されます。"
+      }
+    ]
+  },
+  {
+    "year": 2023,
+    "season": "AUTUMN",
+    "examType": "SUBJECT_B",
+    "questionNum": 8,
+    "category": "PROJECT_MGMT",
+    "title": "問8 プロジェクトマネジメント: 変更管理プロセスとSLA合意",
+    "bodyText": "## 【長文シナリオ】 基幹システム保守におけるITIL変更管理とSLA目標達成\n\nR社はSaaSサービスを運用している。運用チームではサービス品質向上・可用性維持のため、ITILフレームワークに基づく変更管理プロセスおよびサービスレベル合意(SLA)の評価を行っている。",
+    "explanation": "【Knowledge Graph】\n■ コア概念: ITIL変更管理とSLA稼働率達成\n■ 関連キーワード: ITIL, CAB, RFC, SLA, 稼働率\n■ IPA出題パターン: CABの定義と役割, SLA指標の運用合意",
+    "imageUrls": [
+      "/questions/b_2023_autumn_q8_1.png"
+    ],
+    "choices": [],
+    "modelAnswers": [
+      {
+        "subQuestionNum": "設問1",
+        "questionText": "ITIL変更管理プロセスにおいて、システムの変更要求(RFC)を承認・査定するための委員会組織の名称を答えよ。",
+        "characterLimit": null,
+        "maxScore": 10,
+        "answerText": "変更諮問委員会 (CAB / Change Advisory Board)",
+        "explanation": "【解説】変更要求(RFC)の影響度やリスクを評価・承認する組織は変更諮問委員会(CAB)です。"
+      },
+      {
+        "subQuestionNum": "設問2",
+        "questionText": "SLAにおいて定めた「サービス稼働率 99.9%」を達成するために年間で許容される最大停止時間（約8.76時間）を評価する際の指標目的を30字以内で説明せよ。",
+        "characterLimit": 30,
+        "maxScore": 10,
+        "answerText": "事業継続に支障をきたさない許容不可動時間を提示し合意するため",
+        "explanation": "【解説】SLAの稼働率指標は、顧客と事業者間で許容できる不可動時間の限界を明確に合意・測定するために設定されます。"
       }
     ]
   }
