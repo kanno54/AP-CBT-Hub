@@ -4,8 +4,21 @@ import path from 'path';
 
 const prisma = new PrismaClient();
 
+async function resetDatabase() {
+  console.log('====================================================');
+  console.log('【DB初期化】 既存過去問・解答データの完全クリア処理');
+  console.log('====================================================');
+
+  await prisma.userAnswer.deleteMany({});
+  await prisma.modelAnswer.deleteMany({});
+  await prisma.choice.deleteMany({});
+  await prisma.question.deleteMany({});
+
+  console.log('既存データを全件消去（完全初期化）完了。');
+}
+
 async function seedSyllabusMaster() {
-  console.log('Seeding IPA Official Syllabus Master Hierarchy...');
+  console.log('IPA Official Syllabus Master Hierarchy をシード中...');
 
   // Level 1: 大分類
   const level1Data = [
@@ -50,6 +63,13 @@ async function seedSyllabusMaster() {
   // Level 3: 小分類 & Keywords
   const level3Data = [
     {
+      code: 'TECH_THEORY_ALGO',
+      level: 3,
+      name: '基礎理論と離散数学',
+      parentCode: 'TECH_ALG',
+      keywords: ['2進数', '補数', '浮動小数点', '離散数学', '集合', '論理演算'],
+    },
+    {
       code: 'TECH_SEC_CRYPTO',
       level: 3,
       name: '暗号技術と鍵管理',
@@ -85,11 +105,18 @@ async function seedSyllabusMaster() {
       keywords: ['平衡二分探索木', 'AVL木', '赤黒木', 'ハッシュテーブル', 'O(log N)', 'O(1)', 'O(N)'],
     },
     {
+      code: 'TECH_ARCH',
+      level: 3,
+      name: 'プロセッサとコンピュータ構成要素',
+      parentCode: 'TECH_ARCH',
+      keywords: ['CPU', 'クロック周波数', 'キャッシュメモリ', 'パイプライン', '主記憶'],
+    },
+    {
       code: 'TECH_ARCH_BCP',
       level: 3,
       name: 'システム構成要素と信頼性',
       parentCode: 'TECH_ARCH',
-      keywords: ['BCP', 'RTO', 'RPO', '目標復旧時間', '目標復旧時点', 'ホットスタンドバイ'],
+      keywords: ['BCP', 'RTO', 'RPO', '目標復旧時間', '目標復旧時点', 'ホットスタンドバイ', 'RAID', 'デュプレックス'],
     },
     {
       code: 'MGMT_PM_EVM',
@@ -99,11 +126,25 @@ async function seedSyllabusMaster() {
       keywords: ['EVM', 'SPI', 'CPI', 'CV', 'PV', 'EV', 'AC', 'アーンドバリュー'],
     },
     {
+      code: 'MGMT_SM_SERVICE',
+      level: 3,
+      name: 'サービスマネジメントと運用',
+      parentCode: 'MGMT_SM',
+      keywords: ['ITIL', 'SLA', 'インシデント管理', '問題管理', 'ファシリティマネジメント'],
+    },
+    {
       code: 'STRAT_ST_DX',
       level: 3,
       name: 'DX推進とビジネス変革',
       parentCode: 'STRAT_ST',
-      keywords: ['DXガイドライン', 'デジタイゼーション', 'デジタライゼーション', '競争上の優位性'],
+      keywords: ['DXガイドライン', 'デジタイゼーション', 'デジタライゼーション', 'SWOT分析', 'PPM', 'BSC'],
+    },
+    {
+      code: 'STRAT_LEGAL',
+      level: 3,
+      name: '企業活動と関連法規',
+      parentCode: 'STRAT_ST',
+      keywords: ['著作権法', '不正アクセス禁止法', '労働基準法', '標準化'],
     },
   ];
 
@@ -131,205 +172,103 @@ async function seedSyllabusMaster() {
 }
 
 async function main() {
-  console.log('Checking AP-CBT-Hub Database seed status...');
+  await resetDatabase();
+  const { l3Map } = await seedSyllabusMaster();
 
-  const { l1Map, l2Map, l3Map } = await seedSyllabusMaster();
-
-  // Load dataset
-  const fullDataPath = path.join(process.cwd(), 'data', 'questions_full.json');
-  let questionsToLoad: any[] = [];
-
-  if (fs.existsSync(fullDataPath)) {
-    console.log(`Loading full AP exam dataset from ${fullDataPath}...`);
-    const rawData = fs.readFileSync(fullDataPath, 'utf-8');
-    questionsToLoad = JSON.parse(rawData);
-  }
-
-  if (questionsToLoad.length === 0) {
-    console.log('No data/questions_full.json dataset found. Skipping question seeding.');
+  // Load verified textbook questions
+  const tbDataPath = path.join(process.cwd(), 'data', 'textbook_questions.json');
+  if (!fs.existsSync(tbDataPath)) {
+    console.error('ERROR: data/textbook_questions.json not found! Run scripts/import_textbook_questions.py first.');
     return;
   }
 
-  console.log('Cleaning up existing question records to prevent duplicates...');
-  await prisma.userAnswer.deleteMany({});
-  await prisma.modelAnswer.deleteMany({});
-  await prisma.choice.deleteMany({});
-  await prisma.question.deleteMany({});
-  console.log('Database cleanup completed.');
+  const raw = fs.readFileSync(tbDataPath, 'utf-8');
+  const questions: any[] = JSON.parse(raw);
+  console.log(`Loaded ${questions.length} verified textbook questions from data/textbook_questions.json.`);
 
-  console.log(`Upserting ${questionsToLoad.length} AP past questions with Syllabus mapping...`);
+  const chapterCounts: Record<string, number> = {};
+  const insertedQuestions: any[] = [];
 
-  const summaryABySession: Record<string, number> = {};
-  const summaryBBySession: Record<string, number> = {};
+  for (const q of questions) {
+    const code = q.syllabusCategoryCode || 'TECH_THEORY_ALGO';
+    let categoryId = l3Map[code];
 
-  for (const qItem of questionsToLoad) {
-    const { choices, modelAnswers, imageUrls, ...qInfo } = qItem;
-
-    const sessionKey = `${qInfo.year}年 ${qInfo.season === 'SPRING' ? '春期' : '秋期'}`;
-    if (qInfo.examType === 'SUBJECT_A') {
-      summaryABySession[sessionKey] = (summaryABySession[sessionKey] || 0) + 1;
-    } else {
-      summaryBBySession[sessionKey] = (summaryBBySession[sessionKey] || 0) + 1;
+    if (!categoryId) {
+      // Fallback matching
+      if (code.includes('SEC')) categoryId = l3Map['TECH_SEC_THREAT'];
+      else if (code.includes('DB')) categoryId = l3Map['TECH_DB_NORM'];
+      else if (code.includes('NET')) categoryId = l3Map['TECH_NET_IP'];
+      else if (code.includes('ARCH')) categoryId = l3Map['TECH_ARCH'];
+      else if (code.includes('PM')) categoryId = l3Map['MGMT_PM_EVM'];
+      else if (code.includes('SM')) categoryId = l3Map['MGMT_SM_SERVICE'];
+      else if (code.includes('STRAT')) categoryId = l3Map['STRAT_ST_DX'];
+      else if (code.includes('LEGAL')) categoryId = l3Map['STRAT_LEGAL'];
+      else categoryId = l3Map['TECH_THEORY_ALGO'];
     }
 
-    // Map syllabus category
-    let syllabusCategoryId = l2Map['TECH_SEC'];
-    const cat = (qInfo.category || '').toUpperCase();
-    const qNum = qInfo.questionNum;
-
-    if (qInfo.examType === 'SUBJECT_B') {
-      if (qNum === 1) syllabusCategoryId = l3Map['TECH_SEC_THREAT'];
-      else if (qNum === 2) syllabusCategoryId = l3Map['STRAT_ST_DX'];
-      else if (qNum === 3) syllabusCategoryId = l3Map['TECH_ALG_TREE'];
-      else if (qNum === 4) syllabusCategoryId = l3Map['TECH_ARCH_BCP'];
-      else if (qNum === 5) syllabusCategoryId = l3Map['TECH_NET_IP'];
-      else if (qNum === 6) syllabusCategoryId = l3Map['TECH_DB_NORM'];
-      else if (qNum === 7) syllabusCategoryId = l2Map['TECH_ARCH'];
-      else if (qNum === 8) syllabusCategoryId = l3Map['MGMT_PM_EVM'];
-      else if (qNum === 9) syllabusCategoryId = l2Map['MGMT_SM'];
-      else if (qNum === 10) syllabusCategoryId = l2Map['STRAT_ST'];
-      else if (qNum === 11) syllabusCategoryId = l2Map['TECH_ALG'];
-    } else if (qNum === 1 || (qNum >= 31 && qNum <= 34)) {
-      syllabusCategoryId = l3Map['TECH_SEC_CRYPTO'];
-    } else if (qNum === 2 || (qNum >= 27 && qNum <= 30) || (qNum >= 35 && qNum <= 40)) {
-      syllabusCategoryId = l3Map['TECH_SEC_THREAT'];
-    } else if (qNum === 3 || (qNum >= 23 && qNum <= 26)) {
-      syllabusCategoryId = l3Map['TECH_NET_IP'];
-    } else if (qNum === 4 || qNum === 19 || qNum === 20 || qNum === 21 || qNum === 22) {
-      syllabusCategoryId = l3Map['TECH_DB_NORM'];
-    } else if (qNum === 5 || qNum === 9 || (qNum >= 41 && qNum <= 50)) {
-      syllabusCategoryId = l3Map['TECH_ALG_TREE'];
-    } else if (qNum === 6 || (qNum >= 10 && qNum <= 18)) {
-      syllabusCategoryId = l3Map['TECH_ARCH_BCP'];
-    } else if (qNum === 7 || (qNum >= 51 && qNum <= 55)) {
-      syllabusCategoryId = l3Map['MGMT_PM_EVM'];
-    } else if (qNum >= 56 && qNum <= 60) {
-      syllabusCategoryId = l2Map['MGMT_SM'];
-    } else if (qNum === 8 || (qNum >= 61 && qNum <= 70)) {
-      syllabusCategoryId = l3Map['STRAT_ST_DX'];
-    } else if (qNum >= 71 && qNum <= 80) {
-      syllabusCategoryId = l2Map['STRAT_ST'];
-    } else if (cat.includes('SEC')) {
-      syllabusCategoryId = l2Map['TECH_SEC'];
-    } else if (cat.includes('NET')) {
-      syllabusCategoryId = l2Map['TECH_NET'];
-    } else if (cat.includes('DB') || cat.includes('DATA')) {
-      syllabusCategoryId = l2Map['TECH_DB'];
-    } else if (cat.includes('ALG')) {
-      syllabusCategoryId = l2Map['TECH_ALG'];
-    } else if (cat.includes('PM') || cat.includes('PROJECT')) {
-      syllabusCategoryId = l2Map['MGMT_PM'];
-    } else if (cat.includes('STRAT')) {
-      syllabusCategoryId = l2Map['STRAT_ST'];
-    }
-
-    // Check choice duplicate warnings before creating
-    if (choices && choices.length > 0) {
-      const seenChoiceTexts = new Set<string>();
-      for (const c of choices) {
-        if (seenChoiceTexts.has(c.text)) {
-          console.warn(
-            `[WARNING] 重複選択肢を検出 (問${qInfo.questionNum} 選択肢${c.symbol}): "${c.text}"`
-          );
-        }
-        seenChoiceTexts.add(c.text);
-      }
-    }
-
-    await prisma.question.create({
+    const created = await prisma.question.create({
       data: {
-        ...qInfo,
-        syllabusCategoryId,
-        imageUrls: imageUrls ? JSON.stringify(imageUrls) : null,
-        choices: choices && choices.length > 0 ? {
-          create: choices.map((c: any) => ({
+        year: q.year,
+        season: q.season,
+        examType: q.examType || 'SUBJECT_A',
+        questionNum: q.questionNum,
+        category: q.category || 'TECHNOLOGY',
+        syllabusCategoryId: categoryId,
+        title: q.title,
+        bodyText: q.bodyText,
+        explanation: q.explanation,
+        choices: {
+          create: q.choices.map((c: any) => ({
             symbol: c.symbol,
             text: c.text,
             isCorrect: c.isCorrect,
-          }))
-        } : undefined,
-        modelAnswers: modelAnswers && modelAnswers.length > 0 ? {
-          create: modelAnswers.map((ma: any) => ({
-            subQuestionNum: ma.subQuestionNum,
-            questionText: ma.questionText,
-            maxScore: ma.maxScore,
-            characterLimit: ma.characterLimit,
-            answerText: ma.answerText,
-            explanation: ma.explanation,
-          }))
-        } : undefined,
+          })),
+        },
+      },
+      include: {
+        choices: true,
       },
     });
+
+    const cKey = `第${q.chapterNum}章 ${q.chapterTitle}`;
+    chapterCounts[cKey] = (chapterCounts[cKey] || 0) + 1;
+    insertedQuestions.push({ ...created, chapterNum: q.chapterNum, chapterTitle: q.chapterTitle });
   }
 
-  console.log('\n===============================================================');
-  console.log('【全3期・年度別 登録問題数 DB投入結果】');
-  console.log('===============================================================');
-  let totalSubjectA = 0;
-  let totalSubjectB = 0;
-  const sessions = ['2024年 春期', '2024年 秋期', '2023年 秋期'];
-  for (const sess of sessions) {
-    const cntA = summaryABySession[sess] || 0;
-    const cntB = summaryBBySession[sess] || 0;
-    console.log(`  ・${sess}: 科目A ${cntA} 問 | 科目B ${cntB} 大問`);
-    totalSubjectA += cntA;
-    totalSubjectB += cntB;
+  console.log('\n====================================================');
+  console.log('【DB投入結果】 登録された章別の問題数一覧');
+  console.log('====================================================');
+  for (const [chap, count] of Object.entries(chapterCounts)) {
+    console.log(`  - ${chap}: ${count} 問`);
   }
-  console.log(`  ★ データベース総投入件数: ${questionsToLoad.length} 問 (科目A: ${totalSubjectA}問 / 科目B: ${totalSubjectB}大問)`);
-  console.log('===============================================================\n');
+  console.log(`  ----------------------------------`);
+  console.log(`  計: ${insertedQuestions.length} 問 登録完了`);
 
-  console.log('===============================================================');
-  console.log('【科目A 整合性目視確認ログ (各期の 問1, 問20, 問40, 問60, 問80)】');
-  console.log('===============================================================');
+  console.log('\n====================================================');
+  console.log('【目視確認ログ】 第1章・第2章のサンプル問題照合');
+  console.log('====================================================');
 
-  const checkSessions = [
-    { year: 2024, season: 'SPRING', name: '2024年 春期' },
-    { year: 2024, season: 'AUTUMN', name: '2024年 秋期' },
-    { year: 2023, season: 'AUTUMN', name: '2023年 秋期' },
-  ];
-  const checkTargetsA = [1, 20, 40, 60, 80];
+  const ch1Samples = insertedQuestions.filter((q) => q.chapterNum === 1).slice(0, 2);
+  const ch2Samples = insertedQuestions.filter((q) => q.chapterNum === 2).slice(0, 2);
 
-  for (const s of checkSessions) {
-    console.log(`\n▶ 【${s.name}】 科目A サンプル検証`);
-    for (const qNum of checkTargetsA) {
-      const qRecord = await prisma.question.findFirst({
-        where: { year: s.year, season: s.season as any, examType: 'SUBJECT_A', questionNum: qNum },
-        include: { choices: true, syllabusCategory: true },
-      });
-
-      if (qRecord) {
-        const correctChoice = qRecord.choices.find((c) => c.isCorrect);
-        console.log(`  ・問${qNum}: ${qRecord.title}`);
-        console.log(`     本文冒頭: ${qRecord.bodyText.slice(0, 45).replace(/\n/g, ' ')}...`);
-        console.log(`     選択肢数: ${qRecord.choices.length} 件 (独立ユニーク)`);
-        console.log(`     公式正解記号: 【${correctChoice?.symbol || '未設定'}】`);
-        console.log(`     シラバス分類: ${qRecord.syllabusCategory?.name || qRecord.category}`);
-      }
+  for (const [idx, q] of [...ch1Samples, ...ch2Samples].entries()) {
+    console.log(`\n--- サンプル問題 ${idx + 1} (第${q.chapterNum}章: ${q.title}) ---`);
+    console.log(`【問題文冒頭】: ${q.bodyText.slice(0, 100)}...`);
+    console.log(`【選択肢 (計${q.choices.length}件)】:`);
+    for (const c of q.choices) {
+      console.log(`  ${c.symbol}. ${c.text} ${c.isCorrect ? ' (★正解)' : ''}`);
     }
+    const correctChoice = q.choices.find((c: any) => c.isCorrect);
+    console.log(`【判定正解】: ${correctChoice ? correctChoice.symbol : '未確定'}`);
+    console.log(`【解説冒頭】: ${q.explanation ? q.explanation.slice(0, 120).replace(/\n/g, ' ') : ''}...`);
   }
 
-  console.log('\n===============================================================');
-  console.log('【科目B 整合性目視確認ログ (大問タイトル・小問数・合計配点)】');
-  console.log('===============================================================');
-
-  const subjectBQuestions = await prisma.question.findMany({
-    where: { examType: 'SUBJECT_B' },
-    include: { modelAnswers: true },
-    orderBy: [{ year: 'desc' }, { questionNum: 'asc' }],
-  });
-
-  for (const qb of subjectBQuestions) {
-    const totalScore = qb.modelAnswers.reduce((sum, ma) => sum + (ma.maxScore || 0), 0);
-    console.log(`  ・[${qb.year}年 ${qb.season === 'SPRING' ? '春期' : '秋期'}] ${qb.title}`);
-    console.log(`     小問数: ${qb.modelAnswers.length} 設問 | 合計配点: ${totalScore} 点`);
-  }
-
-  console.log('\n[SUCCESS] 3期分過去問 (科目A 240問 ＋ 科目B 15大問) 100%厳密投入完了！\n');
+  console.log('\nデータベースの再構築・検証が正常に完了しました！');
 }
 
 main()
   .catch((e) => {
-    console.error('Error during database seed execution:', e);
+    console.error('Seeding process failed:', e);
     process.exit(1);
   })
   .finally(async () => {
