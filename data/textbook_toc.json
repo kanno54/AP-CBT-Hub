@@ -1,0 +1,539 @@
+{
+  "bookTitle": "徹底攻略 応用情報技術者教科書",
+  "chapters": [
+    {
+      "chapterNum": 1,
+      "title": "基礎理論",
+      "startPage": 37,
+      "sections": [
+        {
+          "sectionNum": "1-1",
+          "title": "基礎理論",
+          "page": 38,
+          "syllabusCategoryCode": "TECH_THEORY_ALGO",
+          "keywords": [
+            "離散数学",
+            "応用数学",
+            "情報に関する理論",
+            "通信に関する理論",
+            "計測・制御に関する理論",
+            "2進数",
+            "補数",
+            "浮動小数点"
+          ]
+        },
+        {
+          "sectionNum": "1-2",
+          "title": "アルゴリズムとプログラミング",
+          "page": 84,
+          "syllabusCategoryCode": "TECH_ALG_TREE",
+          "keywords": [
+            "データ構造",
+            "アルゴリズム",
+            "プログラミング",
+            "プログラム言語",
+            "その他の言語",
+            "2進数",
+            "応用数学",
+            "確率"
+          ]
+        },
+        {
+          "sectionNum": "1-3",
+          "title": "演習問題",
+          "page": 116,
+          "syllabusCategoryCode": "TECH_THEORY_ALGO",
+          "keywords": [
+            "確率",
+            "統計",
+            "二分木",
+            "ファイルシステム"
+          ]
+        }
+      ]
+    },
+    {
+      "chapterNum": 2,
+      "title": "コンピュータシステム",
+      "startPage": 125,
+      "sections": [
+        {
+          "sectionNum": "2-1",
+          "title": "コンピュータ構成要素",
+          "page": 126,
+          "syllabusCategoryCode": "TECH_ARCH",
+          "keywords": [
+            "プロセッサ",
+            "メモリ",
+            "バス",
+            "入出力デバイス",
+            "入出力装置",
+            "浮動小数点",
+            "確率",
+            "CPU"
+          ]
+        },
+        {
+          "sectionNum": "2-2",
+          "title": "システム構成要素",
+          "page": 153,
+          "syllabusCategoryCode": "TECH_ARCH_BCP",
+          "keywords": [
+            "システムの構成",
+            "システムの評価指標",
+            "浮動小数点",
+            "確率",
+            "CPU",
+            "RAID",
+            "デュプレックス",
+            "OS"
+          ]
+        },
+        {
+          "sectionNum": "2-3",
+          "title": "ソフトウェア",
+          "page": 176,
+          "syllabusCategoryCode": "TECH_SOFTWARE",
+          "keywords": [
+            "オペレーティングシステム",
+            "ミドルウェア",
+            "ファイルシステム",
+            "開発ツール",
+            "オープンソースソフトウェア",
+            "統計",
+            "CPU",
+            "主記憶"
+          ]
+        },
+        {
+          "sectionNum": "2-4",
+          "title": "ハードウェア",
+          "page": 198,
+          "syllabusCategoryCode": "TECH_ARCH",
+          "keywords": [
+            "ハードウェア",
+            "確率",
+            "CPU",
+            "キャッシュメモリ",
+            "主記憶",
+            "OS"
+          ]
+        },
+        {
+          "sectionNum": "2-5",
+          "title": "演習問題",
+          "page": 207,
+          "syllabusCategoryCode": "TECH_ARCH",
+          "keywords": [
+            "確率",
+            "CPU",
+            "キャッシュメモリ",
+            "主記憶",
+            "OS",
+            "仮想記憶",
+            "UI",
+            "UX"
+          ]
+        }
+      ]
+    },
+    {
+      "chapterNum": 3,
+      "title": "技術要素",
+      "startPage": 219,
+      "sections": [
+        {
+          "sectionNum": "3-1",
+          "title": "ユーザーインタフェース",
+          "page": 220,
+          "syllabusCategoryCode": "TECH_UI",
+          "keywords": [
+            "ユーザーインタフェース技術",
+            "UI/UXデザイン",
+            "UI",
+            "UX",
+            "Webアクセシビリティ",
+            "マルチメディア",
+            "JPEG",
+            "MPEG"
+          ]
+        },
+        {
+          "sectionNum": "3-2",
+          "title": "情報メディア",
+          "page": 228,
+          "syllabusCategoryCode": "TECH_MEDIA",
+          "keywords": [
+            "マルチメディア技術",
+            "マルチメディア応用",
+            "マルチメディア",
+            "JPEG",
+            "MPEG",
+            "データベース",
+            "SQL",
+            "トランザクション"
+          ]
+        },
+        {
+          "sectionNum": "3-3",
+          "title": "データベース",
+          "page": 237,
+          "syllabusCategoryCode": "TECH_DB_NORM",
+          "keywords": [
+            "データベース方式",
+            "データベース設計",
+            "データ操作",
+            "トランザクション処理",
+            "データベース応用",
+            "統計",
+            "ハッシュ",
+            "CPU"
+          ]
+        },
+        {
+          "sectionNum": "3-4",
+          "title": "ネットワーク",
+          "page": 289,
+          "syllabusCategoryCode": "TECH_NET_IP",
+          "keywords": [
+            "ネットワーク方式",
+            "データ通信と制御",
+            "通信プロトコル",
+            "ネットワーク管理",
+            "ネットワーク応用",
+            "2進数",
+            "離散数学",
+            "応用数学"
+          ]
+        },
+        {
+          "sectionNum": "3-5",
+          "title": "セキュリティ",
+          "page": 323,
+          "syllabusCategoryCode": "TECH_SEC_THREAT",
+          "keywords": [
+            "情報セキュリティ",
+            "情報セキュリティ管理",
+            "セキュリティ技術評価",
+            "情報セキュリティ対策",
+            "セキュリティ実装技術",
+            "確率",
+            "統計",
+            "ハッシュ"
+          ]
+        },
+        {
+          "sectionNum": "3-6",
+          "title": "演習問題",
+          "page": 382,
+          "syllabusCategoryCode": "TECH_SEC",
+          "keywords": [
+            "2進数",
+            "ハッシュ",
+            "CPU",
+            "RAID",
+            "データベース",
+            "SQL",
+            "トランザクション",
+            "IPアドレス"
+          ]
+        }
+      ]
+    },
+    {
+      "chapterNum": 4,
+      "title": "開発技術",
+      "startPage": 397,
+      "sections": [
+        {
+          "sectionNum": "4-1",
+          "title": "システム開発技術",
+          "page": 398,
+          "syllabusCategoryCode": "TECH_DEV_SYS",
+          "keywords": [
+            "システム要件定義・ソフトウェア要件定義",
+            "設計",
+            "実装・構築",
+            "統合・テスト",
+            "導入・受入れ支援",
+            "保守・廃棄",
+            "主記憶",
+            "OS"
+          ]
+        },
+        {
+          "sectionNum": "4-2",
+          "title": "ソフトウェア開発管理技術",
+          "page": 431,
+          "syllabusCategoryCode": "TECH_DEV_MGMT",
+          "keywords": [
+            "開発プロセス・手法",
+            "知的財産適用管理",
+            "開発環境管理",
+            "構成管理・変更管理",
+            "CPU",
+            "著作権法"
+          ]
+        },
+        {
+          "sectionNum": "4-3",
+          "title": "演習問題",
+          "page": 446,
+          "syllabusCategoryCode": "TECH_DEV",
+          "keywords": []
+        }
+      ]
+    },
+    {
+      "chapterNum": 5,
+      "title": "プロジェクトマネジメント",
+      "startPage": 455,
+      "sections": [
+        {
+          "sectionNum": "5-1",
+          "title": "プロジェクトマネジメント",
+          "page": 456,
+          "syllabusCategoryCode": "MGMT_PM_EVM",
+          "keywords": [
+            "プロジェクトマネジメント",
+            "プロジェクトの統合",
+            "プロジェクトのステークホルダ",
+            "プロジェクトのスコープ",
+            "プロジェクトの資源",
+            "プロジェクトの時間",
+            "プロジェクトのコスト",
+            "プロジェクトのリスク"
+          ]
+        },
+        {
+          "sectionNum": "5-2",
+          "title": "演習問題",
+          "page": 490,
+          "syllabusCategoryCode": "MGMT_PM_EVM",
+          "keywords": [
+            "EVM",
+            "CPI",
+            "WBS",
+            "アローダイアグラム",
+            "クリティカルパス",
+            "ITIL",
+            "システム監査",
+            "内部統制"
+          ]
+        }
+      ]
+    },
+    {
+      "chapterNum": 6,
+      "title": "サービスマネジメント",
+      "startPage": 495,
+      "sections": [
+        {
+          "sectionNum": "6-1",
+          "title": "サービスマネジメント",
+          "page": 496,
+          "syllabusCategoryCode": "MGMT_SM_SERVICE",
+          "keywords": [
+            "サービスマネジメント",
+            "サービスマネジメントシステムの計画及び運用",
+            "パフォーマンス評価及び改善",
+            "サービスの運用",
+            "ファシリティマネジメント",
+            "CPU",
+            "RTO",
+            "RPO"
+          ]
+        },
+        {
+          "sectionNum": "6-2",
+          "title": "システム監査",
+          "page": 522,
+          "syllabusCategoryCode": "MGMT_SM_AUDIT",
+          "keywords": [
+            "システム監査",
+            "内部統制",
+            "統計",
+            "OS",
+            "トランザクション",
+            "著作権法",
+            "労働基準法"
+          ]
+        },
+        {
+          "sectionNum": "6-3",
+          "title": "演習問題",
+          "page": 536,
+          "syllabusCategoryCode": "MGMT_SM",
+          "keywords": [
+            "SLA",
+            "システム監査"
+          ]
+        }
+      ]
+    },
+    {
+      "chapterNum": 7,
+      "title": "システム戦略",
+      "startPage": 541,
+      "sections": [
+        {
+          "sectionNum": "7-1",
+          "title": "システム戦略",
+          "page": 542,
+          "syllabusCategoryCode": "STRAT_ST",
+          "keywords": [
+            "情報システム戦略",
+            "業務プロセス",
+            "ソリューションビジネス",
+            "システム活用促進・評価",
+            "統計",
+            "RTO",
+            "RPO",
+            "OS"
+          ]
+        },
+        {
+          "sectionNum": "7-2",
+          "title": "システム企画",
+          "page": 562,
+          "syllabusCategoryCode": "STRAT_ST",
+          "keywords": [
+            "システム化計画",
+            "要件定義",
+            "調達計画・実施",
+            "SLA",
+            "内部統制"
+          ]
+        },
+        {
+          "sectionNum": "7-3",
+          "title": "演習問題",
+          "page": 574,
+          "syllabusCategoryCode": "STRAT_ST",
+          "keywords": [
+            "OS",
+            "BSC"
+          ]
+        }
+      ]
+    },
+    {
+      "chapterNum": 8,
+      "title": "経営戦略",
+      "startPage": 581,
+      "sections": [
+        {
+          "sectionNum": "8-1",
+          "title": "経営戦略マネジメント",
+          "page": 582,
+          "syllabusCategoryCode": "STRAT_ST_DX",
+          "keywords": [
+            "経営戦略手法",
+            "マーケティング",
+            "ビジネス戦略と目標・評価",
+            "経営管理システム",
+            "統計",
+            "SWOT分析",
+            "PPM",
+            "BSC"
+          ]
+        },
+        {
+          "sectionNum": "8-2",
+          "title": "技術戦略マネジメント",
+          "page": 605,
+          "syllabusCategoryCode": "STRAT_MOT",
+          "keywords": [
+            "技術開発戦略の立案",
+            "技術開発計画",
+            "OS",
+            "MPEG"
+          ]
+        },
+        {
+          "sectionNum": "8-3",
+          "title": "ビジネスインダストリ",
+          "page": 612,
+          "syllabusCategoryCode": "STRAT_BIZ",
+          "keywords": [
+            "ビジネスシステム",
+            "エンジニアリングシステム",
+            "e-ビジネス",
+            "民生機器",
+            "産業機器",
+            "OS",
+            "RSA",
+            "デジタル署名"
+          ]
+        },
+        {
+          "sectionNum": "8-4",
+          "title": "演習問題",
+          "page": 628,
+          "syllabusCategoryCode": "STRAT_ST",
+          "keywords": [
+            "デュプレックス",
+            "OS",
+            "SWOT分析",
+            "PPM",
+            "BSC"
+          ]
+        }
+      ]
+    },
+    {
+      "chapterNum": 9,
+      "title": "企業と法務",
+      "startPage": 633,
+      "sections": [
+        {
+          "sectionNum": "9-1",
+          "title": "企業活動",
+          "page": 634,
+          "syllabusCategoryCode": "STRAT_CORP",
+          "keywords": [
+            "経営・組織論",
+            "業務分析・データ利活用",
+            "会計・財務",
+            "応用数学",
+            "確率",
+            "統計",
+            "データベース",
+            "アローダイアグラム"
+          ]
+        },
+        {
+          "sectionNum": "9-2",
+          "title": "法務",
+          "page": 660,
+          "syllabusCategoryCode": "STRAT_LEGAL",
+          "keywords": [
+            "知的財産権",
+            "セキュリティ関連法規",
+            "労働関連・取引関連法規",
+            "その他の法律・ガイドライン・技術者倫理",
+            "標準化関連",
+            "OS",
+            "データベース",
+            "IPアドレス"
+          ]
+        },
+        {
+          "sectionNum": "9-3",
+          "title": "演習問題",
+          "page": 675,
+          "syllabusCategoryCode": "STRAT_LEGAL",
+          "keywords": [
+            "スタック",
+            "AVL木",
+            "CPU",
+            "主記憶",
+            "OS",
+            "仮想記憶",
+            "CPI"
+          ]
+        }
+      ]
+    }
+  ]
+}

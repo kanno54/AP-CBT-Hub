@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import fs from 'fs';
 import path from 'path';
+import { getTextbookReferenceForCategory, TextbookReference } from '@/lib/textbook';
 
 export interface ComparisonRow {
   concept: string;
@@ -15,6 +16,7 @@ export interface SystematicLectureData {
   overview: string;
   comparisonTable: ComparisonRow[];
   examRules: string[];
+  textbookReference?: TextbookReference;
 }
 
 interface SyllabusKBUnit {
@@ -162,11 +164,15 @@ export async function POST(request: NextRequest) {
       ...bestUnit.comparisonPairs.map((p) => `【出題の定石: ${p.pair}】 ${p.keyDiff}`),
     ];
 
+    // Textbook reference lookup
+    const textbookReference = getTextbookReferenceForCategory(bestUnit.code, bestUnit.name);
+
     const lectureData: SystematicLectureData = {
       themeTitle: `🎓 ${cleanTitle} （シラバス分類: ${bestUnit.name}）`,
       overview: `【IPA公式シラバス RAG体系講義】\n■ 対象分野: ${bestUnit.name} (${bestUnit.code})\n■ 到達目標: ${bestUnit.objectives}\n\n■ 体系要約:\n${bestUnit.concepts} に関する知識が問われています。本問題の文脈とシラバス定石知識を複合的に理解することで、類似問題にも対応できる本質的な解法力を養成します。`,
       comparisonTable,
       examRules,
+      textbookReference,
     };
 
     return NextResponse.json({

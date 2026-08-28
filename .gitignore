@@ -25,6 +25,9 @@
 *.db-journal
 prisma/dev.db*
 
+# pdf data files
+data/*.pdf
+
 # misc
 .DS_Store
 *.pem

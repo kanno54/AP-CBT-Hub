@@ -17,11 +17,22 @@ import {
   Tag,
   ArrowRight,
   CheckCircle2,
+  Book,
 } from 'lucide-react';
 
 interface Keyword {
   id: string;
   name: string;
+}
+
+export interface TextbookReference {
+  bookTitle: string;
+  chapterNum: number;
+  chapterTitle: string;
+  sectionNum: string;
+  sectionTitle: string;
+  page: number;
+  keywords: string[];
 }
 
 interface SyllabusLevel3 {
@@ -30,6 +41,7 @@ interface SyllabusLevel3 {
   level: number;
   name: string;
   keywords: Keyword[];
+  textbookRef?: TextbookReference;
   _count: {
     questions: number;
   };
@@ -42,6 +54,7 @@ interface SyllabusLevel2 {
   name: string;
   children: SyllabusLevel3[];
   keywords: Keyword[];
+  textbookRef?: TextbookReference;
   _count: {
     questions: number;
   };
@@ -85,6 +98,9 @@ export default function SyllabusPage() {
     TECH_NET: true,
     MGMT_PM: true,
   });
+
+  // Collapsible state for Textbook reference chips
+  const [expandedTextbook, setExpandedTextbook] = useState<Record<string, boolean>>({});
 
   const [stats, setStats] = useState<StatsSummary>({
     totalCategories: 19,
@@ -143,6 +159,10 @@ export default function SyllabusPage() {
     setExpandedL2((prev) => ({ ...prev, [code]: !prev[code] }));
   };
 
+  const toggleTextbookChip = (id: string) => {
+    setExpandedTextbook((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+
   // Filter Level 3 subcategories based on searchQuery
   const filterMatchesSearch = (l3: SyllabusLevel3, l2Name: string) => {
     if (!searchQuery.trim()) return true;
@@ -154,7 +174,9 @@ export default function SyllabusPage() {
       ' ' +
       l2Name +
       ' ' +
-      l3.keywords.map((k) => k.name).join(' ')
+      l3.keywords.map((k) => k.name).join(' ') +
+      ' ' +
+      (l3.textbookRef ? `${l3.textbookRef.chapterTitle} ${l3.textbookRef.sectionTitle}` : '')
     ).toLowerCase();
     return textToSearch.includes(q);
   };
@@ -176,7 +198,7 @@ export default function SyllabusPage() {
                 </span>
               </div>
               <p className="text-xs md:text-sm text-slate-400 mt-1">
-                応用情報技術者(AP)シラバス階層体系と過去問800問(科目A)＋110問(科目B)の出題マップ＆特訓ブラウザ
+                応用情報技術者(AP)シラバス階層体系とインプレス教科書参照・過去問出題マップ＆特訓ブラウザ
               </p>
             </div>
           </div>
@@ -223,7 +245,7 @@ export default function SyllabusPage() {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="シラバス分類・キーワードで即時検索 (例: CSRF, 正規化, EVM, 公開鍵暗号, IPアドレス)..."
+            placeholder="シラバス分類・キーワード・教科書章名で検索 (例: CSRF, 正規化, 暗号技術, p.320)..."
             className="w-full pl-11 pr-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors"
           />
           {searchQuery && (
@@ -241,7 +263,7 @@ export default function SyllabusPage() {
       {loading ? (
         <div className="glass-panel p-12 text-center rounded-2xl space-y-3">
           <div className="w-10 h-10 border-4 border-indigo-500/30 border-t-indigo-500 rounded-full animate-spin mx-auto"></div>
-          <p className="text-slate-400 text-sm">IPA公式シラバス階層ツリーをロード中...</p>
+          <p className="text-slate-400 text-sm">IPA公式シラバス階層ツリーおよび教科書参照マップをロード中...</p>
         </div>
       ) : (
         <div className="space-y-4">
@@ -326,66 +348,122 @@ export default function SyllabusPage() {
 
                           {/* Level 2 Content Body (Level 3 小分類 List) */}
                           {isL2Expanded && (
-                            <div className="p-3.5 md:p-5 border-t border-slate-800/60 space-y-3 bg-slate-950/60">
-                              {matchingL3Children.map((l3) => (
-                                <div
-                                  key={l3.id}
-                                  className="p-4 rounded-xl bg-slate-900/90 border border-indigo-500/20 hover:border-indigo-500/40 space-y-3 transition-colors shadow-sm"
-                                >
-                                  {/* Level 3 Subcategory Title & Badges */}
-                                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-slate-800 pb-2.5">
-                                    <div className="flex items-center gap-2">
-                                      <span className="w-2 h-2 rounded-full bg-indigo-500 shrink-0"></span>
-                                      <h4 className="text-sm md:text-base font-extrabold text-indigo-200">
-                                        {l3.name}
-                                      </h4>
-                                    </div>
-                                    <span className="text-xs text-slate-400 self-start md:self-auto">
-                                      収録問題数: <strong className="text-indigo-300 font-bold">{l3._count.questions}問</strong>
-                                    </span>
-                                  </div>
+                            <div className="p-3.5 md:p-5 border-t border-slate-800/60 space-y-4 bg-slate-950/60">
+                              {matchingL3Children.map((l3) => {
+                                const tbRef = l3.textbookRef;
+                                const isTbExpanded = expandedTextbook[l3.id];
 
-                                  {/* Important Keywords Tag Badges */}
-                                  {l3.keywords && l3.keywords.length > 0 && (
-                                    <div className="space-y-1">
-                                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-                                        シラバス重要キーワード:
-                                      </span>
-                                      <div className="flex flex-wrap gap-1.5">
-                                        {l3.keywords.map((kw) => (
-                                          <span
-                                            key={kw.id}
-                                            className="px-2.5 py-1 rounded-lg bg-slate-800/90 hover:bg-slate-800 text-indigo-300 border border-indigo-500/30 text-xs font-mono flex items-center gap-1"
-                                          >
-                                            <Tag className="w-3 h-3 text-indigo-400 shrink-0" />
-                                            {kw.name}
-                                          </span>
-                                        ))}
+                                return (
+                                  <div
+                                    key={l3.id}
+                                    className="p-4 rounded-xl bg-slate-900/90 border border-indigo-500/20 hover:border-indigo-500/40 space-y-3.5 transition-colors shadow-sm"
+                                  >
+                                    {/* Level 3 Subcategory Title & Badges */}
+                                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-slate-800 pb-2.5">
+                                      <div className="flex items-center gap-2">
+                                        <span className="w-2 h-2 rounded-full bg-indigo-500 shrink-0"></span>
+                                        <h4 className="text-sm md:text-base font-extrabold text-indigo-200">
+                                          {l3.name}
+                                        </h4>
                                       </div>
+                                      <span className="text-xs text-slate-400 self-start md:self-auto">
+                                        収録問題数: <strong className="text-indigo-300 font-bold">{l3._count.questions}問</strong>
+                                      </span>
                                     </div>
-                                  )}
 
-                                  {/* Action Buttons: Practice Subject A / Subject B */}
-                                  <div className="pt-2 flex flex-wrap items-center gap-2.5">
-                                    <Link
-                                      href={`/subject-a?syllabusCode=${l3.code}`}
-                                      className="min-h-[44px] px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs flex items-center gap-1.5 transition-all shadow-md shadow-blue-500/20"
-                                    >
-                                      <FileCheck className="w-4 h-4 text-blue-200" />
-                                      <span>🎯 科目A 択一特訓</span>
-                                      <ArrowRight className="w-3.5 h-3.5 text-blue-200 ml-1" />
-                                    </Link>
+                                    {/* Textbook Reference Badge (インプレス教科書参照) */}
+                                    {tbRef && (
+                                      <div className="space-y-2">
+                                        <div className="p-2.5 rounded-xl bg-gradient-to-r from-emerald-950/50 via-slate-900 to-indigo-950/50 border border-emerald-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                                          <div className="flex items-center gap-2">
+                                            <Book className="w-4 h-4 text-emerald-400 shrink-0" />
+                                            <span className="font-extrabold text-emerald-300">
+                                              📖 教科書参照:
+                                            </span>
+                                            <span className="text-slate-200 font-medium">
+                                              第{tbRef.chapterNum}章 {tbRef.chapterTitle} ({tbRef.sectionNum} {tbRef.sectionTitle} p.{tbRef.page}〜)
+                                            </span>
+                                          </div>
 
-                                    <Link
-                                      href={`/subject-b?syllabusCode=${l3.code}`}
-                                      className="min-h-[44px] px-4 py-2 rounded-xl bg-slate-800 hover:bg-indigo-950/60 text-indigo-300 hover:text-white border border-indigo-500/30 hover:border-indigo-500/60 font-bold text-xs flex items-center gap-1.5 transition-all shadow-sm"
-                                    >
-                                      <Edit3 className="w-4 h-4 text-indigo-400" />
-                                      <span>📝 科目B CBT記述演習</span>
-                                    </Link>
+                                          <button
+                                            onClick={() => toggleTextbookChip(l3.id)}
+                                            className="px-2.5 py-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 font-bold border border-emerald-500/30 flex items-center gap-1 text-[11px] self-start sm:self-auto transition-colors"
+                                          >
+                                            <span>学習テーマ・キーワード {isTbExpanded ? '▲' : '▼'}</span>
+                                          </button>
+                                        </div>
+
+                                        {/* Collapsible Details Chip */}
+                                        {isTbExpanded && (
+                                          <div className="p-3 rounded-xl bg-slate-950/90 border border-slate-800 space-y-2 text-xs animate-fade-in">
+                                            <div className="flex items-center justify-between text-[11px] text-slate-400 border-b border-slate-800 pb-1.5">
+                                              <span>書籍名: <strong className="text-slate-200">{tbRef.bookTitle}</strong></span>
+                                              <span className="text-indigo-400 font-semibold">電子PDF対応 (p.{tbRef.page})</span>
+                                            </div>
+                                            {tbRef.keywords && tbRef.keywords.length > 0 && (
+                                              <div className="space-y-1">
+                                                <span className="text-[10px] font-bold text-slate-400 block">
+                                                  教科書該当節の集中テーマ・キーワード:
+                                                </span>
+                                                <div className="flex flex-wrap gap-1">
+                                                  {tbRef.keywords.map((kw, i) => (
+                                                    <span
+                                                      key={i}
+                                                      className="px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-300 border border-emerald-500/20 text-[11px]"
+                                                    >
+                                                      {kw}
+                                                    </span>
+                                                  ))}
+                                                </div>
+                                              </div>
+                                            )}
+                                          </div>
+                                        )}
+                                      </div>
+                                    )}
+
+                                    {/* Important Keywords Tag Badges */}
+                                    {l3.keywords && l3.keywords.length > 0 && (
+                                      <div className="space-y-1">
+                                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                                          シラバス重要キーワード:
+                                        </span>
+                                        <div className="flex flex-wrap gap-1.5">
+                                          {l3.keywords.map((kw) => (
+                                            <span
+                                              key={kw.id}
+                                              className="px-2.5 py-1 rounded-lg bg-slate-800/90 hover:bg-slate-800 text-indigo-300 border border-indigo-500/30 text-xs font-mono flex items-center gap-1"
+                                            >
+                                              <Tag className="w-3 h-3 text-indigo-400 shrink-0" />
+                                              {kw.name}
+                                            </span>
+                                          ))}
+                                        </div>
+                                      </div>
+                                    )}
+
+                                    {/* Action Buttons: Practice Subject A / Subject B */}
+                                    <div className="pt-2 flex flex-wrap items-center gap-2.5">
+                                      <Link
+                                        href={`/subject-a?syllabusCode=${l3.code}`}
+                                        className="min-h-[44px] px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs flex items-center gap-1.5 transition-all shadow-md shadow-blue-500/20"
+                                      >
+                                        <FileCheck className="w-4 h-4 text-blue-200" />
+                                        <span>🎯 科目A 択一特訓</span>
+                                        <ArrowRight className="w-3.5 h-3.5 text-blue-200 ml-1" />
+                                      </Link>
+
+                                      <Link
+                                        href={`/subject-b?syllabusCode=${l3.code}`}
+                                        className="min-h-[44px] px-4 py-2 rounded-xl bg-slate-800 hover:bg-indigo-950/60 text-indigo-300 hover:text-white border border-indigo-500/30 hover:border-indigo-500/60 font-bold text-xs flex items-center gap-1.5 transition-all shadow-sm"
+                                      >
+                                        <Edit3 className="w-4 h-4 text-indigo-400" />
+                                        <span>📝 科目B CBT記述演習</span>
+                                      </Link>
+                                    </div>
                                   </div>
-                                </div>
-                              ))}
+                                );
+                              })}
                             </div>
                           )}
                         </div>

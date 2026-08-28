@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { getTextbookReferenceForCategory } from '@/lib/textbook';
 
 export async function GET(request: NextRequest) {
   try {
@@ -24,7 +25,8 @@ export async function GET(request: NextRequest) {
         return NextResponse.json({ success: false, error: 'Syllabus category not found' }, { status: 404 });
       }
 
-      return NextResponse.json({ success: true, data: category });
+      const textbookRef = getTextbookReferenceForCategory(category.code, category.name);
+      return NextResponse.json({ success: true, data: { ...category, textbookRef } });
     }
 
     // Fetch full hierarchy (Level 1 -> Level 2 -> Level 3 with keywords and questions count)
@@ -54,7 +56,20 @@ export async function GET(request: NextRequest) {
       orderBy: { code: 'asc' },
     });
 
-    return NextResponse.json({ success: true, data: syllabusTree });
+    // Attach textbookRef to each level 3 category
+    const enrichedTree = syllabusTree.map((l1) => ({
+      ...l1,
+      children: l1.children.map((l2) => ({
+        ...l2,
+        textbookRef: getTextbookReferenceForCategory(l2.code, l2.name),
+        children: l2.children.map((l3) => ({
+          ...l3,
+          textbookRef: getTextbookReferenceForCategory(l3.code, l3.name),
+        })),
+      })),
+    }));
+
+    return NextResponse.json({ success: true, data: enrichedTree });
   } catch (error: any) {
     console.error('Syllabus API Error:', error);
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });

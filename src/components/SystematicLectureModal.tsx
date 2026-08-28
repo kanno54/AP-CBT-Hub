@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { GraduationCap, Table, Lightbulb, X, ShieldCheck, Zap, KeyRound } from 'lucide-react';
+import { GraduationCap, Table, Lightbulb, X, ShieldCheck, Zap, KeyRound, Book } from 'lucide-react';
+import { TextbookReference } from '@/lib/textbook';
 
 export interface ComparisonRow {
   concept: string;
@@ -15,6 +16,7 @@ export interface SystematicLectureData {
   overview: string;
   comparisonTable: ComparisonRow[];
   examRules: string[];
+  textbookReference?: TextbookReference;
 }
 
 interface SystematicLectureModalProps {
@@ -81,6 +83,8 @@ export default function SystematicLectureModal({
 
   if (!isOpen) return null;
 
+  const tbRef = data?.textbookReference;
+
   return (
     /* Viewport Outer Container (Scrollable outer container preventing top overflow) */
     <div
@@ -124,6 +128,39 @@ export default function SystematicLectureModal({
             </div>
           ) : data ? (
             <>
+              {/* Textbook Reference Banner */}
+              {tbRef && (
+                <div className="p-4 md:p-4.5 rounded-xl md:rounded-2xl bg-gradient-to-r from-emerald-950/70 via-slate-900 to-indigo-950/70 border border-emerald-500/40 text-slate-200 text-xs md:text-sm space-y-2 shadow-md">
+                  <div className="flex items-center justify-between gap-2 border-b border-emerald-500/30 pb-2">
+                    <div className="flex items-center gap-2">
+                      <div className="p-1.5 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                        <Book className="w-4 h-4 text-emerald-400" />
+                      </div>
+                      <span className="font-extrabold text-emerald-300 text-xs md:text-sm">
+                        📖 手元テキスト参照 (電子版PDF対応):
+                      </span>
+                    </div>
+                    <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                      p.{tbRef.page}〜
+                    </span>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-xs text-slate-200">
+                    <div>
+                      <span className="text-slate-400">書籍名: </span>
+                      <strong className="text-white font-bold">{tbRef.bookTitle}</strong>
+                    </div>
+                    <div className="text-emerald-200 font-semibold">
+                      第{tbRef.chapterNum}章 {tbRef.chapterTitle} （{tbRef.sectionNum} {tbRef.sectionTitle}）
+                    </div>
+                  </div>
+
+                  <p className="text-[11px] md:text-xs text-slate-300 bg-slate-950/60 p-2.5 rounded-lg border border-slate-800 leading-relaxed">
+                    💡 演習中に疑問を持った際、手元の電子版PDFの <strong className="text-emerald-300">p.{tbRef.page}</strong> を開くと該当節の解説・図解を復習できます。
+                  </p>
+                </div>
+              )}
+
               {/* Lecture Summary Box */}
               <div className="p-4 md:p-5 rounded-xl md:rounded-2xl bg-gradient-to-r from-indigo-950/60 via-slate-900 to-slate-950 border border-indigo-500/30 text-slate-200 text-xs md:text-sm leading-relaxed whitespace-pre-line shadow-inner">
                 {data.overview}
@@ -229,7 +266,9 @@ export default function SystematicLectureModal({
 
         {/* Fixed Bottom Action Footer */}
         <div className="p-3 md:p-4 border-t border-slate-800 bg-slate-900/90 flex items-center justify-between shrink-0">
-          <span className="text-[10px] md:text-xs text-slate-400">Esc キーまたは外枠クリックで閉じられます</span>
+          <span className="text-[10px] md:text-xs text-slate-400">
+            {tbRef ? `教科書参照: p.${tbRef.page}〜 | Escキーまたは外枠クリックで閉じられます` : 'Esc キーまたは外枠クリックで閉じられます'}
+          </span>
           <button
             onClick={onClose}
             className="px-4 md:px-5 py-1.5 md:py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs transition-colors"
